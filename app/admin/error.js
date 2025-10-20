@@ -1,0 +1,71 @@
+
+'use client'; // Los componentes de error DEBEN ser componentes de cliente
+
+import { useEffect } from 'react';
+
+const styles = {
+  // Usamos el fondo de la página de admin para consistencia
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '4rem 2rem',
+    textAlign: 'center',
+    minHeight: 'calc(100vh - 70px)', // Altura menos la navbar
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/bg.png')`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    color: 'white',
+  },
+  title: {
+    fontSize: '2.8rem',
+    fontWeight: 'bold',
+    color: '#ff6b6b', // Un rojo más vibrante para el tema oscuro
+    textShadow: '0 2px 4px rgba(0, 0, 0, 0.5)',
+    marginBottom: '1rem',
+  },
+  subtitle: {
+    fontSize: '1.3rem',
+    textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)',
+    maxWidth: '600px',
+    marginBottom: '2.5rem',
+  },
+  button: {
+    backgroundColor: '#ff6b6b',
+    color: 'white',
+    border: '2px solid #ff6b6b',
+    padding: '0.8rem 2rem',
+    borderRadius: '10px',
+    cursor: 'pointer',
+    fontSize: '1.1rem',
+    fontWeight: 'bold',
+    transition: 'all 0.3s ease',
+  },
+};
+
+export default function AdminError({ error, reset }) {
+  useEffect(() => {
+    // Registrar el error específico de la sección de admin
+    console.error("Error en la sección de Administración:", error);
+  }, [error]);
+
+  return (
+    <div style={styles.container}>
+      <h1 style={styles.title}>Error en el Panel</h1>
+      <p style={styles.subtitle}>
+        Ha ocurrido un problema al cargar esta sección. Puedes intentar recargarla.
+      </p>
+      <button
+        style={styles.button}
+        onClick={() => reset()} // Intenta re-renderizar la ruta de admin
+        onMouseOver={e => (e.currentTarget.style.backgroundColor = 'transparent')}
+        onMouseOut={e => (e.currentTarget.style.backgroundColor = '#ff6b6b')}
+      >
+        Reintentar
+      </button>
+    </div>
+  );
+}
+
+
