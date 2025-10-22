@@ -780,3 +780,247 @@
 [debug] [2025-10-20T17:16:08.643Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
 [debug] [2025-10-20T17:16:08.656Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/ 200
 [debug] [2025-10-20T17:16:08.656Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/ [omitted]
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-22T16:44:11.582Z] Checked if tokens are valid: false, expires at: 1760984167153
+[debug] [2025-10-22T16:44:11.583Z] Checked if tokens are valid: false, expires at: 1760984167153
+[debug] [2025-10-22T16:44:11.584Z] > refreshing access token with scopes: []
+[debug] [2025-10-22T16:44:11.592Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-10-22T16:44:11.592Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T16:44:11.667Z] Checked if tokens are valid: false, expires at: 1760984167153
+[debug] [2025-10-22T16:44:11.667Z] Checked if tokens are valid: false, expires at: 1760984167153
+[debug] [2025-10-22T16:44:11.667Z] > refreshing access token with scopes: []
+[debug] [2025-10-22T16:44:11.668Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-10-22T16:44:11.668Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T16:44:11.672Z] Checked if tokens are valid: false, expires at: 1760984167153
+[debug] [2025-10-22T16:44:11.672Z] Checked if tokens are valid: false, expires at: 1760984167153
+[debug] [2025-10-22T16:44:11.673Z] > refreshing access token with scopes: []
+[debug] [2025-10-22T16:44:11.674Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-10-22T16:44:11.674Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T16:44:11.676Z] Checked if tokens are valid: false, expires at: 1760984167153
+[debug] [2025-10-22T16:44:11.676Z] Checked if tokens are valid: false, expires at: 1760984167153
+[debug] [2025-10-22T16:44:11.676Z] > refreshing access token with scopes: []
+[debug] [2025-10-22T16:44:11.677Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-10-22T16:44:11.677Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T16:44:11.679Z] Checked if tokens are valid: false, expires at: 1760984167153
+[debug] [2025-10-22T16:44:11.680Z] Checked if tokens are valid: false, expires at: 1760984167153
+[debug] [2025-10-22T16:44:11.680Z] > refreshing access token with scopes: []
+[debug] [2025-10-22T16:44:11.680Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-10-22T16:44:11.680Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-22T16:44:11.770Z] Checked if tokens are valid: false, expires at: 1760984167153
+[debug] [2025-10-22T16:44:11.770Z] Checked if tokens are valid: false, expires at: 1760984167153
+[debug] [2025-10-22T16:44:11.770Z] > refreshing access token with scopes: []
+[debug] [2025-10-22T16:44:11.771Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-10-22T16:44:11.771Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T16:44:11.773Z] Checked if tokens are valid: false, expires at: 1760984167153
+[debug] [2025-10-22T16:44:11.773Z] Checked if tokens are valid: false, expires at: 1760984167153
+[debug] [2025-10-22T16:44:11.773Z] > refreshing access token with scopes: []
+[debug] [2025-10-22T16:44:11.774Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-10-22T16:44:11.774Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T16:44:11.777Z] Checked if tokens are valid: false, expires at: 1760984167153
+[debug] [2025-10-22T16:44:11.777Z] Checked if tokens are valid: false, expires at: 1760984167153
+[debug] [2025-10-22T16:44:11.777Z] > refreshing access token with scopes: []
+[debug] [2025-10-22T16:44:11.777Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-10-22T16:44:11.777Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T16:44:11.780Z] Checked if tokens are valid: false, expires at: 1760984167153
+[debug] [2025-10-22T16:44:11.780Z] Checked if tokens are valid: false, expires at: 1760984167153
+[debug] [2025-10-22T16:44:11.780Z] > refreshing access token with scopes: []
+[debug] [2025-10-22T16:44:11.780Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-10-22T16:44:11.780Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T16:44:11.783Z] Checked if tokens are valid: false, expires at: 1760984167153
+[debug] [2025-10-22T16:44:11.783Z] Checked if tokens are valid: false, expires at: 1760984167153
+[debug] [2025-10-22T16:44:11.783Z] > refreshing access token with scopes: []
+[debug] [2025-10-22T16:44:11.784Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-10-22T16:44:11.784Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T16:44:11.906Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-10-22T16:44:11.908Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T16:44:11.935Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebasecrashlytics.googleapis.com [none]
+[debug] [2025-10-22T16:44:11.935Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebasecrashlytics.googleapis.com x-goog-quota-user=projects/moctezuma-juegos
+[debug] [2025-10-22T16:44:11.957Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-10-22T16:44:11.957Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T16:44:11.973Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com [none]
+[debug] [2025-10-22T16:44:11.973Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com x-goog-quota-user=projects/moctezuma-juegos
+[debug] [2025-10-22T16:44:11.994Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-10-22T16:44:11.995Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T16:44:12.013Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseapphosting.googleapis.com [none]
+[debug] [2025-10-22T16:44:12.014Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseapphosting.googleapis.com x-goog-quota-user=projects/moctezuma-juegos
+[debug] [2025-10-22T16:44:12.018Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-10-22T16:44:12.018Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T16:44:12.038Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firestore.googleapis.com [none]
+[debug] [2025-10-22T16:44:12.038Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firestore.googleapis.com x-goog-quota-user=projects/moctezuma-juegos
+[debug] [2025-10-22T16:44:12.056Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-10-22T16:44:12.056Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T16:44:12.072Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firestore.googleapis.com [none]
+[debug] [2025-10-22T16:44:12.072Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firestore.googleapis.com x-goog-quota-user=projects/moctezuma-juegos
+[debug] [2025-10-22T16:44:12.079Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-10-22T16:44:12.082Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T16:44:12.100Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseapphosting.googleapis.com [none]
+[debug] [2025-10-22T16:44:12.100Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseapphosting.googleapis.com x-goog-quota-user=projects/moctezuma-juegos
+[debug] [2025-10-22T16:44:12.148Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-10-22T16:44:12.148Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T16:44:12.162Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com [none]
+[debug] [2025-10-22T16:44:12.163Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com x-goog-quota-user=projects/moctezuma-juegos
+[debug] [2025-10-22T16:44:12.205Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-10-22T16:44:12.207Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T16:44:12.224Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/ [none]
+[debug] [2025-10-22T16:44:12.225Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/ x-goog-quota-user=projects/moctezuma-juegos
+[debug] [2025-10-22T16:44:12.227Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-10-22T16:44:12.227Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T16:44:12.241Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/ [none]
+[debug] [2025-10-22T16:44:12.241Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/ x-goog-quota-user=projects/moctezuma-juegos
+[debug] [2025-10-22T16:44:12.251Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebasecrashlytics.googleapis.com 200
+[debug] [2025-10-22T16:44:12.251Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebasecrashlytics.googleapis.com [omitted]
+[debug] [2025-10-22T16:44:12.267Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-10-22T16:44:12.267Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T16:44:12.289Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebasecrashlytics.googleapis.com [none]
+[debug] [2025-10-22T16:44:12.290Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebasecrashlytics.googleapis.com x-goog-quota-user=projects/moctezuma-juegos
+[debug] [2025-10-22T16:44:12.299Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com 403
+[debug] [2025-10-22T16:44:12.300Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com [omitted]
+[debug] [2025-10-22T16:44:12.326Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com 403
+[debug] [2025-10-22T16:44:12.330Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com [omitted]
+[debug] [2025-10-22T16:44:12.410Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseapphosting.googleapis.com 200
+[debug] [2025-10-22T16:44:12.411Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2025-10-22T16:44:12.428Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebasecrashlytics.googleapis.com 200
+[debug] [2025-10-22T16:44:12.428Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebasecrashlytics.googleapis.com [omitted]
+[debug] [2025-10-22T16:44:12.444Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firestore.googleapis.com 200
+[debug] [2025-10-22T16:44:12.444Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firestore.googleapis.com [omitted]
+[debug] [2025-10-22T16:44:12.453Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseapphosting.googleapis.com 200
+[debug] [2025-10-22T16:44:12.453Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2025-10-22T16:44:12.460Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firestore.googleapis.com 200
+[debug] [2025-10-22T16:44:12.460Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firestore.googleapis.com [omitted]
+[debug] [2025-10-22T16:44:12.654Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/ 200
+[debug] [2025-10-22T16:44:12.654Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/ [omitted]
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-22T16:44:12.667Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-22T16:44:12.667Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-22T16:44:12.692Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/ 200
+[debug] [2025-10-22T16:44:12.692Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/ [omitted]
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-22T19:39:26.889Z] Checked if tokens are valid: false, expires at: 1761155051267
+[debug] [2025-10-22T19:39:26.889Z] Checked if tokens are valid: false, expires at: 1761155051267
+[debug] [2025-10-22T19:39:26.890Z] > refreshing access token with scopes: []
+[debug] [2025-10-22T19:39:26.892Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-10-22T19:39:26.893Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T19:39:26.932Z] Checked if tokens are valid: false, expires at: 1761155051267
+[debug] [2025-10-22T19:39:26.932Z] Checked if tokens are valid: false, expires at: 1761155051267
+[debug] [2025-10-22T19:39:26.933Z] > refreshing access token with scopes: []
+[debug] [2025-10-22T19:39:26.933Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-10-22T19:39:26.933Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T19:39:26.936Z] Checked if tokens are valid: false, expires at: 1761155051267
+[debug] [2025-10-22T19:39:26.936Z] Checked if tokens are valid: false, expires at: 1761155051267
+[debug] [2025-10-22T19:39:26.936Z] > refreshing access token with scopes: []
+[debug] [2025-10-22T19:39:26.937Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-10-22T19:39:26.937Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T19:39:26.939Z] Checked if tokens are valid: false, expires at: 1761155051267
+[debug] [2025-10-22T19:39:26.939Z] Checked if tokens are valid: false, expires at: 1761155051267
+[debug] [2025-10-22T19:39:26.939Z] > refreshing access token with scopes: []
+[debug] [2025-10-22T19:39:26.940Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-10-22T19:39:26.940Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T19:39:26.941Z] Checked if tokens are valid: false, expires at: 1761155051267
+[debug] [2025-10-22T19:39:26.941Z] Checked if tokens are valid: false, expires at: 1761155051267
+[debug] [2025-10-22T19:39:26.941Z] > refreshing access token with scopes: []
+[debug] [2025-10-22T19:39:26.942Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-10-22T19:39:26.942Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-22T19:39:27.026Z] Checked if tokens are valid: false, expires at: 1761155051267
+[debug] [2025-10-22T19:39:27.027Z] Checked if tokens are valid: false, expires at: 1761155051267
+[debug] [2025-10-22T19:39:27.027Z] > refreshing access token with scopes: []
+[debug] [2025-10-22T19:39:27.028Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-10-22T19:39:27.028Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T19:39:27.030Z] Checked if tokens are valid: false, expires at: 1761155051267
+[debug] [2025-10-22T19:39:27.030Z] Checked if tokens are valid: false, expires at: 1761155051267
+[debug] [2025-10-22T19:39:27.030Z] > refreshing access token with scopes: []
+[debug] [2025-10-22T19:39:27.031Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-10-22T19:39:27.031Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T19:39:27.034Z] Checked if tokens are valid: false, expires at: 1761155051267
+[debug] [2025-10-22T19:39:27.034Z] Checked if tokens are valid: false, expires at: 1761155051267
+[debug] [2025-10-22T19:39:27.034Z] > refreshing access token with scopes: []
+[debug] [2025-10-22T19:39:27.035Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-10-22T19:39:27.035Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T19:39:27.036Z] Checked if tokens are valid: false, expires at: 1761155051267
+[debug] [2025-10-22T19:39:27.037Z] Checked if tokens are valid: false, expires at: 1761155051267
+[debug] [2025-10-22T19:39:27.037Z] > refreshing access token with scopes: []
+[debug] [2025-10-22T19:39:27.037Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-10-22T19:39:27.037Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T19:39:27.040Z] Checked if tokens are valid: false, expires at: 1761155051267
+[debug] [2025-10-22T19:39:27.040Z] Checked if tokens are valid: false, expires at: 1761155051267
+[debug] [2025-10-22T19:39:27.040Z] > refreshing access token with scopes: []
+[debug] [2025-10-22T19:39:27.040Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-10-22T19:39:27.041Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T19:39:27.101Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-10-22T19:39:27.101Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T19:39:27.131Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/ [none]
+[debug] [2025-10-22T19:39:27.131Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/ x-goog-quota-user=projects/moctezuma-juegos
+[debug] [2025-10-22T19:39:27.149Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-10-22T19:39:27.150Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T19:39:27.169Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseapphosting.googleapis.com [none]
+[debug] [2025-10-22T19:39:27.169Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseapphosting.googleapis.com x-goog-quota-user=projects/moctezuma-juegos
+[debug] [2025-10-22T19:39:27.172Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-10-22T19:39:27.172Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T19:39:27.186Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com [none]
+[debug] [2025-10-22T19:39:27.186Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com x-goog-quota-user=projects/moctezuma-juegos
+[debug] [2025-10-22T19:39:27.189Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-10-22T19:39:27.190Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T19:39:27.203Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firestore.googleapis.com [none]
+[debug] [2025-10-22T19:39:27.203Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firestore.googleapis.com x-goog-quota-user=projects/moctezuma-juegos
+[debug] [2025-10-22T19:39:27.229Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-10-22T19:39:27.229Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T19:39:27.257Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebasecrashlytics.googleapis.com [none]
+[debug] [2025-10-22T19:39:27.257Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebasecrashlytics.googleapis.com x-goog-quota-user=projects/moctezuma-juegos
+[debug] [2025-10-22T19:39:27.268Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-10-22T19:39:27.269Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T19:39:27.284Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseapphosting.googleapis.com [none]
+[debug] [2025-10-22T19:39:27.284Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseapphosting.googleapis.com x-goog-quota-user=projects/moctezuma-juegos
+[debug] [2025-10-22T19:39:27.306Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-10-22T19:39:27.306Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T19:39:27.324Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebasecrashlytics.googleapis.com [none]
+[debug] [2025-10-22T19:39:27.324Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebasecrashlytics.googleapis.com x-goog-quota-user=projects/moctezuma-juegos
+[debug] [2025-10-22T19:39:27.348Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-10-22T19:39:27.350Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T19:39:27.368Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firestore.googleapis.com [none]
+[debug] [2025-10-22T19:39:27.369Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firestore.googleapis.com x-goog-quota-user=projects/moctezuma-juegos
+[debug] [2025-10-22T19:39:27.397Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-10-22T19:39:27.397Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T19:39:27.422Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/ [none]
+[debug] [2025-10-22T19:39:27.423Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/ x-goog-quota-user=projects/moctezuma-juegos
+[debug] [2025-10-22T19:39:27.427Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-10-22T19:39:27.428Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-22T19:39:27.445Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com [none]
+[debug] [2025-10-22T19:39:27.446Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com x-goog-quota-user=projects/moctezuma-juegos
+[debug] [2025-10-22T19:39:27.464Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com 403
+[debug] [2025-10-22T19:39:27.464Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com [omitted]
+[debug] [2025-10-22T19:39:27.469Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseapphosting.googleapis.com 200
+[debug] [2025-10-22T19:39:27.470Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2025-10-22T19:39:27.475Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebasecrashlytics.googleapis.com 200
+[debug] [2025-10-22T19:39:27.476Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebasecrashlytics.googleapis.com [omitted]
+[debug] [2025-10-22T19:39:27.480Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseapphosting.googleapis.com 200
+[debug] [2025-10-22T19:39:27.481Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2025-10-22T19:39:27.485Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firestore.googleapis.com 200
+[debug] [2025-10-22T19:39:27.486Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firestore.googleapis.com [omitted]
+[debug] [2025-10-22T19:39:27.502Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com 403
+[debug] [2025-10-22T19:39:27.502Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com [omitted]
+[debug] [2025-10-22T19:39:27.523Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebasecrashlytics.googleapis.com 200
+[debug] [2025-10-22T19:39:27.523Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebasecrashlytics.googleapis.com [omitted]
+[debug] [2025-10-22T19:39:27.552Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firestore.googleapis.com 200
+[debug] [2025-10-22T19:39:27.552Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firestore.googleapis.com [omitted]
+[debug] [2025-10-22T19:39:27.622Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/ 200
+[debug] [2025-10-22T19:39:27.622Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/ [omitted]
+[debug] [2025-10-22T19:39:27.790Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/ 200
+[debug] [2025-10-22T19:39:27.790Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/ [omitted]
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-22T19:39:27.801Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-22T19:39:27.801Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-22T19:39:27.848Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-22T19:39:27.849Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-22T19:39:27.872Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-22T19:39:27.872Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
