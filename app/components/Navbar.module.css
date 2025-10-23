@@ -1,0 +1,30 @@
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #004D40; /* Un verde azulado oscuro y elegante */
+  padding: 1rem 2rem;
+  color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+  height: 40px; /* Ajusta la altura según sea necesario */
+  width: auto;
+}
+
+.logoutButton {
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.logoutButton:hover {
+  background-color: white;
+  color: #004D40;
+}

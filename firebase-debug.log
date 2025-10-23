@@ -1,0 +1,222 @@
+[debug] [2025-10-22T19:52:29.401Z] ----------------------------------------------------------------------
+[debug] [2025-10-22T19:52:29.404Z] Command:       /nix/store/ws50yvm6vzlzf7jzz6n7xh4szddrack1-nodejs-20.19.1/bin/node /nix/store/i78h9v2gl6qg2w9646hi06syn3hbv4kj-firebase-tools-14.19.1/lib/node_modules/firebase-tools/lib/bin/firebase.js init
+[debug] [2025-10-22T19:52:29.404Z] CLI Version:   14.19.1
+[debug] [2025-10-22T19:52:29.405Z] Platform:      linux
+[debug] [2025-10-22T19:52:29.405Z] Node Version:  v20.19.1
+[debug] [2025-10-22T19:52:29.405Z] Time:          Wed Oct 22 2025 19:52:29 GMT+0000 (Coordinated Universal Time)
+[debug] [2025-10-22T19:52:29.405Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-10-22T19:52:29.777Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:52:29.777Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:52:29.781Z] >>> [apiv2][query] GET https://monospace-pa.googleapis.com/v1/workspaces/moctezuma-juegos-72954393 [none]
+[debug] [2025-10-22T19:52:30.297Z] <<< [apiv2][status] GET https://monospace-pa.googleapis.com/v1/workspaces/moctezuma-juegos-72954393 200
+[debug] [2025-10-22T19:52:30.298Z] <<< [apiv2][body] GET https://monospace-pa.googleapis.com/v1/workspaces/moctezuma-juegos-72954393 {"workspaceId":"moctezuma-juegos-72954393","name":"moctezuma-juegos","workspaceRedirectUrl":"firebase-moctezuma-juegos-1758802519285.cluster-gizzoza7hzhfyxzo5d76y3flkw.cloudworkstations.dev","status":"WORKSPACE_STATUS_RUNNING","lastAccessDatetime":"2025-10-22T19:38:11.880932Z","workspaceTemplate":"WORKSPACE_TEMPLATE_BLANK_WEB","owner":"SELF","serviceAccountEmail":"msp-8835526365569833719@monospace-3.iam.gserviceaccount.com","enableNix":true,"ownerEmail":"proyect.moctezuma@gmail.com","workspaceImageUrl":"https://www.gstatic.com/monospace/231115/logo_nextjs.svg","templateArgs":"{\"language\":\"js\",\"srcDir\":true,\"eslint\":true,\"app\":true,\"tailwind\":false,\"__agentic_workspace\":true}","templateRepoUrl":"file:///usr/local/monospace/templates/public/nextjs","workstationAccessToken":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2Nsb3VkLmdvb2dsZS5jb20vd29ya3N0YXRpb25zIiwiYXVkIjoiZmlyZWJhc2UtbW9jdGV6dW1hLWp1ZWdvcy0xNzU4ODAyNTE5Mjg1LmNsdXN0ZXItZ2l6em96YTdoemhmeXh6bzVkNzZ5M2Zsa3cuY2xvdWR3b3Jrc3RhdGlvbnMuZGV2IiwiaWF0IjoxNzYxMTYyNzUwLCJleHAiOjE3NjEyNDkxNTB9.RJOfVKkezLNg0wn_r3mVDm1548v0D3iKBn08hipaiXKAIOJW45F4XvdMD2xL4CxGY6VHuaG89ys8Yg_EKmXuZPVqrIWVcew71wzZyWpf9Pvasj0izHdCA9xp3GoJQxExNYTxubUgabcwZct5mEoMO7gTTFQbE0WcJrxYbAcnrWhilLIvPjx9iLYa3j26pzcSgP0oj7l3n4saTAb1g4NhnORgjCnxa8z740a7qrvy7XROYAwgwLd_mUOpTxIpIdeUdE6mTPSakeKjrQtot4flLeqxDJVJpmn9pjQEH1NdhRqDCHJ1LBtjYoklHucOO2yofdZ9OXAU8JulvbovV196aA","firebaseProjectId":"moctezuma-juegos"}
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /home/user/moctezuma-juegos
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] 
+[debug] [2025-10-22T19:52:40.808Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-22T19:52:40.812Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-22T19:52:40.814Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:52:40.816Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:52:40.816Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/moctezuma-juegos [none]
+[debug] [2025-10-22T19:52:41.153Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/moctezuma-juegos 200
+[debug] [2025-10-22T19:52:41.154Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/moctezuma-juegos {"projectId":"moctezuma-juegos","projectNumber":"565311800123","displayName":"moctezuma-juegos","name":"projects/moctezuma-juegos","resources":{"hostingSite":"moctezuma-juegos","realtimeDatabaseInstance":"moctezuma-juegos-default-rtdb"},"state":"ACTIVE","etag":"1_7c380a34-bb66-402d-b88a-f7ccb3cb17d5"}
+[info] i  Using project moctezuma-juegos (moctezuma-juegos) . 
+[info] 
+=== App Hosting Setup
+[debug] [2025-10-22T19:52:41.205Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:52:41.206Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:52:41.206Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/moctezuma-juegos/billingInfo [none]
+[debug] [2025-10-22T19:52:41.314Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/moctezuma-juegos/billingInfo 200
+[debug] [2025-10-22T19:52:41.315Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/moctezuma-juegos/billingInfo {"name":"projects/moctezuma-juegos/billingInfo","projectId":"moctezuma-juegos","billingAccountName":"billingAccounts/01AFA2-CCD3C2-420F9F","billingEnabled":true}
+[debug] [2025-10-22T19:52:41.321Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:52:41.321Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:52:41.321Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/moctezuma-juegos/serviceAccounts/firebase-app-hosting-compute@moctezuma-juegos.iam.gserviceaccount.com:testIamPermissions [none]
+[debug] [2025-10-22T19:52:41.322Z] >>> [apiv2][(partial)header] POST https://iam.googleapis.com/v1/projects/moctezuma-juegos/serviceAccounts/firebase-app-hosting-compute@moctezuma-juegos.iam.gserviceaccount.com:testIamPermissions x-goog-quota-user=projects/moctezuma-juegos
+[debug] [2025-10-22T19:52:41.322Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/moctezuma-juegos/serviceAccounts/firebase-app-hosting-compute@moctezuma-juegos.iam.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2025-10-22T19:52:41.411Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/moctezuma-juegos/serviceAccounts/firebase-app-hosting-compute@moctezuma-juegos.iam.gserviceaccount.com:testIamPermissions 200
+[debug] [2025-10-22T19:52:41.412Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/moctezuma-juegos/serviceAccounts/firebase-app-hosting-compute@moctezuma-juegos.iam.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2025-10-22T19:52:41.412Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:52:41.413Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:52:41.413Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/moctezuma-juegos/serviceAccounts [none]
+[debug] [2025-10-22T19:52:41.413Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/moctezuma-juegos/serviceAccounts {"accountId":"firebase-app-hosting-compute","serviceAccount":{"displayName":"Firebase App Hosting compute service account","description":"Default service account used to run builds and deploys for Firebase App Hosting"}}
+[debug] [2025-10-22T19:52:41.601Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/moctezuma-juegos/serviceAccounts 409
+[debug] [2025-10-22T19:52:41.601Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/moctezuma-juegos/serviceAccounts [omitted]
+[debug] [2025-10-22T19:52:41.605Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:52:41.606Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:52:41.606Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/moctezuma-juegos:getIamPolicy [none]
+[debug] [2025-10-22T19:52:41.720Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/moctezuma-juegos:getIamPolicy 200
+[debug] [2025-10-22T19:52:41.721Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/moctezuma-juegos:getIamPolicy {"version":1,"etag":"BwY/sD+WvsQ=","bindings":[{"role":"roles/artifactregistry.serviceAgent","members":["serviceAccount:service-565311800123@gcp-sa-artifactregistry.iam.gserviceaccount.com"]},{"role":"roles/cloudaicompanion.serviceAgent","members":["serviceAccount:service-565311800123@gcp-sa-cloudaicompanion.iam.gserviceaccount.com"]},{"role":"roles/cloudbuild.builds.builder","members":["serviceAccount:565311800123@cloudbuild.gserviceaccount.com"]},{"role":"roles/cloudbuild.serviceAgent","members":["serviceAccount:service-565311800123@gcp-sa-cloudbuild.iam.gserviceaccount.com"]},{"role":"roles/cloudfunctions.serviceAgent","members":["serviceAccount:service-565311800123@gcf-admin-robot.iam.gserviceaccount.com"]},{"role":"roles/containerregistry.ServiceAgent","members":["serviceAccount:service-565311800123@containerregistry.iam.gserviceaccount.com"]},{"role":"roles/editor","members":["serviceAccount:565311800123-compute@developer.gserviceaccount.com","serviceAccount:565311800123@cloudservices.gserviceaccount.com","serviceAccount:moctezuma-juegos@appspot.gserviceaccount.com"]},{"role":"roles/firebase.managementServiceAgent","members":["serviceAccount:service-565311800123@gcp-sa-firebase.iam.gserviceaccount.com"]},{"role":"roles/firebase.sdkAdminServiceAgent","members":["serviceAccount:firebase-adminsdk-fbsvc@moctezuma-juegos.iam.gserviceaccount.com"]},{"role":"roles/firebaseauth.admin","members":["serviceAccount:firebase-adminsdk-fbsvc@moctezuma-juegos.iam.gserviceaccount.com"]},{"role":"roles/firebasedatabase.admin","members":["serviceAccount:firebase-adminsdk-fbsvc@moctezuma-juegos.iam.gserviceaccount.com"]},{"role":"roles/firebasedataconnect.serviceAgent","members":["serviceAccount:service-565311800123@gcp-sa-firebasedataconnect.iam.gserviceaccount.com"]},{"role":"roles/firebasemods.serviceAgent","members":["serviceAccount:service-565311800123@gcp-sa-firebasemods.iam.gserviceaccount.com"]},{"role":"roles/iam.serviceAccountTokenCreator","members":["serviceAccount:firebase-adminsdk-fbsvc@moctezuma-juegos.iam.gserviceaccount.com"]},{"role":"roles/owner","members":["user:proyect.moctezuma@gmail.com"]},{"role":"roles/run.serviceAgent","members":["serviceAccount:service-565311800123@serverless-robot-prod.iam.gserviceaccount.com"]}]}
+[debug] [2025-10-22T19:52:41.722Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:52:41.722Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:52:41.724Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/moctezuma-juegos:setIamPolicy [none]
+[debug] [2025-10-22T19:52:41.724Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/moctezuma-juegos:setIamPolicy {"policy":{"version":1,"etag":"BwY/sD+WvsQ=","bindings":[{"role":"roles/artifactregistry.serviceAgent","members":["serviceAccount:service-565311800123@gcp-sa-artifactregistry.iam.gserviceaccount.com"]},{"role":"roles/cloudaicompanion.serviceAgent","members":["serviceAccount:service-565311800123@gcp-sa-cloudaicompanion.iam.gserviceaccount.com"]},{"role":"roles/cloudbuild.builds.builder","members":["serviceAccount:565311800123@cloudbuild.gserviceaccount.com"]},{"role":"roles/cloudbuild.serviceAgent","members":["serviceAccount:service-565311800123@gcp-sa-cloudbuild.iam.gserviceaccount.com"]},{"role":"roles/cloudfunctions.serviceAgent","members":["serviceAccount:service-565311800123@gcf-admin-robot.iam.gserviceaccount.com"]},{"role":"roles/containerregistry.ServiceAgent","members":["serviceAccount:service-565311800123@containerregistry.iam.gserviceaccount.com"]},{"role":"roles/editor","members":["serviceAccount:565311800123-compute@developer.gserviceaccount.com","serviceAccount:565311800123@cloudservices.gserviceaccount.com","serviceAccount:moctezuma-juegos@appspot.gserviceaccount.com"]},{"role":"roles/firebase.managementServiceAgent","members":["serviceAccount:service-565311800123@gcp-sa-firebase.iam.gserviceaccount.com"]},{"role":"roles/firebase.sdkAdminServiceAgent","members":["serviceAccount:firebase-adminsdk-fbsvc@moctezuma-juegos.iam.gserviceaccount.com","serviceAccount:firebase-app-hosting-compute@moctezuma-juegos.iam.gserviceaccount.com"]},{"role":"roles/firebaseauth.admin","members":["serviceAccount:firebase-adminsdk-fbsvc@moctezuma-juegos.iam.gserviceaccount.com"]},{"role":"roles/firebasedatabase.admin","members":["serviceAccount:firebase-adminsdk-fbsvc@moctezuma-juegos.iam.gserviceaccount.com"]},{"role":"roles/firebasedataconnect.serviceAgent","members":["serviceAccount:service-565311800123@gcp-sa-firebasedataconnect.iam.gserviceaccount.com"]},{"role":"roles/firebasemods.serviceAgent","members":["serviceAccount:service-565311800123@gcp-sa-firebasemods.iam.gserviceaccount.com"]},{"role":"roles/iam.serviceAccountTokenCreator","members":["serviceAccount:firebase-adminsdk-fbsvc@moctezuma-juegos.iam.gserviceaccount.com"]},{"role":"roles/owner","members":["user:proyect.moctezuma@gmail.com"]},{"role":"roles/run.serviceAgent","members":["serviceAccount:service-565311800123@serverless-robot-prod.iam.gserviceaccount.com"]},{"role":"roles/firebaseapphosting.computeRunner","members":["serviceAccount:firebase-app-hosting-compute@moctezuma-juegos.iam.gserviceaccount.com"]},{"role":"roles/developerconnect.readTokenAccessor","members":["serviceAccount:firebase-app-hosting-compute@moctezuma-juegos.iam.gserviceaccount.com"]},{"role":"roles/storage.objectViewer","members":["serviceAccount:firebase-app-hosting-compute@moctezuma-juegos.iam.gserviceaccount.com"]}]},"updateMask":"bindings"}
+[debug] [2025-10-22T19:52:42.043Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/moctezuma-juegos:setIamPolicy 200
+[debug] [2025-10-22T19:52:42.045Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/moctezuma-juegos:setIamPolicy {"version":1,"etag":"BwZBxKjSfhM=","bindings":[{"role":"roles/artifactregistry.serviceAgent","members":["serviceAccount:service-565311800123@gcp-sa-artifactregistry.iam.gserviceaccount.com"]},{"role":"roles/cloudaicompanion.serviceAgent","members":["serviceAccount:service-565311800123@gcp-sa-cloudaicompanion.iam.gserviceaccount.com"]},{"role":"roles/cloudbuild.builds.builder","members":["serviceAccount:565311800123@cloudbuild.gserviceaccount.com"]},{"role":"roles/cloudbuild.serviceAgent","members":["serviceAccount:service-565311800123@gcp-sa-cloudbuild.iam.gserviceaccount.com"]},{"role":"roles/cloudfunctions.serviceAgent","members":["serviceAccount:service-565311800123@gcf-admin-robot.iam.gserviceaccount.com"]},{"role":"roles/containerregistry.ServiceAgent","members":["serviceAccount:service-565311800123@containerregistry.iam.gserviceaccount.com"]},{"role":"roles/developerconnect.readTokenAccessor","members":["serviceAccount:firebase-app-hosting-compute@moctezuma-juegos.iam.gserviceaccount.com"]},{"role":"roles/editor","members":["serviceAccount:565311800123-compute@developer.gserviceaccount.com","serviceAccount:565311800123@cloudservices.gserviceaccount.com","serviceAccount:moctezuma-juegos@appspot.gserviceaccount.com"]},{"role":"roles/firebase.managementServiceAgent","members":["serviceAccount:service-565311800123@gcp-sa-firebase.iam.gserviceaccount.com"]},{"role":"roles/firebase.sdkAdminServiceAgent","members":["serviceAccount:firebase-adminsdk-fbsvc@moctezuma-juegos.iam.gserviceaccount.com","serviceAccount:firebase-app-hosting-compute@moctezuma-juegos.iam.gserviceaccount.com"]},{"role":"roles/firebaseapphosting.computeRunner","members":["serviceAccount:firebase-app-hosting-compute@moctezuma-juegos.iam.gserviceaccount.com"]},{"role":"roles/firebaseauth.admin","members":["serviceAccount:firebase-adminsdk-fbsvc@moctezuma-juegos.iam.gserviceaccount.com"]},{"role":"roles/firebasedatabase.admin","members":["serviceAccount:firebase-adminsdk-fbsvc@moctezuma-juegos.iam.gserviceaccount.com"]},{"role":"roles/firebasedataconnect.serviceAgent","members":["serviceAccount:service-565311800123@gcp-sa-firebasedataconnect.iam.gserviceaccount.com"]},{"role":"roles/firebasemods.serviceAgent","members":["serviceAccount:service-565311800123@gcp-sa-firebasemods.iam.gserviceaccount.com"]},{"role":"roles/iam.serviceAccountTokenCreator","members":["serviceAccount:firebase-adminsdk-fbsvc@moctezuma-juegos.iam.gserviceaccount.com"]},{"role":"roles/owner","members":["user:proyect.moctezuma@gmail.com"]},{"role":"roles/run.serviceAgent","members":["serviceAccount:service-565311800123@serverless-robot-prod.iam.gserviceaccount.com"]},{"role":"roles/storage.objectViewer","members":["serviceAccount:firebase-app-hosting-compute@moctezuma-juegos.iam.gserviceaccount.com"]}]}
+[info] i  This command links your local project to Firebase App Hosting. You will be able to deploy your web app with `firebase deploy` after setup. 
+[info] i  === Set up your backend 
+[debug] [2025-10-22T19:52:44.573Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:52:44.574Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:52:44.581Z] >>> [apiv2][query] GET https://firebaseapphosting.googleapis.com/v1beta/projects/moctezuma-juegos/locations 
+[debug] [2025-10-22T19:52:44.706Z] <<< [apiv2][status] GET https://firebaseapphosting.googleapis.com/v1beta/projects/moctezuma-juegos/locations 200
+[debug] [2025-10-22T19:52:44.721Z] <<< [apiv2][body] GET https://firebaseapphosting.googleapis.com/v1beta/projects/moctezuma-juegos/locations {"locations":[{"name":"projects/moctezuma-juegos/locations/asia-east1","locationId":"asia-east1","displayName":"Taiwan"},{"name":"projects/moctezuma-juegos/locations/asia-southeast1","locationId":"asia-southeast1","displayName":"Singapore"},{"name":"projects/moctezuma-juegos/locations/europe-west4","locationId":"europe-west4","displayName":"Netherlands"},{"name":"projects/moctezuma-juegos/locations/us-central1","locationId":"us-central1","displayName":"Iowa"},{"name":"projects/moctezuma-juegos/locations/us-east4","locationId":"us-east4","displayName":"Northern Virginia"},{"name":"projects/moctezuma-juegos/locations/us-east5","locationId":"us-east5","displayName":"Columbus"}]}
+[info] ✔  Location set to us-central1.
+ 
+[debug] [2025-10-22T19:53:08.272Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:53:08.272Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:53:08.273Z] >>> [apiv2][query] GET https://firebaseapphosting.googleapis.com/v1beta/projects/moctezuma-juegos/locations/us-central1/backends/moctezuma-juegos-back [none]
+[debug] [2025-10-22T19:53:08.356Z] <<< [apiv2][status] GET https://firebaseapphosting.googleapis.com/v1beta/projects/moctezuma-juegos/locations/us-central1/backends/moctezuma-juegos-back 404
+[debug] [2025-10-22T19:53:08.356Z] <<< [apiv2][body] GET https://firebaseapphosting.googleapis.com/v1beta/projects/moctezuma-juegos/locations/us-central1/backends/moctezuma-juegos-back {"error":{"code":404,"message":"Resource 'projects/moctezuma-juegos/locations/us-central1/backends/moctezuma-juegos-back' was not found","status":"NOT_FOUND","details":[{"@type":"type.googleapis.com/google.rpc.ResourceInfo","resourceName":"projects/moctezuma-juegos/locations/us-central1/backends/moctezuma-juegos-back"}]}}
+[info] ✔  Name set to moctezuma-juegos-back
+ 
+[debug] [2025-10-22T19:53:08.360Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:53:08.361Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:53:08.363Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/moctezuma-juegos/webApps pageSize=100
+[debug] [2025-10-22T19:53:08.610Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/moctezuma-juegos/webApps 200
+[debug] [2025-10-22T19:53:08.611Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/moctezuma-juegos/webApps {"apps":[{"name":"projects/moctezuma-juegos/webApps/1:565311800123:web:94b5f2e1d8a52d1117ad1e","appId":"1:565311800123:web:94b5f2e1d8a52d1117ad1e","displayName":"moctezuma-juegos","projectId":"moctezuma-juegos","webId":"MzkwMmZhNDAtYjMyYS00NGEwLTg0N2UtY2IzZGNjN2E3Y2My","apiKeyId":"865b29e6-885e-4c30-9aac-79f7a7c52674","state":"ACTIVE","expireTime":"1970-01-01T00:00:00Z","etag":"1_de0ae387-6f51-40e8-a82b-983d948a4150"}]}
+[debug] [2025-10-22T19:53:08.611Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:53:08.612Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:53:08.614Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/moctezuma-juegos/webApps pageSize=100
+[debug] [2025-10-22T19:53:08.860Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/moctezuma-juegos/webApps 200
+[debug] [2025-10-22T19:53:08.860Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/moctezuma-juegos/webApps {"apps":[{"name":"projects/moctezuma-juegos/webApps/1:565311800123:web:94b5f2e1d8a52d1117ad1e","appId":"1:565311800123:web:94b5f2e1d8a52d1117ad1e","displayName":"moctezuma-juegos","projectId":"moctezuma-juegos","webId":"MzkwMmZhNDAtYjMyYS00NGEwLTg0N2UtY2IzZGNjN2E3Y2My","apiKeyId":"865b29e6-885e-4c30-9aac-79f7a7c52674","state":"ACTIVE","expireTime":"1970-01-01T00:00:00Z","etag":"1_de0ae387-6f51-40e8-a82b-983d948a4150"}]}
+[debug] [2025-10-22T19:53:08.861Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:53:08.861Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:53:08.861Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1beta1/projects/moctezuma-juegos/webApps [none]
+[debug] [2025-10-22T19:53:08.861Z] >>> [apiv2][body] POST https://firebase.googleapis.com/v1beta1/projects/moctezuma-juegos/webApps {"displayName":"moctezuma-juegos-back"}
+[debug] [2025-10-22T19:53:09.406Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1beta1/projects/moctezuma-juegos/webApps 200
+[debug] [2025-10-22T19:53:09.410Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1beta1/projects/moctezuma-juegos/webApps {"name":"operations/workflows/NmMxZjljZjctN2RhOC00YzEyLWFiMjQtYzE4MGMwNTUxNjNk"}
+[debug] [2025-10-22T19:53:09.413Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:53:09.413Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:53:09.413Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/NmMxZjljZjctN2RhOC00YzEyLWFiMjQtYzE4MGMwNTUxNjNk [none]
+[debug] [2025-10-22T19:53:09.575Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/NmMxZjljZjctN2RhOC00YzEyLWFiMjQtYzE4MGMwNTUxNjNk 200
+[debug] [2025-10-22T19:53:09.575Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/NmMxZjljZjctN2RhOC00YzEyLWFiMjQtYzE4MGMwNTUxNjNk {"name":"operations/workflows/NmMxZjljZjctN2RhOC00YzEyLWFiMjQtYzE4MGMwNTUxNjNk"}
+[debug] [2025-10-22T19:53:10.077Z] [Create Web app Poller] Retrying task index 0
+[debug] [2025-10-22T19:53:10.078Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:53:10.078Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:53:10.078Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/NmMxZjljZjctN2RhOC00YzEyLWFiMjQtYzE4MGMwNTUxNjNk [none]
+[debug] [2025-10-22T19:53:10.267Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/NmMxZjljZjctN2RhOC00YzEyLWFiMjQtYzE4MGMwNTUxNjNk 200
+[debug] [2025-10-22T19:53:10.267Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/NmMxZjljZjctN2RhOC00YzEyLWFiMjQtYzE4MGMwNTUxNjNk {"name":"operations/workflows/NmMxZjljZjctN2RhOC00YzEyLWFiMjQtYzE4MGMwNTUxNjNk"}
+[debug] [2025-10-22T19:53:11.268Z] [Create Web app Poller] Retrying task index 0
+[debug] [2025-10-22T19:53:11.269Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:53:11.269Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:53:11.270Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/NmMxZjljZjctN2RhOC00YzEyLWFiMjQtYzE4MGMwNTUxNjNk [none]
+[debug] [2025-10-22T19:53:11.440Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/NmMxZjljZjctN2RhOC00YzEyLWFiMjQtYzE4MGMwNTUxNjNk 200
+[debug] [2025-10-22T19:53:11.441Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/NmMxZjljZjctN2RhOC00YzEyLWFiMjQtYzE4MGMwNTUxNjNk {"name":"operations/workflows/NmMxZjljZjctN2RhOC00YzEyLWFiMjQtYzE4MGMwNTUxNjNk"}
+[debug] [2025-10-22T19:53:13.441Z] [Create Web app Poller] Retrying task index 0
+[debug] [2025-10-22T19:53:13.442Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:53:13.442Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:53:13.443Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/NmMxZjljZjctN2RhOC00YzEyLWFiMjQtYzE4MGMwNTUxNjNk [none]
+[debug] [2025-10-22T19:53:13.628Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/NmMxZjljZjctN2RhOC00YzEyLWFiMjQtYzE4MGMwNTUxNjNk 200
+[debug] [2025-10-22T19:53:13.628Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/NmMxZjljZjctN2RhOC00YzEyLWFiMjQtYzE4MGMwNTUxNjNk {"name":"operations/workflows/NmMxZjljZjctN2RhOC00YzEyLWFiMjQtYzE4MGMwNTUxNjNk"}
+[debug] [2025-10-22T19:53:17.630Z] [Create Web app Poller] Retrying task index 0
+[debug] [2025-10-22T19:53:17.630Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:53:17.630Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:53:17.631Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/NmMxZjljZjctN2RhOC00YzEyLWFiMjQtYzE4MGMwNTUxNjNk [none]
+[debug] [2025-10-22T19:53:17.829Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/operations/workflows/NmMxZjljZjctN2RhOC00YzEyLWFiMjQtYzE4MGMwNTUxNjNk 200
+[debug] [2025-10-22T19:53:17.830Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/operations/workflows/NmMxZjljZjctN2RhOC00YzEyLWFiMjQtYzE4MGMwNTUxNjNk {"name":"operations/workflows/NmMxZjljZjctN2RhOC00YzEyLWFiMjQtYzE4MGMwNTUxNjNk","done":true,"response":{"@type":"type.googleapis.com/google.firebase.service.v1beta1.WebApp","name":"projects/moctezuma-juegos/webApps/1:565311800123:web:d5a2597fef09566217ad1e","appId":"1:565311800123:web:d5a2597fef09566217ad1e","displayName":"moctezuma-juegos-back","projectId":"moctezuma-juegos","webId":"NmM0ZmI5ZDAtYzBmNS00YTA2LWE5NDMtNTgzZmNjNDY5ZmNj","apiKeyId":"865b29e6-885e-4c30-9aac-79f7a7c52674","state":"ACTIVE","expireTime":"1970-01-01T00:00:00Z","etag":"1_7b9ce7e9-4cc8-44bf-8d5f-403d7b2a47b5"}}
+[info] ✔  Created a new Firebase web app named "moctezuma-juegos-back" 
+[debug] [2025-10-22T19:53:17.834Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:53:17.834Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:53:17.835Z] >>> [apiv2][query] POST https://firebaseapphosting.googleapis.com/v1beta/projects/moctezuma-juegos/locations/us-central1/backends backendId=moctezuma-juegos-back
+[debug] [2025-10-22T19:53:17.835Z] >>> [apiv2][body] POST https://firebaseapphosting.googleapis.com/v1beta/projects/moctezuma-juegos/locations/us-central1/backends {"servingLocality":"GLOBAL_ACCESS","labels":{"deployment-tool":"cli-firebase--project-idx"},"serviceAccount":"firebase-app-hosting-compute@moctezuma-juegos.iam.gserviceaccount.com","appId":"1:565311800123:web:d5a2597fef09566217ad1e"}
+[debug] [2025-10-22T19:53:19.593Z] <<< [apiv2][status] POST https://firebaseapphosting.googleapis.com/v1beta/projects/moctezuma-juegos/locations/us-central1/backends 200
+[debug] [2025-10-22T19:53:19.594Z] <<< [apiv2][body] POST https://firebaseapphosting.googleapis.com/v1beta/projects/moctezuma-juegos/locations/us-central1/backends {"name":"projects/moctezuma-juegos/locations/us-central1/operations/operation-1761162797913-641c4aaf61542-c5c527be-88cadc1d","metadata":{"@type":"type.googleapis.com/google.firebase.apphosting.v1beta.OperationMetadata","createTime":"2025-10-22T19:53:19.570287491Z","target":"projects/moctezuma-juegos/locations/us-central1/backends/moctezuma-juegos-back","verb":"create","requestedCancellation":false,"apiVersion":"v1beta"},"done":false}
+[debug] [2025-10-22T19:53:19.594Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:53:19.594Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:53:19.594Z] >>> [apiv2][query] GET https://firebaseapphosting.googleapis.com/v1beta/projects/moctezuma-juegos/locations/us-central1/operations/operation-1761162797913-641c4aaf61542-c5c527be-88cadc1d [none]
+[debug] [2025-10-22T19:53:19.639Z] <<< [apiv2][status] GET https://firebaseapphosting.googleapis.com/v1beta/projects/moctezuma-juegos/locations/us-central1/operations/operation-1761162797913-641c4aaf61542-c5c527be-88cadc1d 200
+[debug] [2025-10-22T19:53:19.639Z] <<< [apiv2][body] GET https://firebaseapphosting.googleapis.com/v1beta/projects/moctezuma-juegos/locations/us-central1/operations/operation-1761162797913-641c4aaf61542-c5c527be-88cadc1d {"name":"projects/moctezuma-juegos/locations/us-central1/operations/operation-1761162797913-641c4aaf61542-c5c527be-88cadc1d","metadata":{"@type":"type.googleapis.com/google.firebase.apphosting.v1beta.OperationMetadata","createTime":"2025-10-22T19:53:19.570287491Z","target":"projects/moctezuma-juegos/locations/us-central1/backends/moctezuma-juegos-back","verb":"create","requestedCancellation":false,"apiVersion":"v1beta"},"done":false}
+[debug] [2025-10-22T19:53:20.145Z] [create-moctezuma-juegos-us-central1-moctezuma-juegos-back] Retrying task index 0
+[debug] [2025-10-22T19:53:20.145Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:53:20.145Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:53:20.146Z] >>> [apiv2][query] GET https://firebaseapphosting.googleapis.com/v1beta/projects/moctezuma-juegos/locations/us-central1/operations/operation-1761162797913-641c4aaf61542-c5c527be-88cadc1d [none]
+[debug] [2025-10-22T19:53:20.352Z] <<< [apiv2][status] GET https://firebaseapphosting.googleapis.com/v1beta/projects/moctezuma-juegos/locations/us-central1/operations/operation-1761162797913-641c4aaf61542-c5c527be-88cadc1d 200
+[debug] [2025-10-22T19:53:20.352Z] <<< [apiv2][body] GET https://firebaseapphosting.googleapis.com/v1beta/projects/moctezuma-juegos/locations/us-central1/operations/operation-1761162797913-641c4aaf61542-c5c527be-88cadc1d {"name":"projects/moctezuma-juegos/locations/us-central1/operations/operation-1761162797913-641c4aaf61542-c5c527be-88cadc1d","metadata":{"@type":"type.googleapis.com/google.firebase.apphosting.v1beta.OperationMetadata","createTime":"2025-10-22T19:53:19.570287491Z","endTime":"2025-10-22T19:53:19.874000391Z","target":"projects/moctezuma-juegos/locations/us-central1/backends/moctezuma-juegos-back","verb":"create","requestedCancellation":false,"apiVersion":"v1beta"},"done":true,"response":{"@type":"type.googleapis.com/google.firebase.apphosting.v1beta.Backend","name":"projects/moctezuma-juegos/locations/us-central1/backends/moctezuma-juegos-back","createTime":"2025-10-22T19:53:19.565540701Z","updateTime":"2025-10-22T19:53:19.862190Z","labels":{"deployment-tool":"cli-firebase--project-idx"},"uri":"moctezuma-juegos-back--moctezuma-juegos.us-central1.hosted.app","uid":"a20d1f01-cbf9-416a-ab73-a91eb6d3b772","etag":"QpaPl-RmZxgoqnl7macmUyGlK0jdMecvisU_CsxPGW8","reconciling":false,"servingLocality":"GLOBAL_ACCESS","serviceAccount":"firebase-app-hosting-compute@moctezuma-juegos.iam.gserviceaccount.com","appId":"1:565311800123:web:d5a2597fef09566217ad1e"}}
+[info] i  === Deploy local source setup 
+[info] ✔  Wrote configuration info to firebase.json 
+[info] i  Writing default settings to apphosting.yaml... 
+[debug] [2025-10-22T19:54:27.356Z] Error: ENOTDIR: not a directory, scandir '/home/user/moctezuma-juegos/firebase.json'
+    at Object.readdirSync (node:fs:1507:26)
+    at Object.createFileSync (/nix/store/i78h9v2gl6qg2w9646hi06syn3hbv4kj-firebase-tools-14.19.1/lib/node_modules/firebase-tools/node_modules/fs-extra/lib/ensure/file.js:55:10)
+    at Config.writeProjectFile (/nix/store/i78h9v2gl6qg2w9646hi06syn3hbv4kj-firebase-tools-14.19.1/lib/node_modules/firebase-tools/lib/config.js:171:12)
+    at Config.askWriteProjectFile (/nix/store/i78h9v2gl6qg2w9646hi06syn3hbv4kj-firebase-tools-14.19.1/lib/node_modules/firebase-tools/lib/config.js:219:14)
+    at async Object.doSetup (/nix/store/i78h9v2gl6qg2w9646hi06syn3hbv4kj-firebase-tools-14.19.1/lib/node_modules/firebase-tools/lib/init/features/apphosting.js:69:5)
+    at async init (/nix/store/i78h9v2gl6qg2w9646hi06syn3hbv4kj-firebase-tools-14.19.1/lib/node_modules/firebase-tools/lib/init/index.js:73:13)
+    at async Command.initAction [as actionFn] (/nix/store/i78h9v2gl6qg2w9646hi06syn3hbv4kj-firebase-tools-14.19.1/lib/node_modules/firebase-tools/lib/commands/init.js:219:5)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2025-10-22T19:54:42.181Z] ----------------------------------------------------------------------
+[debug] [2025-10-22T19:54:42.184Z] Command:       /nix/store/ws50yvm6vzlzf7jzz6n7xh4szddrack1-nodejs-20.19.1/bin/node /nix/store/i78h9v2gl6qg2w9646hi06syn3hbv4kj-firebase-tools-14.19.1/lib/node_modules/firebase-tools/lib/bin/firebase.js init
+[debug] [2025-10-22T19:54:42.184Z] CLI Version:   14.19.1
+[debug] [2025-10-22T19:54:42.185Z] Platform:      linux
+[debug] [2025-10-22T19:54:42.185Z] Node Version:  v20.19.1
+[debug] [2025-10-22T19:54:42.185Z] Time:          Wed Oct 22 2025 19:54:42 GMT+0000 (Coordinated Universal Time)
+[debug] [2025-10-22T19:54:42.185Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-10-22T19:54:42.574Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:54:42.574Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:54:42.577Z] >>> [apiv2][query] GET https://monospace-pa.googleapis.com/v1/workspaces/moctezuma-juegos-72954393 [none]
+[debug] [2025-10-22T19:54:43.085Z] <<< [apiv2][status] GET https://monospace-pa.googleapis.com/v1/workspaces/moctezuma-juegos-72954393 200
+[debug] [2025-10-22T19:54:43.088Z] <<< [apiv2][body] GET https://monospace-pa.googleapis.com/v1/workspaces/moctezuma-juegos-72954393 {"workspaceId":"moctezuma-juegos-72954393","name":"moctezuma-juegos","workspaceRedirectUrl":"firebase-moctezuma-juegos-1758802519285.cluster-gizzoza7hzhfyxzo5d76y3flkw.cloudworkstations.dev","status":"WORKSPACE_STATUS_RUNNING","lastAccessDatetime":"2025-10-22T19:38:11.880932Z","workspaceTemplate":"WORKSPACE_TEMPLATE_BLANK_WEB","owner":"SELF","serviceAccountEmail":"msp-8835526365569833719@monospace-3.iam.gserviceaccount.com","enableNix":true,"ownerEmail":"proyect.moctezuma@gmail.com","workspaceImageUrl":"https://www.gstatic.com/monospace/231115/logo_nextjs.svg","templateArgs":"{\"language\":\"js\",\"srcDir\":true,\"eslint\":true,\"app\":true,\"tailwind\":false,\"__agentic_workspace\":true}","templateRepoUrl":"file:///usr/local/monospace/templates/public/nextjs","workstationAccessToken":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2Nsb3VkLmdvb2dsZS5jb20vd29ya3N0YXRpb25zIiwiYXVkIjoiZmlyZWJhc2UtbW9jdGV6dW1hLWp1ZWdvcy0xNzU4ODAyNTE5Mjg1LmNsdXN0ZXItZ2l6em96YTdoemhmeXh6bzVkNzZ5M2Zsa3cuY2xvdWR3b3Jrc3RhdGlvbnMuZGV2IiwiaWF0IjoxNzYxMTYyODgzLCJleHAiOjE3NjEyNDkyODJ9.3dkQ5p7wcz7GEoNVM1jzQup2jSblRAoouuVLaoRgPlyydbOJN141rjPeaM2VMnfOzLhHpL630Qv6ra23PJQfTZkeE08nUndLV3IgpNQh_IEIUcCCBuaDZSu1AehfQdhdbf5Ru73HaXpSjTRCZDHniyZX6MRptMDlCVDGyKOC7WOP6F6hOoq4xEBRSQiRDHsv9BUREmm_WaU2EWuo0TcBjwMuUctbDQ59PkAWcAA0U29h9tNMcip3aYmOT5COwJI270pBGFAKmHryc0_xQAuec5ALhEcjtcbtulTmpt6KlOVlYMytiW4fZmddtNCEXhNTh1X2M1l7v1oWesihSm3nBg","firebaseProjectId":"moctezuma-juegos"}
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /home/user/moctezuma-juegos
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] 
+[debug] [2025-10-22T19:54:50.411Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-22T19:54:50.415Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-22T19:54:50.417Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:54:50.417Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:54:50.418Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/moctezuma-juegos [none]
+[debug] [2025-10-22T19:54:50.806Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/moctezuma-juegos 200
+[debug] [2025-10-22T19:54:50.806Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/moctezuma-juegos {"projectId":"moctezuma-juegos","projectNumber":"565311800123","displayName":"moctezuma-juegos","name":"projects/moctezuma-juegos","resources":{"hostingSite":"moctezuma-juegos","realtimeDatabaseInstance":"moctezuma-juegos-default-rtdb"},"state":"ACTIVE","etag":"1_0ac3f171-f494-4dca-ab0b-9a1da090c552"}
+[info] i  Using project moctezuma-juegos (moctezuma-juegos) . 
+[info] 
+=== Hosting Setup
+[debug] [2025-10-22T19:54:50.878Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:54:50.878Z] Checked if tokens are valid: true, expires at: 1761165566428
+[debug] [2025-10-22T19:54:50.878Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/moctezuma-juegos [none]
+[debug] [2025-10-22T19:54:51.148Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/moctezuma-juegos 200
+[debug] [2025-10-22T19:54:51.152Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/moctezuma-juegos {"projectId":"moctezuma-juegos","projectNumber":"565311800123","displayName":"moctezuma-juegos","name":"projects/moctezuma-juegos","resources":{"hostingSite":"moctezuma-juegos","realtimeDatabaseInstance":"moctezuma-juegos-default-rtdb"},"state":"ACTIVE","etag":"1_0ac3f171-f494-4dca-ab0b-9a1da090c552"}
+[info] 
+[info] i  Detected a .git folder at /home/user/moctezuma-juegos 
+[info] i  Authorizing with GitHub to upload your service account to a GitHub repository's secrets store. 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://github.com/login/oauth/authorize?client_id=89cf50f02ac6aaed3484&state=705897586&redirect_uri=http%3A%2F%2Flocalhost%3A9005&scope=read%3Auser%20repo%20public_repo
+[info] 
+[info] Waiting for authentication...
