@@ -1,10 +1,8 @@
 'use server';
-import { getAuth } from 'firebase-admin/auth';
-import { getDatabase } from 'firebase-admin/database';
-import { app } from '../../lib/firebase-admin';
+import { adminAuth, adminDb } from '../../lib/firebase-admin';
 
-const db = getDatabase(app);
-const auth = getAuth(app);
+const db = adminDb;
+const auth = adminAuth;
 
 // Función auxiliar para encontrar un usuario por su código de empleado
 async function findUserByEmployeeCode(employeeCode) {
