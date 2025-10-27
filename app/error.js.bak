@@ -1,0 +1,61 @@
+
+'use client'; // Los componentes de error DEBEN ser componentes de cliente
+
+import { useEffect } from 'react';
+
+const styles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '4rem 2rem',
+    textAlign: 'center',
+    minHeight: '100vh',
+    backgroundColor: '#1a1a1a',
+    color: 'white',
+  },
+  title: {
+    fontSize: '2.5rem',
+    fontWeight: 'bold',
+    color: '#ff4d4d', // Un color rojo para indicar error
+    marginBottom: '1rem',
+  },
+  subtitle: {
+    fontSize: '1.2rem',
+    marginBottom: '2rem',
+  },
+  button: {
+    backgroundColor: '#ff4d4d',
+    color: 'white',
+    border: 'none',
+    padding: '0.8rem 1.5rem',
+    borderRadius: '8px',
+    cursor: 'pointer',
+    fontSize: '1rem',
+    transition: 'background-color 0.2s',
+  },
+};
+
+export default function Error({ error, reset }) {
+  useEffect(() => {
+    // Opcional: Registrar el error en un servicio de monitoreo
+    console.error(error);
+  }, [error]);
+
+  return (
+    <div style={styles.container}>
+      <h1 style={styles.title}>¡Oops! Algo salió mal</h1>
+      <p style={styles.subtitle}>
+        Se ha producido un error inesperado. Por favor, inténtalo de nuevo.
+      </p>
+      <button
+        style={styles.button}
+        onClick={() => reset()} // Intenta volver a renderizar la ruta
+      >
+        Reintentar
+      </button>
+    </div>
+  );
+}
+

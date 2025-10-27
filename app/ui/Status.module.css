@@ -1,0 +1,68 @@
+.screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: #121212;
+  color: #fff;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.screenAdmin {
+  min-height: calc(100vh - 70px);
+}
+
+.card {
+  width: min(720px, 92vw);
+  padding: clamp(1rem, 3vw, 2rem);
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+}
+
+.title {
+  font-size: clamp(1.5rem, 4.5vw, 2.25rem);
+  font-weight: 800;
+  margin: 0 0 0.5rem;
+}
+
+.subtitle {
+  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+  color: #cfcfcf;
+  margin: 0 auto 1.25rem;
+  max-width: 60ch;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: 12px;
+  background: #ff6b6b;
+  color: #121212;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid rgba(255, 255, 255, 0.25);
+  border-top-color: #ff6b6b;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+

@@ -29,3 +29,8 @@ yarn-error.log*
 .firebase
 *.firebase.*
 firebase-debug.log
+
+serviceAccountKey.json
+firebase-debug.log
+.firebase/
+.env*

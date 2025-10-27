@@ -1,0 +1,437 @@
+/* ===============================
+   UI (HUD, layout, panel, overlays)
+   =============================== */
+
+/* ANCLA LOCAL DEL JUEGO */
+.scope {
+  --bg: #0f1115;
+  --panel: #166659;
+  --ink: #e8ebf3;
+  --muted: #a3c3be;
+
+  --brand: #2fa390;
+  --brand-2: #64dec9;
+
+  --drag-scale: 1.06;
+  --shadow-elev: 0 10px 24px rgba(0, 0, 0, 0.35);
+  --snap-duration: 260ms;
+  --lift-duration: 140ms;
+
+  --safe-pad: max(14px, env(safe-area-inset-left, 0px));
+  --safe-pad-r: max(14px, env(safe-area-inset-right, 0px));
+
+  --vignette-alpha: 0.60;
+
+  /* Alturas (JS setea --appH/--wrapH); fallback moderno */
+  --hud-height: 56px;
+
+  --fade-duration: 250ms;
+
+  color: var(--ink);
+}
+
+/* Box sizing dentro del juego */
+.scope * { box-sizing: border-box; }
+
+/* Alturas y fallback viewport */
+.scope,
+.scope :global(.stage) {
+  height: var(--appH, 100dvh);
+  min-height: 100svh;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+@supports not (height: 100dvh) {
+  .scope,
+  .scope :global(.stage) {
+    height: var(--appH, 100vh);
+  }
+}
+
+/* ===== HUD (móvil) ===== */
+.scope :global(.hud) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
+  padding: 12px var(--safe-pad) 12px var(--safe-pad);
+  padding-right: var(--safe-pad-r);
+  background: #0000005c;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(6px);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.scope :global(.hud-left) { min-width: 0; }
+.scope :global(.hud-right) { display: flex; gap: 8px; min-width: 0; }
+
+.scope :global(.hud .title) {
+  margin: 0;
+  font-size: clamp(16px, 3vw, 22px);
+  letter-spacing: 0.3px;
+  opacity: 0.9;
+}
+
+.scope :global(.hud-center) {
+  flex: 1 1 100%;
+  display: grid;
+  align-items: center;
+  gap: 6px 10px;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas: "timer progress count";
+  width: 100%;
+  min-width: 0;
+}
+
+.scope :global(.timer) {
+  grid-area: timer;
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(16px, 4vw, 24px);
+  white-space: nowrap;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+.scope :global(.pieces-count) {
+  grid-area: count;
+  justify-self: end;
+  font-size: clamp(12px, 2.8vw, 14px);
+  color: var(--ink);
+  white-space: nowrap;
+  padding-inline: 6px;
+}
+
+.scope :global(.progress) {
+  grid-area: progress;
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.scope :global(#progress-bar),
+.scope :global(#progress-bar-right) {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--brand), var(--brand-2));
+  box-shadow: 0 0 18px rgba(122, 168, 255, 0.5);
+  transition: width 240ms ease;
+}
+
+/* Botones base */
+.scope :global(.btn) {
+  appearance: none;
+  border: none;
+  border-radius: 12px;
+  padding: 8px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  color: var(--ink);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 120ms ease, filter 120ms ease, background 140ms ease;
+}
+.scope :global(.btn:hover) { filter: brightness(1.08); transform: translateY(-1px); }
+.scope :global(.btn:active) { transform: translateY(0px) scale(0.99); }
+.scope :global(.btn.primary) {
+  background: linear-gradient(180deg, rgba(122,168,255,0.2), rgba(177,122,255,0.18));
+  border-color: rgba(122,168,255,0.4);
+}
+.scope :global(.btn.ghost) { background: transparent; border-color: rgba(255,255,255,0.1); }
+.scope :global(.btn.icon) { padding: 6px 8px; display: grid; place-items: center; }
+.scope :global(.btn.icon img) { width: 20px; height: 20px; display: block; }
+.scope :global(#btn-reset) { display: none !important; }
+.scope :global(.btn.icon img) { vertical-align: middle; }
+.scope :global(.btn.icon span) { vertical-align: middle; font-weight: 600; }
+
+@media (min-width: 1024px) {
+  .scope :global(#btn-reference) { display: none !important; }
+}
+
+/* ===== Stage con textura y viñeta ===== */
+.scope :global(.stage) {
+  --stage-pad-y: clamp(10px, 4vw, 28px);
+  --stage-pad-x: clamp(10px, 4vw, 28px);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  gap: 18px;
+  padding: var(--stage-pad-y) var(--stage-pad-x);
+  background: url('/games/1/assets/wood.jpg') repeat;
+  background-size: 512px 512px;
+  position: relative;
+}
+
+/* Viñeta + degradado por encima del logo */
+.scope :global(.stage::before) {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(ellipse at center, rgba(0,0,0,0) 40%, rgba(0,0,0,var(--vignette-alpha)) 100%),
+    linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.12));
+  background-repeat: no-repeat, no-repeat;
+  background-position: center center, center center;
+  background-size: cover, cover;
+  z-index: 1;
+}
+
+/* Logo grabado (centrado, 20% opacidad, prioriza ancho; alto auto) */
+.scope :global(.stage::after) {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url('/games/1/assets/logo.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: min(80vw, 1100px) auto; /* ancho prioridad, alto automático */
+  opacity: 0.2;                 /* 20% */
+  mix-blend-mode: multiply;     /* efecto “grabado” */
+  filter: grayscale(1) contrast(.95) brightness(.9);
+  z-index: -1;
+}
+
+/* Disposición */
+.scope :global(.layout) { position: relative; z-index: 2; }
+
+/* Móvil */
+.scope :global(.board-area) {
+  display: grid;
+  justify-items: center;
+  align-items: start;
+  min-height: 0;
+  height:100%;
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .scope :global(.board-area) { place-items: center; }
+}
+
+/* Desktop: asegurar ancho del tablero en su columna */
+@media (min-width:1024px) {
+  .scope :global(#board-wrap) { width: 100%; max-width: none; }
+}
+
+/* ===== Panel lateral (desktop) ===== */
+.scope :global(.side-panel) { display: none; z-index: 2; }
+
+.scope :global(.side-panel .side-card) {
+  background: rgba(0,0,0,0.22);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 12px;
+  backdrop-filter: blur(4px);
+  width: 100%;
+  max-width: 420px;
+}
+
+.scope :global(.side-panel .side-header) {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.scope :global(.side-panel .panel-timer) {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  justify-self: center;
+}
+
+.scope :global(.side-panel .pieces-count) {
+  padding-inline: 0;
+  justify-self: end;
+}
+
+.scope :global(.side-panel .progress.right) { margin: 6px 0 12px 0; }
+
+.scope :global(.ref-box) {
+  border-radius: 10px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+.scope :global(.ref-box img) {
+  width: 78%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  border-radius: 10px;
+}
+
+/* 2 columnas */
+@media (min-width: 1024px) {
+  .scope :global(.stage) {
+    grid-template-columns: minmax(0, 1fr) min(30vw, 420px);
+    align-items: start;
+  }
+
+  .scope :global(.hud) { display: none !important; z-index: 5; }
+  .scope :global(.side-panel) { display: block; }
+
+  .scope :global(.side-panel .side-card) {
+    max-height: calc(100dvh - 140px);
+    overflow: auto;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1180px) {
+  .scope :global(.stage) {
+    grid-template-columns: minmax(0, 1fr) min(26vw, 340px);
+  }
+}
+
+/* ===== Banner final ===== */
+.scope :global(.end-banner) {
+  position: fixed;
+  left: 0; right: 0;
+  display: grid;
+  z-index: 6;
+  pointer-events: none;
+  transition: transform 300ms ease;
+}
+
+/* Márgenes compactos (3px) en títulos y textos del banner */
+.scope :global(.end-banner .modal-card :is(h1,h2,h3,h4,h5,h6,p,.score-text)) {
+  margin: 3px 0;
+}
+
+/* Móvil: cae desde arriba */
+@media (max-width: 1023px) {
+  .scope :global(.end-banner) {
+    top: 0; bottom: auto;
+    place-items: start center;
+    transform: translateY(-110%);
+  }
+  .scope :global(.end-banner.visible) { transform: translateY(0); }
+
+  .scope :global(.end-banner .modal-card) {
+    pointer-events: auto;
+    background: var(--panel);
+    color: var(--ink);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 10px 12px;
+    box-shadow: 0 -6px 18px rgba(0,0,0,0.4);
+    width: min(62vw, 520px);
+  }
+
+  .scope :global(.end-banner .modal-card h2) {
+    margin: 0 0 4px 0;
+    font-size: clamp(15px, 3.8vw, 18px);
+  }
+
+  .scope :global(.end-banner .score-text) {
+    color: var(--muted);
+    margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.25;
+  }
+
+  .scope :global(.end-banner .modal-actions) {
+    display: flex;
+    justify-content: end;
+    gap: 8px;
+    margin-top: 8px;
+  }
+}
+
+/* Desktop: sube desde abajo */
+@media (min-width: 1024px) {
+  .scope :global(.end-banner) {
+    top: auto; bottom: 0;
+    place-items: end center;
+    transform: translateY(110%);
+  }
+  .scope :global(.end-banner.visible) { transform: translateY(0); }
+
+  .scope :global(.end-banner .modal-card) {
+    pointer-events: auto;
+    background: var(--panel);
+    color: var(--ink);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px 16px 0 0;
+    padding: 14px 16px;
+    box-shadow: 0 -6px 18px rgba(0,0,0,0.4);
+  }
+}
+
+/* ===== Overlays (anclados dentro del scope) ===== */
+.scope :global(#ref-overlay) {
+  position: fixed; inset: 0;
+  display: none; z-index: 7;
+}
+.scope :global(#ref-overlay.open) { display: block; }
+.scope :global(#ref-overlay .ref-backdrop) {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(2px);
+}
+.scope :global(#ref-overlay .ref-content) {
+  position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--panel); color: var(--ink);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px; padding: 10px; box-sizing: border-box;
+  width: calc(100vw - 24px);
+  max-width: min(92vw, 880px);
+  max-height: min(88dvh, 680px);
+  display: grid; grid-template-rows: auto 1fr; gap: 8px; overflow: hidden;
+}
+.scope :global(#ref-overlay .ref-head) {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+.scope :global(#ref-overlay .ref-body) {
+  min-height: 0; overflow: auto;
+  display: flex; align-items: center; justify-content: center;
+}
+.scope :global(#ref-overlay .ref-body img) {
+  max-width: 100%; max-height: 100%;
+  width: auto; height: auto; object-fit: contain;
+  border-radius: 8px; display: block;
+}
+.scope :global(#ref-overlay .ref-close) {
+  justify-self: end; font-size: 20px; line-height: 1;
+  width: 36px; height: 36px; padding: 0;
+}
+
+/* Start Overlay */
+.scope :global(#start-overlay) {
+  position: fixed; inset: 0;
+  z-index: 8; display: none;
+}
+.scope :global(#start-overlay.open) { display: block; }
+.scope :global(#start-overlay .start-backdrop) {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(3px);
+}
+.scope :global(#start-overlay .start-content) {
+  position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--panel); color: var(--ink);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 14px; padding: 16px;
+  width: min(92vw, 700px); max-width: 700px;
+  display: grid; gap: 10px;
+}
+.scope :global(#start-overlay .start-content h2) {
+  margin: 0; font-size: clamp(18px, 4.5vw, 24px);
+}
+.scope :global(#start-overlay .start-content p) {
+  margin: 0; color: var(--muted); line-height: 1.4;
+}
+.scope :global(#start-overlay .start-actions) {
+  display: flex; justify-content: end; gap: 8px; margin-top: 8px;
+}
+
+/* Botón música (mínimo ancho) */
+.scope :global(#btn-music),
+.scope :global(#btn-music-right) { min-width: 44px; }
