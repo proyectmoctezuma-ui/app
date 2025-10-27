@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { useState } from 'react';
 import { verifyCode, resetPassword } from './actions';
 import styles from './ForgotPassword.module.css';
@@ -6,6 +6,7 @@ import styles from './ForgotPassword.module.css';
 export default function ForgotPasswordPage() {
   const [step, setStep] = useState(1);
   const [employeeCode, setEmployeeCode] = useState('');
+  const [fullName, setFullName] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState(null);
@@ -15,7 +16,7 @@ export default function ForgotPasswordPage() {
     e.preventDefault();
     setError(null);
     setIsLoading(true);
-    const result = await verifyCode(employeeCode);
+    const result = await verifyCode(employeeCode, fullName);
     setIsLoading(false);
     if (result.success) {
       setStep(2);
@@ -32,7 +33,7 @@ export default function ForgotPasswordPage() {
       return;
     }
     setIsLoading(true);
-    const result = await resetPassword(employeeCode, newPassword);
+    const result = await resetPassword(employeeCode, fullName, newPassword);
     setIsLoading(false);
     if (result.success) {
       alert('Contraseña actualizada exitosamente. Ahora puedes iniciar sesión con tu nueva contraseña.');
@@ -45,19 +46,39 @@ export default function ForgotPasswordPage() {
   return (
     <div className={styles.container}>
       <div className={styles.card}>
+        {isLoading && (
+          <div className={styles.overlay}>
+            <div className={styles.spinner} />
+          </div>
+        )}
         <h1 className={styles.title}>Recuperar Contraseña</h1>
         {error && <p className={styles.error}>{error}</p>}
 
         {step === 1 && (
           <form onSubmit={handleVerifyCode} className={styles.form}>
             <p className={styles.subtitle}>
-              Ingresa tu código de empleado para verificar tu identidad.
+              Ingresa tu código de empleado y tu nombre para verificar tu identidad.
             </p>
             <input
               type="text"
               placeholder="Código de Empleado"
               value={employeeCode}
               onChange={(e) => setEmployeeCode(e.target.value)}
+              onInput={(e) => {
+                e.target.value = e.target.value.replace(/\D/g, '').slice(0, 8);
+              }}
+              inputMode="numeric"
+              pattern="[0-9]{8}"
+              title="El código de empleado debe tener exactamente 8 dígitos."
+              maxLength={8}
+              className={styles.input}
+              required
+            />
+            <input
+              type="text"
+              placeholder="Nombre Completo"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
               className={styles.input}
               required
             />
@@ -95,3 +116,4 @@ export default function ForgotPasswordPage() {
     </div>
   );
 }
+

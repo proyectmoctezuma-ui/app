@@ -1,24 +1,39 @@
-{
+﻿{
   "hosting": {
-    "source": ".",
+    "public": "public",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ],
-    "frameworksBackend": {
-      "region": "us-central1"
-    }
-  },
-  "apphosting": {
-    "backendId": "moctezuma-juegos-back",
-    "rootDir": "/firebase.json",
-    "ignore": [
-      "node_modules",
-      ".git",
-      "firebase-debug.log",
-      "firebase-debug.*.log",
-      "functions"
+    "rewrites": [
+      {
+        "source": "**",
+        "run": {
+          "serviceId": "moctezuma-juegos-back",
+          "region": "us-central1"
+        }
+      }
     ]
-  }
+  },
+  "apphosting": [
+    {
+      "backendId": "moctezuma-juegos-back",
+      "rootDir": "/",
+      "env": [
+        { "variable": "NEXT_PUBLIC_FIREBASE_CONFIG", "secret": "NEXT_PUBLIC_FIREBASE_CONFIG" },
+        { "variable": "FIREBASE_PROJECT_ID", "secret": "FIREBASE_PROJECT_ID" },
+        { "variable": "FIREBASE_CLIENT_EMAIL", "secret": "FIREBASE_CLIENT_EMAIL" },
+        { "variable": "FIREBASE_PRIVATE_KEY", "secret": "FIREBASE_PRIVATE_KEY" },
+        { "variable": "DEBUG_ADMIN", "secret": "DEBUG_ADMIN" }
+      ],
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "functions"
+      ]
+    }
+  ]
 }

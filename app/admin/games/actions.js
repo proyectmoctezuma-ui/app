@@ -1,41 +1,67 @@
 'use server';
+
 import { cookies } from 'next/headers';
-import { adminAuth, adminDb } from '../../../lib/firebase-admin';
+import { getAdminAuth, getAdminDb } from '../../../lib/firebase-admin';
+
+const adminAuth = getAdminAuth();
+const adminDb = getAdminDb();
 
 // Definición de los juegos disponibles
+// Usa imágenes locales desde /public/game-covers.
+// Para evitar 404 mientras faltan portadas definitivas,
+// 4-6 reutilizan 1.jpg/2.jpg/3.jpg como placeholders.
 const allGames = [
-  { id: 1, title: 'Construyendo el propósito', description: '.', unlocked: true, image: '/game-covers/serpiente_de_sombras.webp' },
-  { id: 2, title: 'El tren de las decisiones', description: '.', unlocked: false, image: '/game-covers/tesoro_de_quetzalcoatl.webp' },
-  { id: 3, title: 'Escaleras Verdes', description: '.', unlocked: false, image: '/game-covers/guerrero_jaguar.webp' },
-  { id: 4, title: 'Memórama de la inclusión', description: ',', unlocked: false, image: '/game-covers/vuelo_del_aguila.webp' },
-  { id: 5, title: 'Ojo con el riesgo', description: '.', unlocked: false, image: '/game-covers/piramide_del_sol.webp' },
-  { id: 6, title: 'Precisión', description: ' .', unlocked: false, image: '/game-covers/ritual_sagrado.webp' },
+  { id: 1, title: 'Construyendo el propósito', description: '.', unlocked: true, image: '/game-covers/1.jpg' },
+  { id: 2, title: 'El tren de las decisiones', description: '.', unlocked: false, image: '/game-covers/2.jpg' },
+  { id: 3, title: 'Escaleras Verdes', description: '.', unlocked: false, image: '/game-covers/3.jpg' },
+  { id: 4, title: 'Memórama de la inclusión', description: ',', unlocked: false, image: '/game-covers/1.jpg' },
+  { id: 5, title: 'Ojo con el riesgo', description: '.', unlocked: false, image: '/game-covers/2.jpg' },
+  { id: 6, title: 'Precisión', description: ' .', unlocked: false, image: '/game-covers/3.jpg' },
 ];
 
+function normalizeToDate(value) {
+  if (!value) return null;
+  if (value instanceof Date) return value;
+  if (typeof value?.toDate === 'function') return value.toDate();
+
+  if (typeof value === 'string') {
+    const parsed = new Date(value);
+    if (!Number.isNaN(parsed.getTime())) return parsed;
+  }
+
+  return null;
+}
+
 async function getRegistrationDate(uid) {
-  if (!uid) return new Date().toISOString();
+  if (!uid) return new Date();
 
   try {
-    const userRef = adminDb.ref(`/users/${uid}`);
-    const snapshot = await userRef.once('value');
-    const userData = snapshot.val();
-    // Si no hay fecha de registro, se usa la fecha actual como fallback.
-    return userData?.registrationDate || new Date().toISOString();
+    const doc = await adminDb.collection('users').doc(uid).get();
+    if (!doc.exists) return new Date();
+    const data = doc.data();
+
+    return (
+      normalizeToDate(data?.registrationDate) ||
+      normalizeToDate(data?.createdAt) ||
+      new Date()
+    );
   } catch (error) {
     console.error('Error al obtener la fecha de registro:', error);
-    return new Date().toISOString();
+    return new Date();
   }
 }
 
 export async function getGames() {
-  const sessionCookie = cookies().get('session')?.value;
-  if (!sessionCookie) return allGames; // Devuelve solo el primer juego desbloqueado por defecto
+  const sessionCookie = cookies().get('__session')?.value;
+  if (!sessionCookie) return allGames; // Devuelve juegos con bloqueo por defecto
 
   try {
     const decodedClaims = await adminAuth.verifySessionCookie(sessionCookie, true);
-    const registrationDateStr = await getRegistrationDate(decodedClaims.uid);
-    const registrationDate = new Date(registrationDateStr);
-    const weeksSinceRegistration = Math.floor((new Date() - registrationDate) / (1000 * 60 * 60 * 24 * 7));
+    const registrationDate = await getRegistrationDate(decodedClaims.uid);
+    const weeksSinceRegistration = Math.max(
+      0,
+      Math.floor((Date.now() - registrationDate.getTime()) / (1000 * 60 * 60 * 24 * 7)),
+    );
 
     const unlockedGamesCount = Math.min(1 + weeksSinceRegistration, allGames.length);
 
@@ -50,3 +76,4 @@ export async function getGames() {
     return allGames.map((game, index) => ({ ...game, unlocked: index === 0 }));
   }
 }
+

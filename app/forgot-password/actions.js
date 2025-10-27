@@ -1,57 +1,88 @@
 'use server';
-import { getAuth } from 'firebase-admin/auth';
-import { getDatabase } from 'firebase-admin/database';
-import { app } from '../../lib/firebase-admin';
 
-const db = getDatabase(app);
-const auth = getAuth(app);
+import { getAdminAuth, getAdminDb } from '../../lib/firebase-admin';
 
-// Función auxiliar para encontrar un usuario por su código de empleado
+const adminAuth = getAdminAuth();
+const adminDb = getAdminDb();
+
 async function findUserByEmployeeCode(employeeCode) {
-  const usersRef = db.ref('users');
-  const snapshot = await usersRef.orderByChild('employeeCode').equalTo(employeeCode).limitToFirst(1).once('value');
-  if (snapshot.exists()) {
-    const uid = Object.keys(snapshot.val())[0];
-    const userData = snapshot.val()[uid];
-    return { uid, ...userData };
-  }
-  return null;
+  const snap = await adminDb
+    .collection('users')
+    .where('employeeCode', '==', employeeCode)
+    .limit(1)
+    .get();
+
+  if (snap.empty) return null;
+
+  const doc = snap.docs[0];
+  return { uid: doc.id, ...doc.data() };
 }
 
-export async function verifyCode(employeeCode) {
-  if (!employeeCode) {
+function normalize(str) {
+  return String(str || '').trim().toLowerCase();
+}
+
+export async function verifyCode(employeeCode, name) {
+  const code = String(employeeCode || '').trim();
+  const fullName = String(name || '').trim();
+
+  if (!code) {
     return { success: false, error: 'El código de empleado no puede estar vacío.' };
   }
-  try {
-    const user = await findUserByEmployeeCode(employeeCode);
-    if (user) {
-      return { success: true };
-    } else {
-      return { success: false, error: 'El código de empleado no es válido.' };
-    }
-  } catch (error) {
-    console.error('Error al verificar el código:', error);
-    return { success: false, error: 'Ocurrió un error al verificar el código. Por favor, inténtalo de nuevo.' };
+  if (!/^\d{8}$/.test(code)) {
+    return { success: false, error: 'El código de empleado debe tener exactamente 8 dígitos.' };
   }
-}
+  if (!fullName) {
+    return { success: false, error: 'El nombre completo es obligatorio.' };
+  }
 
-export async function resetPassword(employeeCode, newPassword) {
-  if (!newPassword || newPassword.length < 6) {
-    return { success: false, error: 'La contraseña debe tener al menos 6 caracteres.' };
-  }
   try {
-    const user = await findUserByEmployeeCode(employeeCode);
+    const user = await findUserByEmployeeCode(code);
     if (!user) {
-      return { success: false, error: 'No se encontró el usuario. No se puede restablecer la contraseña.' };
+      return { success: false, error: 'No fue posible verificar tus datos. Por favor, revisa la información.' };
     }
 
-    await auth.updateUser(user.uid, {
-      password: newPassword,
-    });
+    if (normalize(user.name) !== normalize(fullName)) {
+      return { success: false, error: 'No fue posible verificar tus datos. Por favor, revisa la información.' };
+    }
 
     return { success: true };
   } catch (error) {
-    console.error('Error al restablecer la contraseña:', error);
-    return { success: false, error: 'Ocurrió un error al restablecer la contraseña. Por favor, inténtalo de nuevo.' };
+    console.error('Error al verificar los datos:', error);
+    return { success: false, error: 'Ocurrió un error al verificar los datos. Inténtalo de nuevo.' };
   }
 }
+
+export async function resetPassword(employeeCode, name, newPassword) {
+  const code = String(employeeCode || '').trim();
+  const fullName = String(name || '').trim();
+
+  // Reglas de contraseña más fuertes
+  if (!newPassword || newPassword.length < 8) {
+    return { success: false, error: 'La contraseña debe tener al menos 8 caracteres.' };
+  }
+  if (!(/[A-Za-z]/.test(newPassword) && /\d/.test(newPassword))) {
+    return { success: false, error: 'La contraseña debe incluir letras y números.' };
+  }
+
+  if (!/^\d{8}$/.test(code) || !fullName) {
+    return { success: false, error: 'No fue posible verificar tus datos.' };
+  }
+
+  try {
+    const user = await findUserByEmployeeCode(code);
+    if (!user) {
+      return { success: false, error: 'No fue posible verificar tus datos.' };
+    }
+    if (normalize(user.name) !== normalize(fullName)) {
+      return { success: false, error: 'No fue posible verificar tus datos.' };
+    }
+
+    await adminAuth.updateUser(user.uid, { password: newPassword });
+    return { success: true };
+  } catch (error) {
+    console.error('Error al restablecer la contraseña:', error);
+    return { success: false, error: 'Ocurrió un error al restablecer la contraseña. Inténtalo de nuevo.' };
+  }
+}
+

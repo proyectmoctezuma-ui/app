@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "./node_modules/.bin/next dev",
-    "build": "./node_modules/.bin/next build",
-    "start": "./node_modules/.bin/next start",
-    "lint": "./node_modules/.bin/next lint"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "dotenv": "^16.6.1",
@@ -21,5 +21,8 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
     "firebase-tools": "^14.17.0"
+  },
+  "engines": {
+    "node": "20"
   }
 }

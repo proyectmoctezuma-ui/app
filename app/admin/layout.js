@@ -5,7 +5,7 @@ export default function AdminLayout({ children }) {
   return (
     <div>
       <Navbar />
-      <main>{children}</main>
+      <main style={{ padding: 0 }}>{children}</main>
     </div>
   );
 }

@@ -1,43 +1,55 @@
 'use server';
-import { revalidatePath } from 'next/cache';
-import { redirect } from 'next/navigation';
+
 import { cookies } from 'next/headers';
-import { adminAuth, adminDb } from '../../lib/firebase-admin';
+import { redirect } from 'next/navigation';
+import { getAdminAuth, getAdminDb } from 'lib/firebase-admin';
+
+const adminAuth = getAdminAuth();
+const adminDb = getAdminDb();
 
 export async function saveProfile(prevState, formData) {
-  // Leemos directamente la cookie 'uid' para obtener el ID de usuario.
-  const uid = cookies().get('uid')?.value;
+  // 1) Sesión
+  const sessionCookie = cookies().get('__session')?.value || '';
+  if (!sessionCookie) return { error: 'Sesión no encontrada. Inicia sesión.' };
 
-  if (!uid) {
-    return { error: 'No autenticado. ID de usuario no encontrado.' };
-  }
-
+  // 2) Verifica
+  let decoded;
   try {
-    // Para mayor seguridad, obtenemos los datos del usuario directamente de Firebase Auth.
-    const userRecord = await adminAuth.getUser(uid);
-    const email = userRecord.email;
-
-    if (!email) {
-      return { error: 'No se pudo encontrar el email del usuario.' };
-    }
-
-    const ref = adminDb.ref(`/users/${uid}`);
-    const employeeCode = formData.get('employeeCode');
-    const name = formData.get('name');
-
-    // Guardamos los datos del perfil junto con la fecha de registro.
-    await ref.set({
-      employeeCode,
-      name,
-      email,
-      registrationDate: new Date().toISOString(),
-    });
-
-    revalidatePath('/admin');
-    redirect('/admin');
-
-  } catch (error) {
-    console.error('Error al guardar el perfil:', error);
-    return { error: 'Ocurrió un error al guardar tu perfil. Por favor, inténtalo de nuevo.' };
+    decoded = await adminAuth.verifySessionCookie(sessionCookie, true);
+  } catch {
+    return { error: 'Sesión inválida o expirada. Vuelve a iniciar sesión.' };
   }
+  const uid = decoded.uid;
+
+  // 3) Campos
+  const employeeCode = String(formData.get('employeeCode') || '').trim();
+  const name = String(formData.get('name') || '').trim();
+  if (!employeeCode || !name) return { error: 'Faltan campos requeridos.' };
+
+  // Validación: exactamente 8 dígitos numéricos
+  if (!/^\d{8}$/.test(employeeCode)) {
+    return { error: 'El código de empleado debe tener exactamente 8 dígitos.' };
+  }
+
+  // 4) (opcional) email
+  let email = decoded.email || null;
+  if (!email) {
+    try {
+      const user = await adminAuth.getUser(uid);
+      email = user.email || null;
+    } catch {}
+  }
+
+  // 5) Guarda en Firestore
+  await adminDb.collection('users').doc(uid).set({
+    employeeCode,
+    name,
+    email,
+    profileComplete: true,
+    updatedAt: new Date(),
+    createdAt: new Date(),
+  }, { merge: true });
+
+  // 6) ¡No envolver en try/catch!
+  redirect('/admin');
 }

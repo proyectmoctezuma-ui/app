@@ -1,32 +1,66 @@
-
-import { NextResponse } from 'next/server';
-import { getAdminAuth } from '../../../../lib/firebase-admin';
-
+// app/api/auth/session-login/route.js
 export const runtime = 'nodejs';
 
-// Esta API unificada maneja la creación de la sesión para CUALQUIER método de inicio de sesión
-export async function POST(request) {
+import { NextResponse } from 'next/server';
+import { cookies } from 'next/headers';
+import { getAdminAuth, getAdminDb } from 'lib/firebase-admin';
+
+const adminAuth = getAdminAuth();
+const adminDb = getAdminDb();
+
+async function getProfileStatus(decodedToken) {
+  const { uid, email, picture } = decodedToken;
+  const userRef = adminDb.collection('users').doc(uid);
+  const userSnap = await userRef.get();
+
+  if (!userSnap.exists) {
+    // Si el usuario no existe en Firestore, créalo.
+    const newUser = {
+      email,
+      photoURL: picture || '',
+      profileComplete: false, // Marcar como incompleto para forzar la redirección
+      createdAt: new Date().toISOString(),
+    };
+    await userRef.set(newUser);
+    return 'incomplete-profile';
+  }
+
+  const userData = userSnap.data();
+  return userData.profileComplete ? 'success' : 'incomplete-profile';
+}
+
+export async function POST(req) {
   try {
-    const { idToken } = await request.json();
+    const { idToken } = await req.json();
+    if (!idToken) return NextResponse.json({ error: 'Falta idToken' }, { status: 400 });
 
-    // 5 días de duración para la sesión
-    const expiresIn = 60 * 60 * 24 * 5 * 1000;
+    let decodedToken;
+    try {
+      decodedToken = await adminAuth.verifyIdToken(idToken, true);
+    } catch (error) {
+      console.error('Error al verificar idToken:', error);
+      return NextResponse.json({ error: 'idToken inválido' }, { status: 401 });
+    }
 
-    const adminAuth = getAdminAuth();
+    const expiresIn = 7 * 24 * 60 * 60 * 1000; // 7 días
     const sessionCookie = await adminAuth.createSessionCookie(idToken, { expiresIn });
 
-    const response = NextResponse.json({ status: 'success' }, { status: 200 });
-    response.cookies.set('session', sessionCookie, {
-      httpOnly: true, // La cookie no es accesible desde el JavaScript del cliente
-      secure: process.env.NODE_ENV === 'production', // Solo se envía sobre HTTPS en producción
-      maxAge: expiresIn, // Tiempo de vida de la cookie
-      path: '/', // Disponible en toda la aplicación
-      sameSite: 'lax', // Protección contra ataques CSRF
+    console.log('[session-login] verified uid:', decodedToken.uid, 'provider:', decodedToken.firebase?.sign_in_provider);
+
+    const status = await getProfileStatus(decodedToken);
+    const response = NextResponse.json({ status, sessionCookie }, { status: 200 });
+    response.cookies.set('__session', sessionCookie, {
+      secure: process.env.NODE_ENV === 'production',
+      httpOnly: true,
+      sameSite: 'lax',
+      path: '/',
+      maxAge: Math.floor(expiresIn / 1000),
     });
 
     return response;
-  } catch (error) {
-    console.error('Error al crear la cookie de sesión:', error);
-    return NextResponse.json({ status: 'error', message: 'No se pudo crear la sesión.' }, { status: 401 });
+
+  } catch (e) {
+    console.error('[session-login fatal]', e);
+    return NextResponse.json({ error: 'internal' }, { status: 500 });
   }
 }

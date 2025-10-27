@@ -1,43 +1,33 @@
+// app/api/auth/session/route.js
+export const runtime = 'nodejs';
 import { NextResponse } from 'next/server';
-import { cookies } from 'next/headers'; // Importamos la API de cookies de Next.js
-import { adminAuth } from '../../../../lib/firebase-admin';
+import { cookies } from 'next/headers';
+import { getAdminAuth } from 'lib/firebase-admin';
 
-export async function POST(request) {
-  const { idToken } = await request.json();
+const adminAuth = getAdminAuth();
 
-  if (!idToken) {
-    return NextResponse.json({ error: 'No se proporcionó un token de ID.' }, { status: 400 });
-  }
-
-  const expiresIn = 60 * 60 * 24 * 14 * 1000; // 14 días en milisegundos
-
+// Opción A: usa POST sin body (como ya lo llamas)
+export async function POST() {
   try {
-    const decodedToken = await adminAuth.verifyIdToken(idToken);
-    const uid = decodedToken.uid;
+    const sessionCookie = cookies().get('__session')?.value || '';
+    if (!sessionCookie) {
+      return NextResponse.json({ ok: false }, { status: 200 });
+    }
+    await adminAuth.verifySessionCookie(sessionCookie, true);
+    return NextResponse.json({ ok: true }, { status: 200 });
+  } catch {
+    return NextResponse.json({ ok: false }, { status: 200 }); // 200 para flujo simple
+  }
+}
 
-    // Solo creamos la cookie de sesión si el token es válido
-    const sessionCookie = await adminAuth.createSessionCookie(idToken, { expiresIn });
-
-    // Usamos la API de cookies de Next.js para establecer las cookies
-    cookies().set('session', sessionCookie, {
-      httpOnly: true,
-      maxAge: expiresIn / 1000,
-      path: '/',
-      sameSite: 'strict',
-      secure: process.env.NODE_ENV === 'production',
-    });
-
-    cookies().set('uid', uid, { // También establecemos la cookie de UID
-        maxAge: expiresIn / 1000,
-        path: '/',
-        sameSite: 'strict',
-        secure: process.env.NODE_ENV === 'production',
-    });
-
-    return NextResponse.json({ status: 'success' }, { status: 200 });
-
-  } catch (error) {
-    console.error('Error al crear la cookie de sesión:', error);
-    return NextResponse.json({ error: 'No se pudo autenticar.' }, { status: 401 });
+// (Opcional) Opción B: también soporta GET, por si prefieres fetch GET
+export async function GET() {
+  try {
+    const sessionCookie = cookies().get('__session')?.value || '';
+    if (!sessionCookie) return NextResponse.json({ ok: false }, { status: 200 });
+    await adminAuth.verifySessionCookie(sessionCookie, true);
+    return NextResponse.json({ ok: true }, { status: 200 });
+  } catch {
+    return NextResponse.json({ ok: false }, { status: 200 });
   }
 }
