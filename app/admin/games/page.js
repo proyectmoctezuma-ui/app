@@ -10,7 +10,7 @@ const styles = {
     minHeight: 'calc(100vh - 70px)',
     padding: 'clamp(1.25rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem)',
     textAlign: 'center',
-    backgroundColor: '#1a1a1a',
+    backgroundColor: '#1a1a1a1b',
     color: '#FFFFFF',
   },
   title: {
@@ -22,7 +22,7 @@ const styles = {
   subtitle: {
     fontSize: '1.3rem',
     marginBottom: '3rem',
-    color: '#b0b0b0',
+    color: '#ede5e5ff',
   },
   grid: {
     display: 'grid',
@@ -40,7 +40,7 @@ const styles = {
     border: '1px solid rgba(255, 255, 255, 0.08)'
   },
   card: {
-    backgroundColor: '#2c2c2c',
+    backgroundColor: '#2c2c2c44',
     borderRadius: '12px',
     padding: 'clamp(1rem, 3vw, 2rem)',
     transition: 'transform 0.3s ease, box-shadow 0.3s ease',
@@ -86,8 +86,8 @@ const styles = {
   playButton: {
     marginTop: '1.5rem',
     padding: '0.8rem 1.5rem',
-    backgroundColor: '#e5a00d',
-    color: '#1a1a1a',
+    backgroundColor: '#1FAA8F',
+    color: '#212121ff',
     borderRadius: '8px',
     textDecoration: 'none',
     fontWeight: 'bold',
@@ -172,7 +172,7 @@ export default async function GamesPage() {
   return (
     <div style={styles.container}>
       <h1 style={styles.title}>Sala de Juegos</h1>
-      <p style={styles.subtitle}>Cada semana, un nuevo desafío te espera. ¿Estás listo?</p>
+      <p style={styles.subtitle}>Cada semana, un nuevo desafío te espera. ¿Estás listx?</p>
       <div style={styles.grid}>
         {/* <--- CORRECCIÓN: Mapear sobre la lista de juegos del servidor */}
         {allGames.map((game) => {

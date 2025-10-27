@@ -11,12 +11,12 @@ const adminDb = getAdminDb();
 // Para evitar 404 mientras faltan portadas definitivas,
 // 4-6 reutilizan 1.jpg/2.jpg/3.jpg como placeholders.
 const allGames = [
-  { id: 1, title: 'Construyendo el propósito', description: '.', unlocked: true, image: '/game-covers/1.jpg' },
-  { id: 2, title: 'El tren de las decisiones', description: '.', unlocked: false, image: '/game-covers/2.jpg' },
-  { id: 3, title: 'Escaleras Verdes', description: '.', unlocked: false, image: '/game-covers/3.jpg' },
-  { id: 4, title: 'Memórama de la inclusión', description: ',', unlocked: false, image: '/game-covers/1.jpg' },
-  { id: 5, title: 'Ojo con el riesgo', description: '.', unlocked: false, image: '/game-covers/2.jpg' },
-  { id: 6, title: 'Precisión', description: ' .', unlocked: false, image: '/game-covers/3.jpg' },
+  { id: 1, title: 'Construyendo el propósito', description: 'Nuestro propósito se construye pieza por pieza. Une cada parte y descubre la fuerza de lo que nos inspira a avanzar.', unlocked: true, image: '/game-covers/1.jpg' },
+  { id: 2, title: 'Cada decisión es una vía.', description: 'Guía el tren por el camino correcto, demostrando que la Honestidad e Integridad son los rieles que nos conducen e impulsan a un futuro sólido.', unlocked: false, image: '/game-covers/2.jpg' },
+  { id: 3, title: 'Escaleras verdes', description: 'Avanza con conciencia y descubre cómo cada paso que das puede generar un impacto positivo en el Cuidado de Nuestro Planeta.', unlocked: false, image: '/game-covers/3.jpg' },
+  { id: 4, title: 'Memórama de la inclusión', description: '¡Encuentra coincidencias, celebra la diversidad y aprende que con Respeto e Inclusión, construimos un ambiente de colaboración positivo!', unlocked: false, image: '/game-covers/4.jpg' },
+  { id: 5, title: 'Ojo con el riesgo', description: 'Cada condición insegura que detectes es una vida que proteges. Actúa con Valor por la Vida: pon a prueba tu atención y conviértete en guardián de la seguridad.', unlocked: false, image: '/game-covers/5.jpg' },
+  { id: 6, title: 'Precisión con propósito', description: 'Afina tu puntería y demuestra que con Enfoque y Determinación, alcanzas el objetivo con la fuerza de quien no deja nada al azar.', unlocked: false, image: '/game-covers/6.jpg' },
 ];
 
 function normalizeToDate(value) {
