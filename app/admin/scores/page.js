@@ -7,7 +7,7 @@ const styles = {
   container: {
     minHeight: 'calc(100vh - 70px)',
     padding: '4rem 2rem',
-    backgroundColor: '#1a1a1a',
+    backgroundColor: '#1a1a1a14',
     color: '#FFFFFF',
     textAlign: 'center',
   },
@@ -23,14 +23,14 @@ const styles = {
     margin: '0 auto',
     borderCollapse: 'collapse',
     boxShadow: '0 4px 15px rgba(0, 0, 0, 0.5)',
-    backgroundColor: '#2c2c2c',
+    backgroundColor: '#2c2c2c4d',
     borderRadius: '12px',
     overflow: 'hidden',
   },
   th: {
     padding: '1.2rem',
     backgroundColor: '#383838',
-    borderBottom: '2px solid #e5a00d',
+    borderBottom: '2px solid #ffffffff',
     fontSize: '1.05rem',
     fontWeight: 'bold',
     textAlign: 'left',
@@ -43,7 +43,7 @@ const styles = {
   },
   rank: {
     fontWeight: 'bold',
-    color: '#e5a00d',
+    color: '#ffffffff',
   },
   lockedRow: {
     opacity: 0.6,
@@ -61,8 +61,8 @@ const styles = {
     display: 'inline-block',
     padding: '0.2rem 0.5rem',
     borderRadius: '6px',
-    backgroundColor: 'rgba(229,160,13,0.15)',
-    color: '#e5a00d',
+    backgroundColor: 'rgba(13, 229, 121, 0.15)',
+    color: '#f5f6f5ff',
     fontSize: '0.85rem',
   },
 };
@@ -111,7 +111,7 @@ export default async function ScoresPage() {
             const entry = scoreMap[String(game.id)] || null;
             const played = !!entry;
             const rowStyle = {
-              backgroundColor: index % 2 === 0 ? '#2c2c2c' : '#343434',
+              backgroundColor: index % 2 === 0 ? '#2c2c2c15' : '#343434',
               ...(!game.unlocked ? styles.lockedRow : {}),
             };
             return (
