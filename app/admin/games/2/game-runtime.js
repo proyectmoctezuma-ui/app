@@ -147,6 +147,76 @@ export function initTrenGame() {
   const finalBodyNode  = document.getElementById('finalBody');
   const btnEndAction   = document.getElementById('btn-end-action');
 
+  const navLockState = {
+    locked: false,
+    handler: null,
+    anchors: []
+  };
+
+  function lockNav() {
+    if (navLockState.locked) return;
+    navLockState.locked = true;
+    try {
+      const selectors = [
+        'nav a', 'header a', '.navbar a', '.nav a',
+        'a[data-nav]',
+        'a[href="/"]', 'a[href="/admin"]', 'a[href^="/admin/"]',
+        'a[href="/admin/games"]', 'a[href="/admin/scores"]', 'a[href="/admin/dashboard"]'
+      ].join(',');
+      const anchors = Array.from(document.querySelectorAll(selectors));
+      navLockState.anchors = anchors.map((a) => {
+        const prev = {
+          el: a,
+          pe: a.style.pointerEvents || '',
+          tab: a.getAttribute('tabindex'),
+          aria: a.getAttribute('aria-disabled')
+        };
+        try { a.style.pointerEvents = 'none'; } catch {}
+        try { a.setAttribute('tabindex', '-1'); } catch {}
+        try { a.setAttribute('aria-disabled', 'true'); } catch {}
+        return prev;
+      });
+      navLockState.handler = (e) => {
+        const target = e.target;
+        const a = target && typeof target.closest === 'function' ? target.closest('a') : null;
+        if (!a) return;
+        const href = a.getAttribute('href') || '';
+        if (a.closest('nav') || a.closest('header') || a.closest('.navbar') || a.closest('.nav') || href === '/' || href.startsWith('/admin')) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      };
+      document.addEventListener('click', navLockState.handler, true);
+    } catch {}
+  }
+
+  function unlockNav() {
+    if (!navLockState.locked) return;
+    navLockState.locked = false;
+    try {
+      if (navLockState.handler) {
+        document.removeEventListener('click', navLockState.handler, true);
+      }
+    } catch {}
+    try {
+      (navLockState.anchors || []).forEach((prev) => {
+        if (!prev?.el) return;
+        try { prev.el.style.pointerEvents = prev.pe; } catch {}
+        if (prev.tab == null) {
+          try { prev.el.removeAttribute('tabindex'); } catch {}
+        } else {
+          try { prev.el.setAttribute('tabindex', prev.tab); } catch {}
+        }
+        if (prev.aria == null) {
+          try { prev.el.removeAttribute('aria-disabled'); } catch {}
+        } else {
+          try { prev.el.setAttribute('aria-disabled', prev.aria); } catch {}
+        }
+      });
+    } catch {}
+    navLockState.anchors = [];
+    navLockState.handler = null;
+  }
   const headerEl = document.querySelector('.hud');
   const uiPanelEl = document.querySelector('.ui-panel');
   const stageEl   = document.querySelector('.stage');
@@ -543,7 +613,16 @@ export function initTrenGame() {
     if (nowPos.angle != null) targetAngle = nowPos.angle; headAngle = lerpAngle(headAngle, targetAngle, 0.25);
     if (lockOnLast && state === 'RUN_QUESTION') { const lastQ = endS; if (sHead >= lastQ - 0.1) { startAnswerPhase(); return; } }
     drawTrainAndWagons(nowPos, sHead, cumRoute, isFinal);
-    if (sHead >= endS - 0.001) { if (state === 'RUN_ANSWER') { state = 'TRANSITION'; finishAnswerPhaseOnce(); } else if (state === 'RUN_FINAL') { finalEl.classList.remove('hidden'); state = 'FINAL_STOPPED'; } }
+    if (sHead >= endS - 0.001) {
+      if (state === 'RUN_ANSWER') {
+        state = 'TRANSITION';
+        finishAnswerPhaseOnce();
+      } else if (state === 'RUN_FINAL') {
+        finalEl.classList.remove('hidden');
+        try { unlockNav(); } catch {}
+        state = 'FINAL_STOPPED';
+      }
+    }
   }
 
   function drawTrainAndWagons(nowPos, s, cum, isFinal){
@@ -833,6 +912,7 @@ export function initTrenGame() {
 
   async function beginGameFromIntro(){
     try { ensureBGM().play(); ensureSFX().train.play(); } catch(_){}
+    try { lockNav(); } catch {}
     resetScoreState();
     setQuestionVisible(true);
     Loader.show(stageEl);
@@ -846,7 +926,10 @@ export function initTrenGame() {
 
   boot();
 
-  return () => { try { cancelAnimationFrame(rafId); } catch {}; };
+  return () => {
+    try { unlockNav(); } catch {}
+    try { cancelAnimationFrame(rafId); } catch {}
+  };
 }
 
 function sampleWithoutReplacement(arr, k) { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a.slice(0, Math.min(k, a.length)); }
