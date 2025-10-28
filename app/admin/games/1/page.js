@@ -84,7 +84,14 @@ export default function GamePage() {
               <span id="pieces-count-right">0/0</span>
             </div>
 
-            <button id="btn-music-right" className="btn ghost icon">Volumen</button>
+            <button
+              id="btn-music-right"
+              type="button"
+              className="volume-toggle-btn"
+              aria-label="Volumen"
+            >
+              <img src="/games/1/volume_system/icons/unmute.svg" alt="" />
+            </button>
 
             {/* Imagen de referencia (desktop) */}
             <div className="ref-box">

@@ -1,10 +1,9 @@
 .screen {
-  /* Ajuste exacto al viewport menos navbar y padding propio*/ 
-  height: calc(100dvh - 70px - 2rem);
+  flex: 1 1 auto;
+  min-height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-   /*background: #3add8441;*/
   color: #ffffff;
   text-align: center;
   padding: 1rem;

@@ -1,4 +1,20 @@
-/* Mobile-first base + layout safety */
+﻿/* Mobile-first base + layout safety */
+:root {
+  color-scheme: light dark;
+  --viewport-height: 100vh;
+  --navbar-mobile-height: 0px;
+  --admin-content-offset: 0px;
+  --app-surface: #ffffff;
+  --app-ink: #333333;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --app-surface: #000000;
+    --app-ink: #f3f4f6;
+  }
+}
+
 html {
   box-sizing: border-box;
   -webkit-text-size-adjust: 100%;
@@ -7,17 +23,25 @@ html {
 
 img, svg, video, canvas { max-width: 100%; height: auto; display: block; }
 
-html, body { width: 100%; overflow-x: hidden; }
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+  min-height: 100vh;
+  min-height: 100svh;
+  min-height: 100dvh;
+  min-height: var(--viewport-height, 100dvh);
+}
 
 body {
   margin: 0;
+  overscroll-behavior: none;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f0f2f5;
-  color: #333;
+  background-color: var(--app-surface);
+  color: var(--app-ink);
 }
 
 main { padding: 1rem; }

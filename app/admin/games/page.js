@@ -7,7 +7,8 @@ import { getAdminAuth, getAdminDb } from '../../../lib/firebase-admin';
 
 const styles = {
   container: {
-    minHeight: 'calc(100vh - 70px)',
+    minHeight: '100%',
+    flex: '1 1 auto',
     padding: 'clamp(1.25rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem)',
     textAlign: 'center',
     backgroundColor: '#1a1a1a1b',

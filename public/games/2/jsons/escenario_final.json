@@ -1,0 +1,26 @@
+{
+  "id": "escenario_final",
+  "grid": {
+    "cols": 5,
+    "rows": 9
+  },
+  "tiles": {
+    "C9": "track_straight_v",
+    "C8": "track_straight_v",
+    "C7": "track_straight_v",
+    "C6": "track_straight_v",
+    "C5": "track_straight_v",
+    "C4": "track_straight_v",
+    "C3": "track_straight_v",
+    "C2": "track_end",
+    "B2": "station_a",
+    "B3": "station_b",
+    "B4": "station_c",
+    "B5": "station_d"
+  },
+  "sequence": {
+    "final": [
+      "C9", "C8", "C7", "C6", "C5"
+    ]
+  }
+}

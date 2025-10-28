@@ -1,0 +1,113 @@
+{
+  "total": 15,
+  "items": [
+    {
+      "id": "q01",
+      "text": "¿Cuál es la función del código de ética?",
+      "optionA": "Proteger la buena marcha de la Compañía, el sano comportamiento y guiar la conducta de los Colaboradores.",
+      "optionB": "Establecer las reglas estrictas y detalladas que todos los colaboradores deben seguir para evitar cualquier tipo de sanción o castigo dentro de la compañía",
+      "correct": "A"
+    },
+    {
+      "id": "q02",
+      "text": "Menciona una responsabilidad de los colaboradores con relación al código de ética.",
+      "optionA": "Tener conocimiento de sus leyes aplicables, políticas, y estándares correspondientes a tus actividades.",
+      "optionB": "Reportar únicamente cuando tenga pruebas completas de una violación al Código de ética",
+      "correct": "A"
+    },
+    {
+      "id": "q03",
+      "text": "Menciona los grupos de interés establecidos por la organización.",
+      "optionA": "Clientes, Proveedores de bienes y servicios, Organismos gubernamentales, Comunidad, Accionistas, inversionistas y otros interesados",
+      "optionB": "Clientes, proveedores de bienes y servicios, empleados, comunidad, sindicatos y organismos internacionales",
+      "correct": "A"
+    },
+    {
+      "id": "q04",
+      "text": "Selecciona las acciones que seguimos para minimizar nuestro impacto al medio ambiente.",
+      "optionA": "Cumplir con todas las leyes ambientales aplicables en el país",
+      "optionB": "Utilizamos plásticos tipo 5 y 6 en nuestra producción",
+      "correct": "A"
+    },
+    {
+      "id": "q05",
+      "text": "¿Qué es un conflicto de interés?",
+      "optionA": "Surgen cuando las actividades personales, familiares, sociales o políticas interfieren o tienen un gran potencial de interferir con tus responsabilidades en la organización",
+      "optionB": "Ocurre cuando existen diferencias de opinión o desacuerdos con otros compañeros sobre la forma de realizar el trabajo",
+      "correct": "A"
+    },
+    {
+      "id": "q06",
+      "text": "Un ejemplo de conflicto de interés.",
+      "optionA": "Favorecer la contratación de algún proveedor, contratista o prestador de servicios por el simple hecho de mantener una relación familiar o de amistad",
+      "optionB": "Aceptar una invitación a un evento de un proveedor para conocer mejor sus productos y evaluar posibles mejoras para la empresa",
+      "correct": "A"
+    },
+    {
+      "id": "q07",
+      "text": "Si crees que podrías estar en una situación que genere un conflicto de interés, tú debes…",
+      "optionA": "Consultarlo con tu jefe inmediato o con el Comité de Ética y Cumplimiento, y, si en efecto existe un conflicto de interés, retirarte del asunto en cuestión",
+      "optionB": "Documentar el posible conflicto, pero no reportarlo hasta asegurar con certeza que se comete una falta",
+      "correct": "A"
+    },
+    {
+      "id": "q08",
+      "text": "Para seleccionar proveedores se tomará en cuenta…",
+      "optionA": "Precio competitivo, calidad, experiencia y servicio",
+      "optionB": "Precio más bajo, antigüedad de relación con la empresa, ubicación cercana",
+      "correct": "A"
+    },
+    {
+      "id": "q09",
+      "text": "¿Qué es la información confidencial?",
+      "optionA": "Cualquier tipo de información o documentación propiedad de la Compañía que se encuentre en medios escritos, orales o digitales",
+      "optionB": "Información interna que puede compartirse libremente dentro de cualquier área de la empresa, siempre que no salga al exterior",
+      "correct": "A"
+    },
+    {
+      "id": "q10",
+      "text": "¿Cuáles son los tipos de información confidencial que debes resguardar?",
+      "optionA": "Información de la compañía, información confidencial, información financiera, información de la operación, información privilegiada, propiedad intelectual, datos personales",
+      "optionB": "Información general sobre los productos, campañas publicitarias y comunicados oficiales de la empresa",
+      "correct": "A"
+    },
+    {
+      "id": "q11",
+      "text": "¿Qué son los activos de la organización?",
+      "optionA": "Son los bienes y los derechos que tienen un valor monetario y pertenecen a la Compañía o son nuestra responsabilidad, por ejemplo muebles, inmuebles, vehículos, computadoras, o patentes",
+      "optionB": "Son elementos bajo el control operativo de la organización, independientemente de su propiedad legal o de que tengan un valor económico reconocido",
+      "correct": "A"
+    },
+    {
+      "id": "q12",
+      "text": "¿Qué responsabilidad tienen los colaboradores que tienen acceso a los activos de la organización?",
+      "optionA": "Manejarlos con el más alto nivel de integridad y evitar el mal uso de los mismos, y son responsables de custodiar y salvaguardar los activos que se encuentran bajo su control",
+      "optionB": "Asegurarse de que estos sean utilizados conforme a los lineamientos operativos establecidos, pudiendo delegar su administración a otros miembros del equipo si así lo consideran conveniente. La responsabilidad principal recae en el área o departamento al que pertenece el activo, y no necesariamente en la persona que lo utiliza o custodia directamente",
+      "correct": "A"
+    },
+    {
+      "id": "q13",
+      "text": "Medio que tiene como fin responder dudas acerca del código de ética así como recibir reportes de incumplimiento.",
+      "optionA": "Canal de Comunicación Alza la Voz",
+      "optionB": "Intranet Corporativa",
+      "correct": "A"
+    },
+    {
+      "id": "q14",
+      "text": "Selecciona las acciones que se consideran acoso, intimidación o discriminación.",
+      "optionA": "Pedir a un Colaborador que utilice el equipo de seguridad; generar retroalimentación a un colaborador en caso que cierta actividad no se esté realizando de forma correcta",
+      "optionB": "Negarle a un candidato una oportunidad de ascenso por su edad o género; generar comentarios despectivos sobre un compañero de trabajo",
+      "correct": "A"
+    },
+    {
+      "id": "q15",
+      "text": "¿Cuál es la definición de nuestro Valor Honestidad e Integridad?",
+      "optionA": "Hacemos lo correcto, actuando siempre con los más altos estándares éticos y dentro del marco legal. Somos congruentes entre lo que pensamos, decimos y hacemos",
+      "optionB": "Actuamos con transparencia y buscamos siempre cumplir los objetivos de la organización, manteniendo una buena comunicación y colaboración entre todos",
+      "correct": "A"
+    }
+  ],
+  "final_scene": {
+    "text": "¡Llegaste a la estación! 🚉"
+  }
+}

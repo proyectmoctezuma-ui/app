@@ -1,8 +1,8 @@
-'use client';
+﻿'use client';
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { handleLogout } from '../../lib/auth';
 import styles from './Navbar.module.css';
@@ -10,15 +10,21 @@ import styles from './Navbar.module.css';
 const Navbar = () => {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const navRef = useRef(null);
 
   const isAdminRoute = pathname.startsWith('/admin');
+  const isGamePlayRoute = /^\/admin\/games\/\d+/.test(pathname);
+  const navbarClassName = [styles.navbar, isGamePlayRoute ? styles.hideOnMobile : '']
+    .filter(Boolean)
+    .join(' ');
+  const mobileHidden = isGamePlayRoute;
 
-  // Cierra el menú al cambiar de ruta
+  // Close menu when route changes
   useEffect(() => {
     setMenuOpen(false);
   }, [pathname]);
 
-  // En escritorio, asegura menú cerrado al redimensionar
+  // Hide mobile dropdown on desktop resize
   useEffect(() => {
     const onResize = () => {
       if (typeof window !== 'undefined' && window.innerWidth >= 768) {
@@ -29,10 +35,48 @@ const Navbar = () => {
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
+  useEffect(() => {
+    if (typeof window === 'undefined') return undefined;
+    const root = document.documentElement;
+    let frameId = null;
+
+    const updateMetrics = () => {
+      if (frameId) cancelAnimationFrame(frameId);
+      frameId = requestAnimationFrame(() => {
+        if (!isAdminRoute || isGamePlayRoute) {
+          root.style.setProperty('--navbar-mobile-height', '0px');
+          root.style.setProperty('--admin-content-offset', '0px');
+          return;
+        }
+        const navEl = navRef.current;
+        if (!navEl) return;
+        const rect = navEl.getBoundingClientRect();
+        const height = rect?.height || 0;
+        root.style.setProperty('--navbar-mobile-height', `${height}px`);
+        root.style.setProperty('--admin-content-offset', `${height}px`);
+      });
+    };
+
+    updateMetrics();
+
+    const events = ['resize', 'orientationchange', 'viewport-height-change'];
+    events.forEach((evt) => window.addEventListener(evt, updateMetrics));
+
+    return () => {
+      events.forEach((evt) => window.removeEventListener(evt, updateMetrics));
+      if (frameId) cancelAnimationFrame(frameId);
+    };
+  }, [isAdminRoute, isGamePlayRoute, menuOpen]);
+
   return (
-    <nav className={styles.navbar}>
+    <nav
+      ref={navRef}
+      className={navbarClassName}
+      data-mobile-fixed="true"
+      data-mobile-hidden={mobileHidden ? 'true' : 'false'}
+    >
       <div className={styles.logoContainer}>
-        <Link href={isAdminRoute ? '/admin' : '/'}>
+        <Link href={isAdminRoute ? '/admin/games' : '/'}>
           <Image
             src="/moctezuma_logo_white.svg"
             alt="Logo de Moctezuma"
@@ -45,7 +89,7 @@ const Navbar = () => {
 
       <button
         className={styles.burger}
-        aria-label="Abrir menú"
+        aria-label="Abrir menu"
         aria-expanded={menuOpen}
         aria-controls="primary-nav"
         onClick={() => setMenuOpen((v) => !v)}
@@ -79,11 +123,11 @@ const Navbar = () => {
             Puntuaciones
           </Link>
           <button onClick={handleLogout} className={`${styles.logoutButton} ${styles.navAction}`}>
-            Cerrar Sesión
+            Cerrar Sesion
           </button>
         </div>
       ) : (
-        // Navegación para páginas públicas (login, registro)
+        // Public navigation (login/register)
         <div
           id="primary-nav"
           className={`${styles.navLinks} ${menuOpen ? styles.menuOpen : ''}`}

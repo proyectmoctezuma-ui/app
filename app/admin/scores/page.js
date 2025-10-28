@@ -1,75 +1,12 @@
-﻿import React from 'react';
-import { cookies } from 'next/headers';
-import { getAdminAuth, getAdminDb } from 'lib/firebase-admin';
-import { getGames } from '../games/actions';
-
-const styles = {
-  container: {
-    minHeight: 'calc(100vh - 70px)',
-    padding: '4rem 2rem',
-    backgroundColor: '#1a1a1a14',
-    color: '#FFFFFF',
-    textAlign: 'center',
-  },
-  title: {
-    fontSize: '3rem',
-    fontWeight: 'bold',
-    marginBottom: '2rem',
-    textShadow: '0 2px 4px rgba(0, 0, 0, 0.5)',
-  },
-  table: {
-    width: '100%',
-    maxWidth: '900px',
-    margin: '0 auto',
-    borderCollapse: 'collapse',
-    boxShadow: '0 4px 15px rgba(0, 0, 0, 0.5)',
-    backgroundColor: '#2c2c2c4d',
-    borderRadius: '12px',
-    overflow: 'hidden',
-  },
-  th: {
-    padding: '1.2rem',
-    backgroundColor: '#383838',
-    borderBottom: '2px solid #ffffffff',
-    fontSize: '1.05rem',
-    fontWeight: 'bold',
-    textAlign: 'left',
-  },
-  td: {
-    padding: '1rem 1.2rem',
-    borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
-    fontSize: '1rem',
-    textAlign: 'left',
-  },
-  rank: {
-    fontWeight: 'bold',
-    color: '#ffffffff',
-  },
-  lockedRow: {
-    opacity: 0.6,
-    filter: 'blur(0.5px) grayscale(0.2)',
-  },
-  lockedBadge: {
-    display: 'inline-block',
-    padding: '0.2rem 0.5rem',
-    borderRadius: '6px',
-    backgroundColor: 'rgba(255,255,255,0.08)',
-    color: '#b0b0b0',
-    fontSize: '0.85rem',
-  },
-  unlockedBadge: {
-    display: 'inline-block',
-    padding: '0.2rem 0.5rem',
-    borderRadius: '6px',
-    backgroundColor: 'rgba(13, 229, 121, 0.15)',
-    color: '#f5f6f5ff',
-    fontSize: '0.85rem',
-  },
-};
+﻿import React from "react";
+import { cookies } from "next/headers";
+import { getAdminAuth, getAdminDb } from "lib/firebase-admin";
+import { getGames } from "../games/actions";
+import styles from "./Scores.module.css";
 
 async function getUid() {
   const adminAuth = getAdminAuth();
-  const sessionCookie = cookies().get('__session')?.value || '';
+  const sessionCookie = cookies().get("__session")?.value || "";
   if (!sessionCookie) return null;
   try {
     const decoded = await adminAuth.verifySessionCookie(sessionCookie, true);
@@ -82,9 +19,11 @@ async function getUid() {
 async function getUserScores(uid) {
   if (!uid) return {};
   const adminDb = getAdminDb();
-  const snap = await adminDb.collection('users').doc(uid).collection('scores').get();
+  const snap = await adminDb.collection("users").doc(uid).collection("scores").get();
   const map = {};
-  snap.forEach((d) => { map[d.id] = d.data(); });
+  snap.forEach((d) => {
+    map[d.id] = d.data();
+  });
   return map;
 }
 
@@ -96,41 +35,52 @@ export default async function ScoresPage() {
   ]);
 
   return (
-    <div style={styles.container}>
-      <h1 style={styles.title}>Mis Puntuaciones</h1>
-      <table style={styles.table}>
-        <thead>
-          <tr>
-            <th style={styles.th}>Juego</th>
-            <th style={styles.th}>Puntuación</th>
-            <th style={styles.th}>Estado</th>
-          </tr>
-        </thead>
-        <tbody>
-          {games.map((game, index) => {
-            const entry = scoreMap[String(game.id)] || null;
-            const played = !!entry;
-            const rowStyle = {
-              backgroundColor: index % 2 === 0 ? '#2c2c2c15' : '#343434',
-              ...(!game.unlocked ? styles.lockedRow : {}),
-            };
-            return (
-              <tr key={game.id} style={rowStyle}>
-                <td style={styles.td}>{(scoreMap[String(game.id)]?.gameTitle) || game.title}</td>
-                <td style={styles.td}>{played ? entry.score : '-'}</td>
-                <td style={styles.td}>
-                  {played
-                    ? 'Jugado'
-                    : (game.unlocked
-                        ? <span style={styles.unlockedBadge}>Desbloqueado</span>
-                        : <span style={styles.lockedBadge}>Bloqueado</span>)}
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Mis Puntuaciones</h1>
+      <div className={styles.tableWrap}>
+        <table className={styles.table}>
+          <thead>
+            <tr className={styles.headRow}>
+              <th className={styles.headCell}>Juego</th>
+              <th className={styles.headCell}>Puntuación</th>
+              <th className={styles.headCell}>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            {games.map((game) => {
+              const entry = scoreMap[String(game.id)] || null;
+              const played = !!entry;
+              const rowClassName = [styles.row, !game.unlocked ? styles.lockedRow : ""]
+                .filter(Boolean)
+                .join(" ");
+
+              return (
+                <tr key={game.id} className={rowClassName}>
+                  <td className={styles.cell} data-label="Juego">
+                    {scoreMap[String(game.id)]?.gameTitle || game.title}
+                  </td>
+                  <td className={styles.cell} data-label="Puntuación">
+                    {played ? entry.score : "-"}
+                  </td>
+                  <td className={styles.cell} data-label="Estado">
+                    {played
+                      ? "Jugado"
+                      : game.unlocked ? (
+                        <span className={`${styles.badge} ${styles.unlockedBadge}`}>
+                          Desbloqueado
+                        </span>
+                      ) : (
+                        <span className={`${styles.badge} ${styles.lockedBadge}`}>
+                          Bloqueado
+                        </span>
+                      )}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
-

@@ -1,0 +1,64 @@
+.scope :global(.board-wrap) {
+  --chromeV: 0px;
+  height: calc(100dvh - var(--chromeV));
+  min-height: calc(100svh - var(--chromeV));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+  padding: clamp(6px, 1.8vh, 18px) clamp(10px, 4vw, 24px);
+}
+
+.scope :global(.board) {
+  position: relative;
+  height: 100%;
+  aspect-ratio: 1080 / 1920;
+  width: auto;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0 auto;
+  background: #111 center/cover no-repeat;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+@media (min-width: 992px) {
+  .scope :global(.board-wrap) {
+    --chromeV: 80px;
+    height: calc(100dvh - var(--chromeV));
+    min-height: calc(100svh - var(--chromeV));
+    padding: clamp(12px, 2vh, 24px);
+  }
+
+  .scope :global(.board) {
+    max-width: 100%;
+  }
+}
+
+.scope :global(.piece) {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: clamp(28px, 5.5vw, 40px);
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.5));
+  will-change: transform, left, top;
+  transition: filter 0.15s ease;
+}
+
+.scope :global(.piece.moving) {
+  filter: drop-shadow(0 12px 16px rgba(0, 0, 0, 0.6));
+}
+
+.scope :global(.debug-canvas) {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.7;
+  display: none;
+}
+
+.scope.debug :global(.debug-canvas) {
+  display: block;
+}

@@ -1,0 +1,5 @@
+{
+    "success": ["¡Correcto!", "¡Excelente!", "¡Bien hecho!", "¡Así se hace!"],
+    "fail":    ["Incorrecto", "Sigue intentando", "Casi...", "No te rindas"]
+  }
+  

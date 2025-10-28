@@ -1,0 +1,65 @@
+/* ui.module.css — botones y textos (scope local) */
+
+.scope { --_anchor: 1; }
+
+.scope :global(.answers){
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.scope :global(.answer-btn){
+  appearance:none; border:none; cursor:pointer;
+  padding:12px 14px; border-radius:12px;
+  background:#2b2b2b; color:#f0f0f0; font-weight:100;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.07);
+  transition: transform .06s ease, background .15s ease, box-shadow .15s ease;
+  text-align: left;
+  white-space: normal;
+  line-height: 1.35;
+  word-break: break-word;
+  min-height: 56px;
+  font-size: 0.8rem;
+}
+.scope :global(.answer-btn:hover){ transform: translateY(-1px); }
+.scope :global(.answer-btn:active){ transform: translateY(1px); }
+.scope :global(.answer-btn.is-selected){
+  background: #233e37;
+  box-shadow: inset 0 0 0 2px #6bffce;
+}
+
+.scope :global(.hud__score strong){ color:#fff; }
+
+.scope :global(.toast){
+  position:absolute;
+  left:50%;
+  top:12px;
+  transform: translateX(-50%);
+  padding: 0;
+  background: transparent;
+  color: #fff;
+  font-weight: 800;
+  font-size: clamp(14px, 1.4vw, 18px);
+  line-height: 1.2;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .18s ease, transform .18s ease;
+  z-index: 5;
+  text-shadow: 0 2px 8px rgba(0,0,0,.35), 0 1px 2px rgba(0,0,0,.4);
+}
+
+.scope :global(.fade .loading){
+  position:absolute;
+  left:50%; top:50%;
+  transform:translate(-50%,-50%);
+  color:#fff;
+  font-weight:700;
+  letter-spacing:.3px;
+  background:transparent;
+  padding:8px 12px;
+  border-radius:10px;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,.6));
+  opacity:.95;
+}
+.scope :global(.loading.hidden){ display:none; }

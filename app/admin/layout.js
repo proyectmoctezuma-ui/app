@@ -1,11 +1,15 @@
-
 import Navbar from '../components/Navbar';
+import styles from './AdminLayout.module.css';
 
 export default function AdminLayout({ children }) {
   return (
-    <div>
+    <div className={styles.shell}>
       <Navbar />
-      <main style={{ padding: 0 }}>{children}</main>
+
+
+      <main className={styles.content}>
+        <div className={styles.contentInner}>{children}</div>
+      </main>
     </div>
   );
 }

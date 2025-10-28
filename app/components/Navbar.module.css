@@ -4,9 +4,18 @@
   align-items: center;
   background-color: #004D40; /* Verde azulado oscuro elegante */
   padding: 1rem 1.25rem;
+  padding-top: 1rem;
+  padding-top: calc(1rem + env(safe-area-inset-top, 0));
   color: white;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  position: relative;
+  width: 100%;
+  z-index: 1000;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  flex-shrink: 0;
 }
 
 .logoContainer {
@@ -84,6 +93,18 @@
 
 /* Móvil */
 @media (max-width: 767px) {
+  .navbar {
+    position: fixed;
+    top: 0;
+    top: env(safe-area-inset-top, 0);
+    left: 0;
+    right: 0;
+  }
+
+  .hideOnMobile {
+    display: none !important;
+  }
+
   .navLinks {
     display: none;
     position: absolute;
@@ -107,6 +128,10 @@
 
 /* Escritorio */
 @media (min-width: 768px) {
+  .navbar {
+    position: static;
+  }
+
   .burger {
     display: none;
   }
@@ -119,4 +144,3 @@
     flex-direction: row;
   }
 }
-

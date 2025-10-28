@@ -1,4 +1,4 @@
-// app/admin/page.js  (Server Component)
+﻿// app/admin/page.js  (Server Component)
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { getAdminAuth, getAdminDb } from 'lib/firebase-admin';
@@ -46,10 +46,9 @@ export default async function AdminPage() {
   return (
     <div className={styles.screen}>
       <div className={styles.card}>
-        <h1 className={styles.title}>¡Bienvenido de nuevo, {user.name}!</h1>
+        <h1 className={styles.title}>Bienvenidx de nuevo, {user.name}!</h1>
         <p className={styles.subtitle}>Nos alegra tenerte de vuelta en la sala de juegos.</p>
       </div>
     </div>
   );
 }
-

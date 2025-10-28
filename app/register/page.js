@@ -28,7 +28,7 @@ async function createSessionAndRedirect(idToken) {
   if (data.sessionCookie) {
     document.cookie = `__session=${data.sessionCookie}; path=/; max-age=${7 * 24 * 60 * 60}; samesite=Lax`;
   }
-  if (data.status === 'success') window.location.assign('/admin');
+  if (data.status === 'success') window.location.assign('/admin/games');
   else if (data.status === 'incomplete-profile') window.location.assign('/complete-profile');
   else throw new Error('Respuesta inesperada del servidor.');
 }
@@ -130,7 +130,7 @@ export default function RegisterPage() {
 
   if (loading) {
     return (
-      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#121212', color: '#fff', textAlign: 'center', padding: '1rem' }}>
+      <div style={{ minHeight: '100dvh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#121212', color: '#fff', textAlign: 'center', padding: '1rem' }}>
         <div style={{ width: 'min(720px,92vw)', padding: 'clamp(1rem,3vw,2rem)', borderRadius: 20, background: 'rgba(0,0,0,.35)', border: '1px solid rgba(255,255,255,.12)', backdropFilter: 'blur(10px) saturate(120%)' }}>
           <div style={{ width: 48, height: 48, border: '4px solid rgba(255,255,255,.25)', borderTopColor: '#ff6b6b', borderRadius: '50%', animation: 'spin 1s linear infinite', margin: '0 auto 1rem' }} />
           <style>{'@keyframes spin { to { transform: rotate(360deg);} }'}</style>

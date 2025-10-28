@@ -1,5 +1,6 @@
 .screen {
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,7 +12,8 @@
 }
 
 .screenAdmin {
-  min-height: calc(100vh - 70px);
+  min-height: 100%;
+  flex: 1 1 auto;
 }
 
 .card {
@@ -65,4 +67,3 @@
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
-

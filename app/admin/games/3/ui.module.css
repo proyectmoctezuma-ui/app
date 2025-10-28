@@ -1,0 +1,394 @@
+.scope {
+  --bg: #1e3e38;
+  --panel: #166659;
+  --card: #1d1e21;
+  --text: #f2f2f3;
+  --muted: #a6a7ad;
+  --accent: #36c589;
+  --ok: #2ecc71;
+  --warn: #ff6b6b;
+  --overlay: rgba(0, 0, 0, 0.25);
+
+  min-height: 100dvh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  font: 400 16px/1.4 system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
+  background: var(--bg);
+  color: var(--text);
+  overflow: hidden;
+}
+
+.scope * {
+  box-sizing: border-box;
+}
+
+.scope :global(.topbar) {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: var(--panel);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.scope :global(.topbar .stat) {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.scope :global(.topbar .label) {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.scope :global(.topbar .value) {
+  font-weight: 700;
+}
+
+.scope :global(.topbar .hud-right) {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.scope :global(.layout) {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  min-height: 0;
+  flex: 1 1 auto;
+  height: 100%;
+  overflow: hidden;
+  padding: 0;
+}
+
+.scope :global(.side-panel) {
+  display: none;
+  background: var(--panel);
+  border-left: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 18px 20px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-direction: column;
+  gap: 18px;
+  height: 100%;
+  min-height: 0;
+}
+
+.scope :global(.panel-section + .panel-section) {
+  margin-top: 0;
+}
+
+.scope :global(.panel-title) {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  color: var(--muted);
+}
+
+.scope :global(.panel-stats) {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+}
+
+.scope :global(#boardWrap) {
+  min-height: 0;
+}
+
+.scope :global(.dice-panel) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  min-height: 120px;
+}
+
+.scope :global(.dice-img) {
+  width: 96px;
+  height: 96px;
+  image-rendering: crisp-edges;
+}
+
+.scope :global(.btn) {
+  appearance: none;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 10px 14px;
+  background: var(--accent);
+  color: #000;
+  transition: transform 0.08s ease, box-shadow 0.12s ease;
+}
+
+.scope :global(.btn:active) {
+  transform: scale(0.97);
+}
+
+.scope :global(.btn.wide) {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.scope :global(.btn.ghost) {
+  background: rgba(0, 0, 0, 0.25);
+  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.scope :global(.btn.icon) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.scope :global(.bottom-cta) {
+  position: sticky;
+  bottom: 0;
+  z-index: 9;
+  padding: 10px;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.2));
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.scope :global(.roll-btn) {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #000;
+  background: var(--accent);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.08s ease;
+}
+
+.scope :global(.roll-btn:disabled) {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.scope :global(.roll-btn:active) {
+  transform: scale(0.98);
+}
+
+.scope :global(.dice-overlay) {
+  position: fixed;
+  inset: 0;
+  background: var(--overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scope :global(.dice-overlay.hidden) {
+  display: none;
+}
+
+.scope :global(.dice-box) {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.scope :global(.prompt-modal) {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.scope :global(.prompt-modal.hidden) {
+  display: none;
+}
+
+.scope :global(.prompt-card) {
+  width: min(400px, 82vw);
+  background: var(--card);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+.scope :global(.prompt-card--media) {
+  width: min(560px, 86vw);
+}
+
+.scope :global(.prompt-card--media .prompt-body) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+
+.scope :global(.prompt-card--simple) {
+  width: min(360px, 72vw);
+  margin: 0 auto;
+}
+
+.scope :global(.prompt-card .prompt-media) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+}
+
+.scope :global(.prompt-card .prompt-media img) {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.scope :global(.prompt-card .prompt-body) {
+  padding: 16px;
+}
+
+.scope :global(.prompt-card--simple .prompt-body) {
+  padding: 24px;
+  text-align: center;
+}
+
+.scope :global(.prompt-card .prompt-actions) {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.scope :global(.prompt-card--simple .prompt-actions) {
+  justify-content: center;
+}
+
+.scope :global(.prompt-close) {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text);
+  font-size: 22px;
+  cursor: pointer;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scope :global(.prompt-card .only-text) {
+  padding: 24px;
+  text-align: center;
+}
+
+.scope :global(.prompt-card .only-text h2) {
+  margin: 0 0 8px;
+}
+
+.scope :global(.brand) {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.scope :global(.brand__logo) {
+  display: block;
+  height: 1.75rem;
+  width: auto;
+  object-fit: contain;
+  border-radius: 6px;
+  flex: 0 0 auto;
+}
+
+.scope :global(.btn-music-right) {
+  min-width: 44px;
+}
+
+.scope :global(#btn-music-right) {
+  min-width: 44px;
+}
+
+@media (min-width: 992px) {
+  .scope :global(.side-panel) {
+    align-items: stretch;
+  }
+
+  .scope :global(.layout) {
+    grid-template-columns: minmax(0, 1fr) 360px;
+  }
+
+  .scope :global(.side-panel) {
+    display: flex;
+  }
+
+  .scope :global(.bottom-cta) {
+    display: none;
+  }
+
+  .scope :global(.prompt-card--media) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .scope :global(.prompt-card--media .prompt-actions) {
+    grid-column: 1 / -1;
+  }
+
+  .scope :global(.brand__logo) {
+    height: 2rem;
+  }
+
+  .scope :global(.topbar) {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .scope :global(.prompt-card) {
+    width: min(380px, 74vw);
+  }
+
+  .scope :global(.prompt-card--simple) {
+    width: min(320px, 68vw);
+  }
+
+  .scope :global(.prompt-card--media) {
+    width: min(400px, 82vw);
+  }
+
+  .scope :global(.prompt-card--simple .prompt-body) {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .scope :global(.prompt-card) {
+    width: min(340px, 70vw);
+  }
+
+  .scope :global(.prompt-card--simple) {
+    width: min(300px, 64vw);
+  }
+
+  .scope :global(.prompt-card--media) {
+    width: min(440px, 88vw);
+  }
+}

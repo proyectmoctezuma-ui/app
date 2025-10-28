@@ -1,4 +1,4 @@
-/* ===============================
+﻿/* ===============================
    UI (HUD, layout, panel, overlays)
    =============================== */
 
@@ -47,7 +47,7 @@
   }
 }
 
-/* ===== HUD (móvil) ===== */
+/* ===== HUD (mÃ³vil) ===== */
 .scope :global(.hud) {
   display: flex;
   flex-wrap: wrap;
@@ -151,7 +151,7 @@
   .scope :global(#btn-reference) { display: none !important; }
 }
 
-/* ===== Stage con textura y viñeta ===== */
+/* ===== Stage con textura y viÃ±eta ===== */
 .scope :global(.stage) {
   --stage-pad-y: clamp(10px, 4vw, 28px);
   --stage-pad-x: clamp(10px, 4vw, 28px);
@@ -165,7 +165,7 @@
   position: relative;
 }
 
-/* Viñeta + degradado por encima del logo */
+/* ViÃ±eta + degradado por encima del logo */
 .scope :global(.stage::before) {
   content: "";
   position: absolute;
@@ -189,17 +189,17 @@
   background-image: url('/games/1/assets/logo.svg');
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: min(80vw, 1100px) auto; /* ancho prioridad, alto automático */
+  background-size: min(80vw, 1100px) auto; /* ancho prioridad, alto automÃ¡tico */
   opacity: 0.2;                 /* 20% */
-  mix-blend-mode: multiply;     /* efecto “grabado” */
+  mix-blend-mode: multiply;     /* efecto â€œgrabadoâ€ */
   filter: grayscale(1) contrast(.95) brightness(.9);
   z-index: -1;
 }
 
-/* Disposición */
+/* DisposiciÃ³n */
 .scope :global(.layout) { position: relative; z-index: 2; }
 
-/* Móvil */
+/* MÃ³vil */
 .scope :global(.board-area) {
   display: grid;
   justify-items: center;
@@ -298,12 +298,12 @@
   transition: transform 300ms ease;
 }
 
-/* Márgenes compactos (3px) en títulos y textos del banner */
+/* MÃ¡rgenes compactos (3px) en tÃ­tulos y textos del banner */
 .scope :global(.end-banner .modal-card :is(h1,h2,h3,h4,h5,h6,p,.score-text)) {
   margin: 3px 0;
 }
 
-/* Móvil: cae desde arriba */
+/* MÃ³vil: cae desde arriba */
 @media (max-width: 1023px) {
   .scope :global(.end-banner) {
     top: 0; bottom: auto;
@@ -337,7 +337,7 @@
 
   .scope :global(.end-banner .modal-actions) {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     gap: 8px;
     margin-top: 8px;
   }
@@ -429,9 +429,9 @@
   margin: 0; color: var(--muted); line-height: 1.4;
 }
 .scope :global(#start-overlay .start-actions) {
-  display: flex; justify-content: end; gap: 8px; margin-top: 8px;
+  display: flex; justify-content: flex-end; gap: 8px; margin-top: 8px;
 }
 
-/* Botón música (mínimo ancho) */
+/* BotÃ³n mÃºsica (mÃ­nimo ancho) */
 .scope :global(#btn-music),
 .scope :global(#btn-music-right) { min-width: 44px; }

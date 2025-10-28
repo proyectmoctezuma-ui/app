@@ -1,30 +1,37 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
+import ViewportMetricsProvider from './components/ViewportMetricsProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
   title: 'Juegos Moctezuma',
   description: 'Plataforma de juegos interactivos.',
-  icons: {
-    icon: '/icon.ico',
-  },
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+  themeColor: '#1FAA8F',
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
-      <body 
+      <body
         className={inter.className}
         style={{
           backgroundImage: `url('/bg.png')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          backgroundAttachment: 'fixed',
+          backgroundRepeat: 'no-repeat',
+          backgroundColor: 'var(--app-surface)',
           margin: 0,
-          minHeight: '100vh'
+          minHeight: 'var(--viewport-height, 100dvh)'
         }}
       >
+        <ViewportMetricsProvider />
         {children}
       </body>
     </html>

@@ -1,0 +1,113 @@
+{
+    "boardImage": "img/tableros/eco_1080x1920.jpg",
+    "design": {
+      "width": 1080,
+      "height": 1920,
+      "colsPx": { "A": 220, "B": 540, "C": 860 },
+      "rowsPx": { "1": 384, "2": 768, "3": 1152, "4": 1536 },
+      "startOffsetPx": 150,
+      "goalOffsetPx": 150
+    },
+  
+    "path": ["A4","B4","C4","C3","B3","A3","A2","B2","C2","C1","B1","A1"],
+  
+    "cells": [
+      {
+        "id": 1, "label": "A4",
+        "title": "¡Muy bien!",
+        "text": "Has clasificado correctamente tus residuos. Contribuyes al reciclaje y a la reducción de la contaminación",
+        "image": "01_botes.png",
+        "type": "none"
+      },
+      {
+        "id": 2, "label": "B4",
+        "title": "Excelente iniciativa",
+        "text": "Al plantar un árbol, ayudas a mejorar la calidad del aire y proteger la biodiversidad",
+        "image": "02_reforestacion.png",
+        "type": "ladder", "jumpTo": 6
+      },
+      {
+        "id": 3, "label": "C4",
+        "title": "Decisión consciente",
+        "text": "Has tomado una decisión consciente al usar productos reutilizables. Pequeñas acciones generan grandes cambios",
+        "image": "03_botella.png",
+        "type": "none"
+      },
+      {
+        "id": 4, "label": "C3",
+        "title": "Cuidado con el plástico",
+        "text": "El plástico mal gestionado representa una amenaza directa para la vida marina y la salud de los océanos",
+        "image": "08_plasticos.png",
+        "type": "snake", "jumpTo": 2
+      },
+      {
+        "id": 5, "label": "B3",
+        "title": "Decisión consciente",
+        "text": "Has tomado una decisión consciente al usar productos reutilizables. Pequeñas acciones generan grandes cambios",
+        "image": "04_botella.png",
+        "type": "ladder", "jumpTo": 8
+      },
+      {
+        "id": 6, "label": "A3",
+        "title": "Quemar basura contamina",
+        "text": "La quema de residuos libera gases tóxicos que afectan el aire y la salud humana. Es una práctica altamente contaminante",
+        "image": "09_basura.png",
+        "type": "snake", "jumpTo": 1
+      },
+      {
+        "id": 7, "label": "A2",
+        "title": "Demasiadas bolsas",
+        "text": "Las bolsas plásticas representan una fuente significativa de contaminación. Su uso indiscriminado afecta ecosistemas terrestres y marinos. Optar por alternativas reutilizables es prioritario",
+        "image": "10_bolsas.png",
+        "type": "snake", "jumpTo": 5
+      },
+      {
+        "id": 8, "label": "B2",
+        "title": "¡Gracias por actuar!",
+        "text": "Tu participación activa en la limpieza de espacios naturales protege ecosistemas y especies marinas.",
+        "image": "05_playa.png",
+        "type": "ladder", "jumpTo": 10
+      },
+      {
+        "id": 9, "label": "C2",
+        "title": "Basura en la calle",
+        "text": "Desechar residuos en espacios públicos genera contaminación visual y ambiental, afectando la fauna y la calidad de vida comunitaria. La gestión responsable de residuos es fundamental para la sostenibilidad",
+        "image": "11_basura.png",
+        "type": "snake", "jumpTo": 4
+      },
+      {
+        "id": 10, "label": "C1",
+        "title": "Energía responsable",
+        "text": "El uso responsable de la energía eléctrica contribuye a la disminución de emisiones contaminantes",
+        "image": "06_luces.png",
+        "type": "none"
+      },
+      {
+        "id": 11, "label": "B1",
+        "title": "Transporte sostenible",
+        "text": "Excelente decisión. Al optar por un medio de transporte sostenible, estás reduciendo tu huella de carbono y mejorando la calidad del aire.",
+        "image": "07_bicicleta.png",
+        "type": "none"
+      },
+      {
+        "id": 12, "label": "A1",
+        "title": "Exceso de papel",
+        "text": "El uso excesivo de papel y su falta de reciclaje contribuyen a la deforestación y al aumento de residuos sólidos. Adoptar prácticas de reducción, reutilización y reciclaje es fundamental para preservar los bosques y minimizar el impacto ambiental.",
+        "image": "12_papel.png",
+        "type": "snake", "jumpTo": 8
+      }
+    ],
+  
+    "strings": {
+      "introTitle": "Cómo jugar",
+      "introText": "Tira el dado, avanza y aprende prácticas verdes. Evita las serpientes y aprovecha las escaleras.",
+      "btnAccept": "Entendido",
+      "btnContinue": "Continuar",
+      "rollButton": "Tirar el dado",
+      "winTitle": "¡Felicidades!",
+      "winText": "Elegiste acciones que cuidan el planeta. Tus decisiones hoy construyen un futuro más verde.",
+      "loseTitle": "¡Tiempo agotado!",
+      "loseText": "Esta vez tus decisiones te alejaron del camino verde. ¡Vuelve a intentarlo!"
+    }
+  }
+  

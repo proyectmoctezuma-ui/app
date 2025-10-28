@@ -1,0 +1,48 @@
+{
+  "id": "escenario_01",
+  "grid": {
+    "cols": 5,
+    "rows": 9
+  },
+  "tiles": {
+    "C9": "track_straight_v",
+    "C8": "track_straight_v",
+    "C7": "track_straight_v",
+    "C6": "track_straight_v",
+    "C5": "track_straight_v",
+    "C4": "track_straight_v",
+    "C3": "track_bi",
+    "C2": "switch_base",
+    "B3": "track_cur_03",
+    "B2": "track_straight_v",
+    "B1": "track_end",
+    "D3": "track_cur_02",
+    "D2": "track_straight_v",
+    "D1": "track_end"
+  },
+  "variants": {
+    "C3":   { "A": "track_bi_left", "B": "track_bi_right" },
+    "C2":   { "A": "switch_A",      "B": "switch_B" }
+  },
+  "sequence": {
+    "question": [
+      "C9",
+      "C8",
+      "C7",
+      "C6",
+      "C5",
+      "C4",
+      "C3"
+    ],
+    "answerA": [
+      "B3",
+      "B2",
+      "B1"
+    ],
+    "answerB": [
+      "D3",
+      "D2",
+      "D1"
+    ]
+  }
+}

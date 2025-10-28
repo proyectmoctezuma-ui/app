@@ -1,4 +1,4 @@
-'use server';
+﻿'use server';
 
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
@@ -8,16 +8,16 @@ const adminAuth = getAdminAuth();
 const adminDb = getAdminDb();
 
 export async function saveProfile(prevState, formData) {
-  // 1) Sesión
+  // 1) SesiÃ³n
   const sessionCookie = cookies().get('__session')?.value || '';
-  if (!sessionCookie) return { error: 'Sesión no encontrada. Inicia sesión.' };
+  if (!sessionCookie) return { error: 'SesiÃ³n no encontrada. Inicia sesiÃ³n.' };
 
   // 2) Verifica
   let decoded;
   try {
     decoded = await adminAuth.verifySessionCookie(sessionCookie, true);
   } catch {
-    return { error: 'Sesión inválida o expirada. Vuelve a iniciar sesión.' };
+    return { error: 'SesiÃ³n invÃ¡lida o expirada. Vuelve a iniciar sesiÃ³n.' };
   }
   const uid = decoded.uid;
 
@@ -26,9 +26,9 @@ export async function saveProfile(prevState, formData) {
   const name = String(formData.get('name') || '').trim();
   if (!employeeCode || !name) return { error: 'Faltan campos requeridos.' };
 
-  // Validación: exactamente 8 dígitos numéricos
+  // ValidaciÃ³n: exactamente 8 dÃ­gitos numÃ©ricos
   if (!/^\d{8}$/.test(employeeCode)) {
-    return { error: 'El código de empleado debe tener exactamente 8 dígitos.' };
+    return { error: 'El cÃ³digo de empleado debe tener exactamente 8 dÃ­gitos.' };
   }
 
   // 4) (opcional) email
@@ -50,6 +50,6 @@ export async function saveProfile(prevState, formData) {
     createdAt: new Date(),
   }, { merge: true });
 
-  // 6) ¡No envolver en try/catch!
-  redirect('/admin');
+  // 6) Â¡No envolver en try/catch!
+  redirect('/admin/games');
 }

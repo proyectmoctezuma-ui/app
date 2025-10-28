@@ -4,16 +4,15 @@
 /* Botón en la HUD (inyectado por JS) */
 .scope :global(.volume-toggle-btn) {
   display:inline-flex; align-items:center; justify-content:center;
-  gap:8px;
-  padding:6px 10px;
+  padding:8px;
   border-radius:10px;
   background: transparent;
   border: 1px solid rgba(255,255,255,.15);
   color: var(--vol-ink, var(--ink, #e8ebf3));
   cursor: pointer;
-  width: 120px;
+  width: 42px; height: 42px;
 }
-.scope :global(.volume-toggle-btn img) { width:18px; height:18px; display:block; }
+.scope :global(.volume-toggle-btn img) { width:22px; height:22px; display:block; }
 
 /* Overlay de foco */
 .scope :global(#volumeOverlay) {
