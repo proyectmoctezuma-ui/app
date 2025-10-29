@@ -13,14 +13,14 @@ const SUPER_ADMIN_EMAIL = 'sor.filotea.1@gmail.com'; // Reemplaza por el correo 
 const allGames = [
   {
     id: 1,
-    title: 'Construyendo el proposito',
-    description: 'Nuestro proposito se construye pieza por pieza. Une cada parte y descubre la fuerza de lo que nos inspira a avanzar.',
+    title: 'Construyendo el propósito',
+    description: 'Nuestro propósito se construye pieza por pieza. Une cada parte y descubre la fuerza de lo que nos inspira a avanzar.',
     unlocked: true,
     image: '/game-covers/1.jpg',
   },
   {
     id: 2,
-    title: 'Cada decisión es una via.',
+    title: 'Cada decisión es una vía.',
     description: 'Guia el tren por el camino correcto, demostrando que la Honestidad e Integridad son los rieles que nos conducen e impulsan a un futuro solido.',
     unlocked: true,
     image: '/game-covers/2.jpg',
