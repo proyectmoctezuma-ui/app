@@ -224,7 +224,7 @@ export function initTrenGame() {
   }
   const headerEl = document.querySelector('.hud');
   const uiPanelEl = document.querySelector('.ui-panel');
-  const stageEl   = document.querySelector('.stage');
+  let stageEl; // assigned after Loader definition
   const wrapEl    = document.querySelector('.canvas-wrap');
 
   let decoBg, decoTop, decoBgCtx, decoTopCtx;
@@ -316,8 +316,13 @@ export function initTrenGame() {
     return decoGeometry;
   }
 
+  const LOADER_FADE_MS = 320;
+  const LOADER_MIN_VISIBLE_MS = 650;
   const Loader = {
     el: null,
+    isVisible: false,
+    visibleAt: 0,
+    pendingHide: null,
     ensure(scopeEl){
       if (this.el) return;
       const stageHost = scopeEl?.querySelector?.('.canvas-wrap') || document.querySelector('.canvas-wrap');
@@ -333,16 +338,52 @@ export function initTrenGame() {
       stageHost.appendChild(overlay);
       this.el = overlay;
     },
-    show(scopeEl){
+    async show(scopeEl){
       this.ensure(scopeEl);
       if (!this.el) return;
+      if (this.pendingHide) {
+        clearTimeout(this.pendingHide);
+        this.pendingHide = null;
+      }
+      if (this.isVisible) {
+        this.visibleAt = performance.now();
+        return;
+      }
+      this.isVisible = true;
+      await nextFrame();
+      this.visibleAt = performance.now();
       this.el.classList.add('is-visible');
+      await waitMs(LOADER_FADE_MS);
     },
     hide(){
-      if (!this.el) return;
-      this.el.classList.remove('is-visible');
+      if (!this.el) return Promise.resolve();
+      if (!this.isVisible && !this.pendingHide) {
+        this.el.classList.remove('is-visible');
+        return Promise.resolve();
+      }
+      const finish = async () => {
+        this.el.classList.remove('is-visible');
+        await waitMs(LOADER_FADE_MS);
+        this.isVisible = false;
+      };
+      const elapsed = performance.now() - (this.visibleAt || 0);
+      if (elapsed < LOADER_MIN_VISIBLE_MS) {
+        return new Promise((resolve) => {
+          const delay = Math.max(0, LOADER_MIN_VISIBLE_MS - elapsed);
+          this.pendingHide = setTimeout(() => {
+            this.pendingHide = null;
+            finish().then(resolve);
+          }, delay);
+        });
+      }
+      return finish();
     }
   };
+
+  stageEl = document.querySelector('.stage');
+  if (stageEl) {
+    Loader.ensure(stageEl);
+  }
 
   function masterVol(){ return (window.VolumeSystem?.get?.() ?? 0.5); }
   let bgm = null; let sfx = { train:null, whistle:null, sw:null };
@@ -765,7 +806,7 @@ export function initTrenGame() {
     if (btnA) btnA.textContent = currentQView.optionA;
     if (btnB) btnB.textContent = currentQView.optionB;
     const resizePromise = adjustQuestionLayoutToContent();
-    if (showLoader) Loader.show(stageEl);
+    if (showLoader) await Loader.show(stageEl);
     currentScenario = await loadScenarioRandom();
     markTilesDirty();
     ensureSelectionTiles(currentScenario);
@@ -776,7 +817,8 @@ export function initTrenGame() {
       const decoSeed = `${currentScenario.id || currentScenario.__src}|q${currentQIndex}|${decoBg.width}x${decoBg.height}`;
       await Deco.rebuild(decoSeed);
     }
-    if (showLoader) Loader.hide();
+    await nextFrame();
+    if (showLoader) await Loader.hide();
     routeQuestion = buildRoutePoints(currentScenario.sequence.question, DIM.tileSize);
     setCurrentRoute(routeQuestion, 'none');
     headAngle = 0;
@@ -843,6 +885,7 @@ export function initTrenGame() {
       return;
     }
     await nextQuestion(true);
+    await nextFrame();
     animateFade(false);
     await fadeQuestionIn();
   }
@@ -891,9 +934,12 @@ export function initTrenGame() {
     setCurrentRoute(route, 'none');
     headAngle = 0;
     targetAngle = 0;
-    Loader.show(stageEl);
+    await Loader.show(stageEl);
     if (decoBg && decoTop) { const decoSeed = `final|${decoBg.width}x${decoBg.height}`; await Deco.rebuild(decoSeed); }
-    Loader.hide(); state = 'RUN_FINAL'; animateFade(false);
+    await Loader.hide();
+    await nextFrame();
+    state = 'RUN_FINAL';
+    animateFade(false);
     submitScore('auto').then((ok) => {
       if (!ok) {
         try { showToast(describeScoreError(scoreSubmitError)); } catch {}
@@ -1061,7 +1107,9 @@ export function initTrenGame() {
     try { lockNav(); } catch {}
     resetScoreState();
     setQuestionVisible(true);
+    animateFade(true);
     await nextQuestion(true);
+    await nextFrame();
     animateFade(false);
     await fadeQuestionIn();
   }

@@ -64,7 +64,7 @@
 .scope :global(#decoTop){ z-index:3; }
 .scope :global(.fade){ z-index:4; }
 
-.scope :global(.fade){ position:absolute; inset:0; background:#000; opacity:0; pointer-events:none; transition:opacity .4s ease; border-radius:12px; }
+.scope :global(.fade){ position:absolute; inset:0; background:#121212; opacity:0; pointer-events:none; transition:opacity .4s ease; border-radius:12px; }
 .scope :global(.fade.show){ opacity:1; }
 
 /* Card pregunta */
@@ -94,11 +94,14 @@
   justify-content:center;
   pointer-events:none;
   opacity:0;
-  transition:opacity .25s ease;
+  visibility:hidden;
+  transition:opacity .32s ease, visibility 0s linear .32s;
   z-index:5;
 }
 .scope :global(#stageLoaderOverlay.is-visible){
   opacity:1;
+  visibility:visible;
+  transition:opacity .32s ease, visibility 0s;
 }
 .scope :global(.loading-spinner){
   width:48px;

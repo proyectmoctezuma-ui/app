@@ -150,7 +150,7 @@ export function initEscalerasGame() {
     const payload = {
       gameId: GAME_ID,
       gameTitle: GAME_TITLE,
-      score: Number(score || 0),
+      score: Number(finalScore || 0),
       timeLeft: Math.max(0, Number(timeLeft || 0)),
       result,
       finishedAt: Date.now(),
@@ -184,7 +184,7 @@ export function initEscalerasGame() {
     emitFinalPromptAccepted({
       gameId: GAME_ID,
       result,
-      score: Number(score || 0),
+      score: Number(finalScore || 0),
       timeLeft: Math.max(0, Number(timeLeft || 0))
     });
     if (scoreSubmitted) {
@@ -254,8 +254,11 @@ export function initEscalerasGame() {
   let timeLeft = CONFIG.timeLimitSec;
   let timerId = null;
   let timeExpired = false;
+  let pendingFinalization = null;
 
-  let score = 0;
+  let scoreVisible = 0;
+  let finalScore = 0;
+  let turnFinalIndex = -1;
   let currIndex = -1;      // -1 = INICIO
   let lastIndex = -1;      // 0..(N-1)
   let metaIndex = -1;      // lastIndex + 1
@@ -466,8 +469,8 @@ export function initEscalerasGame() {
 
   function updateScoreLabels() {
     if (destroyed) return;
-    scoreLabel.textContent = String(score);
-    scoreLabelDesktop.textContent = String(score);
+    scoreLabel.textContent = String(scoreVisible);
+    scoreLabelDesktop.textContent = String(scoreVisible);
   }
 
   function updateTimeLabels() {
@@ -484,6 +487,56 @@ export function initEscalerasGame() {
     const progress = clamp((idx + 1) / totalCells, 0, 1);
     const rawScore = Math.round(progress * CONFIG.pointsOnWin);
     return Math.min(rawScore, CONFIG.pointsOnWin - 1);
+  }
+
+  function resolveLandingIndex(idx) {
+    if (idx >= metaIndex) return metaIndex;
+    if (idx < 0) return idx;
+    const visited = new Set();
+    let current = clamp(idx, 0, lastIndex);
+    while (current >= 0 && current <= lastIndex) {
+      if (visited.has(current)) break;
+      visited.add(current);
+      const cell = cells[current];
+      if (!cell) break;
+      const type = cell.type || "none";
+      if (type !== "ladder" && type !== "snake") break;
+      const jumpTarget = (cell.jumpTo | 0) - 1;
+      if (!Number.isFinite(jumpTarget)) break;
+      if (jumpTarget === current) break;
+      if (jumpTarget >= metaIndex) {
+        current = metaIndex;
+        break;
+      }
+      if (jumpTarget < 0) break;
+      current = clamp(jumpTarget, 0, lastIndex);
+    }
+    return current;
+  }
+
+  function syncScores({ updateLabels = true } = {}) {
+    scoreVisible = computeScoreFromIndex(currIndex);
+    if (updateLabels) updateScoreLabels();
+    const resolvedIndex = resolveLandingIndex(currIndex);
+    turnFinalIndex = resolvedIndex;
+    const scoreIdx = resolvedIndex != null ? resolvedIndex : currIndex;
+    finalScore = computeScoreFromIndex(scoreIdx);
+  }
+
+  function requestFinalization(type) {
+    if (!type) return;
+    if (!pendingFinalization) {
+      pendingFinalization = type;
+    }
+  }
+
+  function finalizePendingOutcome() {
+    if (!pendingFinalization) return;
+    const type = pendingFinalization;
+    pendingFinalization = null;
+    if (type === "timeup") {
+      endByTime();
+    }
   }
 
   function getVisibleHeight(el) {
@@ -627,6 +680,7 @@ export function initEscalerasGame() {
     stopTimer();
     timeLeft = CONFIG.timeLimitSec;
     timeExpired = false;
+    pendingFinalization = null;
     updateTimeLabels();
     timerId = setInterval(() => {
       if (timeLeft <= 0) {
@@ -644,21 +698,19 @@ export function initEscalerasGame() {
 
   function onTimeExpired() {
     timeExpired = true;
+    requestFinalization("timeup");
     switch (state) {
       case State.ROLLING:
       case State.POST_ROLL_PAUSE:
         stopDiceAnim(true);
-        endByTime();
         break;
       case State.MOVING_STEPS:
       case State.JUMPING:
         break;
       case State.CELL_PROMPT:
-        closePrompt();
-        endByTime();
         break;
       case State.IDLE:
-        endByTime();
+        finalizePendingOutcome();
         break;
       default:
         break;
@@ -795,26 +847,32 @@ export function initEscalerasGame() {
       await animatePiece(from, to, CONFIG.move.stepDurationMs);
       currIndex += 1;
 
-      if (timeExpired && currIndex < target) {
-        break;
+      if (currIndex < target) {
+        await delay(CONFIG.move.pauseBetweenStepsMs);
       }
-      await delay(CONFIG.move.pauseBetweenStepsMs);
     }
 
     pieceEl.classList.remove("moving");
 
+    syncScores();
+
     if (currIndex === metaIndex) {
-      if (timeExpired) { endByTime(); } else { endByWin(); }
+      if (timeExpired) {
+        setState(State.IDLE);
+        finalizePendingOutcome();
+      } else {
+        endByWin();
+      }
       return;
     }
 
-    if (timeExpired) { endByTime(); return; }
-
     if (currIndex >= 0 && currIndex <= lastIndex) {
       openCellPrompt(currIndex);
-    } else {
-      setState(State.IDLE);
+      return;
     }
+
+    setState(State.IDLE);
+    if (timeExpired) finalizePendingOutcome();
   }
 
   function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
@@ -856,12 +914,18 @@ export function initEscalerasGame() {
       pieceEl.classList.remove("moving");
       currIndex = toIdx;
 
+      syncScores();
+
       if (currIndex === metaIndex) {
-        endByWin();
-      } else if (timeExpired) {
-        endByTime();
+        if (timeExpired) {
+          setState(State.IDLE);
+          finalizePendingOutcome();
+        } else {
+          endByWin();
+        }
       } else {
         setState(State.IDLE);
+        if (timeExpired) finalizePendingOutcome();
       }
     });
   }
@@ -884,7 +948,11 @@ export function initEscalerasGame() {
     if (destroyed) return;
     setState(State.CELL_PROMPT);
     const c = cells[idx];
-    const imgPath = resolveAsset(`img/casillas/${c.image}`);
+    if (!c) {
+      setState(State.IDLE);
+      if (timeExpired) finalizePendingOutcome();
+      return;
+    }
 
     const myToken = ++promptToken;
 
@@ -892,16 +960,23 @@ export function initEscalerasGame() {
     promptModal.classList.add("hidden");
     promptModal.setAttribute("aria-hidden", "true");
 
-    try {
-      await preloadImage(imgPath);
-      if (myToken !== promptToken) return;
-      promptImage.src = imgPath;
-    } catch {
-      if (myToken !== promptToken) return;
-      promptImage.removeAttribute("src");
+    if (promptImage) {
+      try {
+        if (c.image) {
+          const imgPath = resolveAsset(`img/casillas/${c.image}`);
+          await preloadImage(imgPath);
+          if (myToken !== promptToken) return;
+          promptImage.src = imgPath;
+        } else {
+          if (myToken !== promptToken) return;
+          promptImage.removeAttribute("src");
+        }
+      } catch {
+        if (myToken !== promptToken) return;
+        promptImage.removeAttribute("src");
+      }
     }
 
-    if (timeExpired) { endByTime(); return; }
     if (myToken !== promptToken) return;
 
     promptTitle.textContent = c.title || "";
@@ -915,19 +990,21 @@ export function initEscalerasGame() {
       closePrompt();
 
       const type = c.type || "none";
-      if ((type === "ladder" || type === "snake") && !timeExpired) {
-        const to = clamp((c.jumpTo | 0) - 1, 0, lastIndex);
-        animateJump(idx, to);
+      if (type === "ladder" || type === "snake") {
+        const toRaw = (c.jumpTo | 0) - 1;
+        const clamped = toRaw >= metaIndex ? metaIndex : clamp(toRaw, 0, lastIndex);
+        animateJump(idx, clamped);
       } else {
         setState(State.IDLE);
+        syncScores();
+        if (timeExpired) finalizePendingOutcome();
       }
     }
 
     promptAccept.onclick = onAccept;
     promptClose.onclick = () => {
-      if (myToken === promptToken) promptToken++;
-      closePrompt();
-      if (timeExpired) endByTime(); else setState(State.IDLE);
+      if (myToken !== promptToken) return;
+      onAccept();
     };
   }
 
@@ -978,20 +1055,23 @@ export function initEscalerasGame() {
   function endByWin() {
     setState(State.END_WIN);
     stopTimer();
-    score = CONFIG.pointsOnWin;
+    pendingFinalization = null;
+    scoreVisible = CONFIG.pointsOnWin;
+    finalScore = CONFIG.pointsOnWin;
+    turnFinalIndex = metaIndex;
     updateScoreLabels();
 
     emitGameFinished({
       gameId: GAME_ID,
       result: "win",
-      score,
+      score: finalScore,
       timeLeft: Math.max(0, Number(timeLeft || 0)),
       finishedAt: Date.now()
     });
 
     try { unlockNav(); } catch {}
     const s = json.strings;
-    const msg = `${s.winText}\n\nPuntaje: ${score} pts`;
+    const msg = `${s.winText}\n\nPuntaje: ${finalScore} pts`;
     openSystemPrompt(s.winTitle, msg, s.btnAccept, {
       onAccept: btn => handleFinalAccept("win", btn)
     });
@@ -1000,20 +1080,24 @@ export function initEscalerasGame() {
   function endByTime() {
     setState(State.END_TIMEUP);
     stopTimer();
-    score = computeScoreFromIndex(currIndex);
+    pendingFinalization = null;
+    const effectiveIndex = turnFinalIndex != null ? turnFinalIndex : resolveLandingIndex(currIndex);
+    turnFinalIndex = effectiveIndex;
+    scoreVisible = computeScoreFromIndex(currIndex);
+    finalScore = computeScoreFromIndex(effectiveIndex != null ? effectiveIndex : currIndex);
     updateScoreLabels();
 
     emitGameFinished({
       gameId: GAME_ID,
       result: "timeup",
-      score,
+      score: finalScore,
       timeLeft: Math.max(0, Number(timeLeft || 0)),
       finishedAt: Date.now()
     });
 
     try { unlockNav(); } catch {}
     const s = json.strings;
-    const msg = `${s.loseText}\n\nPuntaje: ${score} pts`;
+    const msg = `${s.loseText}\n\nPuntaje: ${finalScore} pts`;
     openSystemPrompt(s.loseTitle, msg, s.btnAccept, {
       onAccept: btn => handleFinalAccept("timeup", btn)
     });
@@ -1036,18 +1120,12 @@ export function initEscalerasGame() {
     setState(State.ROLLING);
     const roll = await startDiceAnim(containerEl);
 
-    if (timeExpired) { hideDice(); endByTime(); return; }
-
     setState(State.POST_ROLL_PAUSE);
     await delay(CONFIG.dice.postRollPauseMs);
 
     hideDice();
-    if (timeExpired) { endByTime(); return; }
 
     await moveSteps(roll);
-
-    score = computeScoreFromIndex(currIndex);
-    updateScoreLabels();
   }
 
   if (rollBtn) {
@@ -1100,6 +1178,7 @@ export function initEscalerasGame() {
 
     setPieceToPct(startPos);
     fitBoardSize();
+    syncScores({ updateLabels: false });
 
     if (CONFIG.debug.showGuides) drawDebugGuides();
 
@@ -1139,7 +1218,7 @@ export function initEscalerasGame() {
       // Intento de BGM justo tras gesto del usuario (click en “Entendido”)
       await ensureAudioPlaying();
 
-      updateScoreLabels();
+      syncScores();
       updateTimeLabels();
     });
   }
