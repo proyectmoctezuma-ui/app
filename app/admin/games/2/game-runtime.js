@@ -911,18 +911,8 @@ export function initTrenGame() {
     lastScore = score;
     finalScoreLocked = true;
 
-    const perfectRun = !lostGame && mistakes === 0;
-    let finalTitle = CONFIG.MESSAGES.winTitle;
-    let finalBody = CONFIG.MESSAGES.winBody;
-
-    if (lostGame) {
-      finalTitle = CONFIG.MESSAGES.loseTitle;
-      finalBody = CONFIG.MESSAGES.loseBody;
-    } else if (!perfectRun) {
-      const pluralWord = mistakes === 1 ? 'desvio' : 'desvios';
-      finalTitle = 'Ruta con desvios';
-      finalBody = `Llegaste al destino, pero cometiste ${mistakes} ${pluralWord}. Sigue reforzando tus decisiones en la via correcta.`;
-    }
+    const finalTitle = lostGame ? CONFIG.MESSAGES.loseTitle : CONFIG.MESSAGES.winTitle;
+    const finalBody = lostGame ? CONFIG.MESSAGES.loseBody : CONFIG.MESSAGES.winBody;
 
     const totalShown = totalQuestions || (correctAnswers + mistakes) || questionsTotal || 0;
     const statsLine = `Puntaje: <strong>${lastScore}</strong> | Aciertos: <strong>${correctAnswers}</strong>/${totalShown}`;
@@ -1102,10 +1092,10 @@ export function initTrenGame() {
 
   function ensureIntroOverlay(){ if (document.getElementById('gameIntro')) return; const tpl = document.createElement('div'); tpl.id = 'gameIntro'; tpl.className = 'overlay'; tpl.innerHTML = `
     <div class="overlay__card" style="max-width:560px">
-      <h2 id="introTitle" style="margin-top:0">Cómo jugar</h2>
+      <h2 id="introTitle" style="margin-top:0">El tren de las decisiones</h2>
       <p id="introBody" style="opacity:.9">Lee la pregunta y elige A (izquierda) o B (derecha). Puedes cambiar de opinión hasta llegar a la bifurcación. Se permiten 2 errores; al tercero termina el juego. ¡Suerte!</p>
       <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:14px;">
-        <button id="introStart" class="answer-btn">Entendido, comenzar</button>
+        <button id="introStart" class="answer-btn">Inicicar Juego</button>
       </div>
     </div>`; const host = document.getElementById('app') || document.body; host.appendChild(tpl); }
   function showIntroOverlay(show){ const el = document.getElementById('gameIntro'); if (!el) return; el.classList.toggle('hidden', !show); const btn = document.getElementById('introStart'); if (btn) { btn.onclick = async () => { el.classList.add('hidden'); try { ensureBGM().play(); ensureSFX().train.play(); } catch(_){} await beginGameFromIntro(); }; } }

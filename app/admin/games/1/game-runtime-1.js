@@ -697,10 +697,10 @@ export function initGame() {
     overlay.innerHTML = `
       <div class="start-backdrop"></div>
       <div class="start-content">
-        <h2>¿Listo para construir el rompecabezas?</h2>
-        <p>Pulsa “Iniciar” para comenzar (esto habilita el audio).</p>
+        <h2>Construyendo el Propósito</h2>
+        <p>Arma el rompecabezas arrastrando las piezas a su lugar en el menor tiempo posible.</p>
         <div class="start-actions">
-          <button id="btn-start-game" class="btn primary">Iniciar</button>
+          <button id="btn-start-game" class="btn primary">Iniciar Juego</button>
         </div>
       </div>
     `;
