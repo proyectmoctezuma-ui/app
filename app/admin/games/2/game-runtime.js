@@ -386,20 +386,23 @@ export function initTrenGame() {
   }
 
   function computeFinalStats() {
-    const totalQuestionsLogged = questionOutcomes.length || 0;
-    const correctAnswersLogged = questionOutcomes.filter((entry) => entry?.result === 'correct').length;
-    const mistakesLogged = Math.max(0, totalQuestionsLogged - correctAnswersLogged);
-    const fallbackTotal = Math.max(0, Math.min(questionsTotal || 0, currentQIndex + 1));
-    const totalQuestions = totalQuestionsLogged || fallbackTotal;
-    const correctAnswers = totalQuestionsLogged ? correctAnswersLogged : Math.max(0, totalQuestions - errors);
-    const mistakes = Math.max(0, totalQuestions - correctAnswers) || mistakesLogged;
-    return { totalQuestions, correctAnswers, mistakes };
+    const totalLogged = questionOutcomes.length || 0;
+    if (totalLogged > 0) {
+      const correctLogged = questionOutcomes.filter((entry) => entry?.result === 'correct').length;
+      const mistakes = Math.max(0, totalLogged - correctLogged);
+      return { totalQuestions: totalLogged, correctAnswers: correctLogged, mistakes };
+    }
+
+    const answered = Math.max(0, Math.min(questionsTotal || 0, currentQIndex + 1));
+    const mistakes = Math.max(0, errors);
+    const correct = Math.max(0, answered - mistakes);
+    return { totalQuestions: answered, correctAnswers: correct, mistakes };
   }
 
   function buildScorePayload() {
     const { totalQuestions, correctAnswers, mistakes } = computeFinalStats();
     const lostGame = Boolean(lost);
-    const perfectRun = !lostGame && mistakes === 0 && Number(lastScore || 0) >= CONFIG.MAX_SCORE_PERFECT;
+    const perfectRun = !lostGame && mistakes === 0;
     return {
       gameId: 2,
       gameTitle: 'El tren de las decisiones',
@@ -714,7 +717,7 @@ export function initTrenGame() {
     const { totalQuestions, correctAnswers, mistakes } = computeFinalStats();
     const lostGame = lost;
     const computedScore = clamp(CONFIG.MAX_SCORE_PERFECT - mistakes * CONFIG.PENALTY_PER_ERROR, 0, CONFIG.MAX_SCORE_PERFECT);
-    score = Math.min(score, computedScore);
+    score = computedScore;
     lastScore = score;
 
     const perfectRun = !lostGame && mistakes === 0;

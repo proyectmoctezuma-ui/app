@@ -60,15 +60,6 @@ export default function Game2Page() {
         </div>
 
         <aside className="ui-panel" role="region" aria-label="Preguntas y respuestas">
-          <button
-            id="btn-music-right"
-            type="button"
-            className="volume-toggle-btn"
-            aria-label="Volumen"
-          >
-            <img src="/games/2/volume_system/icons/unmute.svg" alt="" />
-          </button>
-
           <div className="question-card">
             <div id="questionText" className="question-card__text"></div>
             <div className="answers">

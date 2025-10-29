@@ -37,8 +37,6 @@ export function initVolumeUI() {
   const $muteIcon = $muteBtn?.querySelector('img');
   const $slider = $panel.querySelector('#vol-slider');
 
-  const $btnRight = document.getElementById('btn-music-right');
-
   let $btnTop = document.getElementById('btn-music');
   if (!$btnTop) {
     const hudRight = document.querySelector('.hud-right') || document.querySelector('.hud');
@@ -62,6 +60,13 @@ export function initVolumeUI() {
     $overlay.classList.remove('is-open');
     $panel.classList.remove('is-open');
   };
+  const togglePanel = () => {
+    if ($panel.classList.contains('is-open')) {
+      closePanel();
+    } else {
+      openPanel();
+    }
+  };
 
   const renderMuteIcon = (v) => {
     if ($muteIcon) $muteIcon.src = v > 0 ? ICON_UNMUTE : ICON_MUTE;
@@ -84,13 +89,11 @@ export function initVolumeUI() {
     const labelToggle = v > 0 ? 'Silenciar' : 'Activar sonido';
     try { $muteBtn?.setAttribute('aria-label', labelToggle); } catch {}
     try { $btnTop?.setAttribute('aria-label', `Volumen (${v > 0 ? 'activado' : 'silenciado'})`); } catch {}
-    try { $btnRight?.setAttribute('aria-label', `Volumen (${v > 0 ? 'activado' : 'silenciado'})`); } catch {}
   };
 
   const syncFromVolume = (v) => {
     renderMuteIcon(v);
     renderTrigger($btnTop, v);
-    renderTrigger($btnRight, v);
     updateAria(v);
     if ($slider && document.activeElement !== $slider) {
       $slider.value = String(v);
@@ -99,60 +102,32 @@ export function initVolumeUI() {
 
   $overlay.addEventListener('click', closePanel);
 
-  const onTriggerToggleMute = () => {
-    const cur = vs.get();
-    if (cur > 0) { lastNonZero = cur; vs.set(0); }
-    else { vs.set(lastNonZero || 0.5); }
-  };
-
+  let handleTopClick = null;
+  let handleTopKeydown = null;
   if ($btnTop && !$btnTop.dataset.bound) {
     $btnTop.dataset.bound = '1';
-    let lpTimer = null; let lpFired = false; const LP_MS = 450;
-    const clearLP = () => { if (lpTimer) { clearTimeout(lpTimer); lpTimer = null; } };
-    const onPD = () => { lpFired = false; clearLP(); lpTimer = setTimeout(() => { lpFired = true; openPanel(); }, LP_MS); };
-    const onPU = () => {
-      if (!lpFired) {
-        if ($panel.classList.contains('is-open')) { onTriggerToggleMute(); }
-        else { openPanel(); }
-      }
-      clearLP();
-    };
-    $btnTop.addEventListener('pointerdown', onPD);
-    $btnTop.addEventListener('pointerup', onPU);
-    $btnTop.addEventListener('pointercancel', clearLP);
-    $btnTop.addEventListener('pointerleave', clearLP);
-    $btnTop.addEventListener('keydown', (e) => {
+    handleTopClick = () => togglePanel();
+    handleTopKeydown = (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        if ($panel.classList.contains('is-open')) onTriggerToggleMute(); else openPanel();
-      }
-    });
-    $btnTop.addEventListener('dblclick', (e) => { e.preventDefault(); openPanel(); });
-    $btnTop.addEventListener('contextmenu', (e) => { e.preventDefault(); openPanel(); });
-  }
-
-  if ($btnRight && !$btnRight.dataset.bound) {
-    $btnRight.dataset.bound = '1';
-    const onRightClick = (e) => {
-      e.preventDefault();
-      if ($panel.classList.contains('is-open')) {
-        onTriggerToggleMute();
-      } else {
-        openPanel();
+        togglePanel();
       }
     };
-    $btnRight.addEventListener('click', onRightClick);
+    $btnTop.addEventListener('click', handleTopClick);
+    $btnTop.addEventListener('keydown', handleTopKeydown);
   }
 
-  $slider?.addEventListener('input', (e) => {
+  const handleSliderInput = (e) => {
     const v = Number(e.target.value);
     vs.set(v);
     if (v > 0) lastNonZero = v;
-  });
+  };
+  $slider?.addEventListener('input', handleSliderInput);
 
+  let handleMuteClick = null;
   if ($muteBtn && !$muteBtn.dataset.bound) {
     $muteBtn.dataset.bound = '1';
-    $muteBtn.addEventListener('click', () => {
+    handleMuteClick = () => {
       const cur = vs.get();
       if (cur > 0) {
         lastNonZero = cur;
@@ -160,7 +135,8 @@ export function initVolumeUI() {
       } else {
         vs.set(lastNonZero || 0.5);
       }
-    });
+    };
+    $muteBtn.addEventListener('click', handleMuteClick);
   }
 
   const unsub = vs.onChange(syncFromVolume);
@@ -170,10 +146,22 @@ export function initVolumeUI() {
 
   return () => {
     try { $overlay.removeEventListener('click', closePanel); } catch {}
-    try { $btnTop?.removeEventListener('click', openPanel); } catch {}
-    try { $btnRight?.removeEventListener('click', openPanel); } catch {}
-    try { $slider?.removeEventListener('input', () => {}); } catch {}
-    try { $muteBtn?.removeEventListener('click', () => {}); } catch {}
+    try {
+      if ($btnTop && handleTopClick) {
+        $btnTop.removeEventListener('click', handleTopClick);
+        delete $btnTop.dataset.bound;
+      }
+      if ($btnTop && handleTopKeydown) {
+        $btnTop.removeEventListener('keydown', handleTopKeydown);
+      }
+    } catch {}
+    try { $slider?.removeEventListener('input', handleSliderInput); } catch {}
+    try {
+      if ($muteBtn && handleMuteClick) {
+        $muteBtn.removeEventListener('click', handleMuteClick);
+        delete $muteBtn.dataset.bound;
+      }
+    } catch {}
     try { unsub?.(); } catch {}
   };
 }

@@ -72,35 +72,35 @@ export function initEscalerasGame() {
     navLockState.locked = true;
     try {
       const selectors = [
-        'nav a', 'header a', '.navbar a', '.nav a',
-        'a[data-nav]',
+        "nav a", "header a", ".navbar a", ".nav a",
+        "a[data-nav]",
         'a[href="/"]', 'a[href="/admin"]', 'a[href^="/admin/"]',
         'a[href="/admin/games"]', 'a[href="/admin/scores"]', 'a[href="/admin/dashboard"]'
-      ].join(',');
+      ].join(",");
       const anchors = Array.from(document.querySelectorAll(selectors));
       navLockState.anchors = anchors.map((a) => {
         const prev = {
           el: a,
-          pe: a.style.pointerEvents || '',
-          tab: a.getAttribute('tabindex'),
-          aria: a.getAttribute('aria-disabled')
+          pe: a.style.pointerEvents || "",
+          tab: a.getAttribute("tabindex"),
+          aria: a.getAttribute("aria-disabled")
         };
-        try { a.style.pointerEvents = 'none'; } catch {}
-        try { a.setAttribute('tabindex', '-1'); } catch {}
-        try { a.setAttribute('aria-disabled', 'true'); } catch {}
+        try { a.style.pointerEvents = "none"; } catch {}
+        try { a.setAttribute("tabindex", "-1"); } catch {}
+        try { a.setAttribute("aria-disabled", "true"); } catch {}
         return prev;
       });
       navLockState.handler = (e) => {
         const target = e.target;
-        const a = target && typeof target.closest === 'function' ? target.closest('a') : null;
-        if (!a) return;
-        const href = a.getAttribute('href') || '';
-        if (a.closest('nav') || a.closest('header') || a.closest('.navbar') || a.closest('.nav') || href === '/' || href.startsWith('/admin')) {
+        const anchor = target && typeof target.closest === "function" ? target.closest("a") : null;
+        if (!anchor) return;
+        const href = anchor.getAttribute("href") || "";
+        if (anchor.closest("nav") || anchor.closest("header") || anchor.closest(".navbar") || anchor.closest(".nav") || href === "/" || href.startsWith("/admin")) {
           e.preventDefault();
           e.stopPropagation();
         }
       };
-      document.addEventListener('click', navLockState.handler, true);
+      document.addEventListener("click", navLockState.handler, true);
     } catch {}
   }
 
@@ -109,7 +109,7 @@ export function initEscalerasGame() {
     navLockState.locked = false;
     try {
       if (navLockState.handler) {
-        document.removeEventListener('click', navLockState.handler, true);
+        document.removeEventListener("click", navLockState.handler, true);
       }
     } catch {}
     try {
@@ -117,20 +117,21 @@ export function initEscalerasGame() {
         if (!prev?.el) return;
         try { prev.el.style.pointerEvents = prev.pe; } catch {}
         if (prev.tab == null) {
-          try { prev.el.removeAttribute('tabindex'); } catch {}
+          try { prev.el.removeAttribute("tabindex"); } catch {}
         } else {
-          try { prev.el.setAttribute('tabindex', prev.tab); } catch {}
+          try { prev.el.setAttribute("tabindex", prev.tab); } catch {}
         }
         if (prev.aria == null) {
-          try { prev.el.removeAttribute('aria-disabled'); } catch {}
+          try { prev.el.removeAttribute("aria-disabled"); } catch {}
         } else {
-          try { prev.el.setAttribute('aria-disabled', prev.aria); } catch {}
+          try { prev.el.setAttribute("aria-disabled", prev.aria); } catch {}
         }
       });
     } catch {}
     navLockState.anchors = [];
     navLockState.handler = null;
   }
+
   function emitGameFinished(payload) {
     if (gameHasFinished) return;
     gameHasFinished = true;
@@ -977,7 +978,6 @@ export function initEscalerasGame() {
   function endByWin() {
     setState(State.END_WIN);
     stopTimer();
-    try { unlockNav(); } catch {}
     score = CONFIG.pointsOnWin;
     updateScoreLabels();
 
@@ -989,6 +989,7 @@ export function initEscalerasGame() {
       finishedAt: Date.now()
     });
 
+    try { unlockNav(); } catch {}
     const s = json.strings;
     const msg = `${s.winText}\n\nPuntaje: ${score} pts`;
     openSystemPrompt(s.winTitle, msg, s.btnAccept, {
@@ -999,7 +1000,6 @@ export function initEscalerasGame() {
   function endByTime() {
     setState(State.END_TIMEUP);
     stopTimer();
-    try { unlockNav(); } catch {}
     score = computeScoreFromIndex(currIndex);
     updateScoreLabels();
 
@@ -1011,6 +1011,7 @@ export function initEscalerasGame() {
       finishedAt: Date.now()
     });
 
+    try { unlockNav(); } catch {}
     const s = json.strings;
     const msg = `${s.loseText}\n\nPuntaje: ${score} pts`;
     openSystemPrompt(s.loseTitle, msg, s.btnAccept, {

@@ -762,7 +762,7 @@
       <div class="ref-content" role="dialog" aria-modal="true" aria-labelledby="ref-title">
         <div class="ref-head">
           <h3 id="ref-title">Referencia</h3>
-          <button class="btn ghost ref-close" id="ref-close" aria-label="Cerrar">âœ•</button>
+          <button class="btn ghost ref-close" id="ref-close" aria-label="Cerrar">X</button>
         </div>
         <div class="ref-body">
           <img id="ref-image-overlay" src="${ASSET_DIR}/_reference.jpg" alt="Imagen de referencia" />

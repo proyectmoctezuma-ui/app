@@ -1130,3 +1130,568 @@
 [error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
 [debug] [2025-10-28T12:26:01.081Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
 [debug] [2025-10-28T12:26:01.081Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-28T18:22:38.689Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:22:38.699Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:22:38.700Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T18:22:38.707Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:22:38.707Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:22:38.707Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T18:22:38.712Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:22:38.713Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:22:38.713Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T18:22:38.722Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:22:38.722Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:22:38.722Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T18:22:38.724Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-28T18:22:38.729Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-28T18:22:38.730Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:22:38.730Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:22:38.731Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[debug] [2025-10-28T18:22:38.774Z] Checked if tokens are valid: false, expires at: 1761655794167
+[debug] [2025-10-28T18:22:38.774Z] Checked if tokens are valid: false, expires at: 1761655794167
+[debug] [2025-10-28T18:22:38.775Z] > refreshing access token with scopes: []
+[debug] [2025-10-28T18:22:38.779Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-10-28T18:22:38.779Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-28T18:22:38.783Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-28T18:22:38.783Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-28T18:22:38.784Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:22:38.784Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:22:38.784Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[debug] [2025-10-28T18:22:38.788Z] Checked if tokens are valid: false, expires at: 1761655794167
+[debug] [2025-10-28T18:22:38.788Z] Checked if tokens are valid: false, expires at: 1761655794167
+[debug] [2025-10-28T18:22:38.788Z] > refreshing access token with scopes: []
+[debug] [2025-10-28T18:22:38.789Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-10-28T18:22:38.789Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-28T18:22:39.103Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-10-28T18:22:39.103Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-28T18:22:39.139Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com [none]
+[debug] [2025-10-28T18:22:39.139Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com x-goog-quota-user=projects/moctezuma-juegos
+[debug] [2025-10-28T18:22:39.173Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-10-28T18:22:39.182Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-28T18:22:39.209Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com [none]
+[debug] [2025-10-28T18:22:39.209Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com x-goog-quota-user=projects/moctezuma-juegos
+[debug] [2025-10-28T18:22:39.306Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com 403
+[debug] [2025-10-28T18:22:39.307Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com [omitted]
+[debug] [2025-10-28T18:22:39.312Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:22:39.312Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:22:39.312Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T18:22:39.333Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:22:39.333Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:22:39.334Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T18:22:39.346Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:22:39.346Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:22:39.346Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T18:22:39.353Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-28T18:22:39.353Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-28T18:22:39.353Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:22:39.368Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:22:39.368Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[debug] [2025-10-28T18:22:39.377Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:22:39.377Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:22:39.377Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T18:22:39.378Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-28T18:22:39.378Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-28T18:22:39.414Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com 403
+[debug] [2025-10-28T18:22:39.416Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com [omitted]
+[debug] [2025-10-28T18:22:39.455Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:22:39.456Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:22:39.456Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T18:22:39.463Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:22:39.463Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:22:39.464Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T18:22:39.491Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:22:39.492Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:22:39.492Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T18:22:39.499Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:22:39.499Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:22:39.499Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T18:22:39.503Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-28T18:22:39.503Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-28T18:22:39.504Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:22:39.504Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:22:39.504Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[debug] [2025-10-28T18:22:39.515Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:22:39.515Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:22:39.515Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T18:22:39.519Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-28T18:22:39.519Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-28T18:22:39.564Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:22:39.573Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:22:39.573Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T18:22:39.579Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:22:39.579Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:22:39.579Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T18:22:39.580Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-28T18:22:39.580Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-28T18:22:39.581Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:22:39.581Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:22:39.581Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[debug] [2025-10-28T18:22:39.582Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:22:39.582Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:22:39.582Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T18:22:39.584Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-28T18:22:39.585Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-28T18:28:56.626Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:28:56.631Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:28:56.635Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T18:28:56.647Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:28:56.647Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:28:56.648Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T18:28:56.660Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:28:56.660Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:28:56.661Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T18:28:56.666Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:28:56.666Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:28:56.671Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T18:28:56.675Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-28T18:28:56.676Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-28T18:28:56.682Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:28:56.682Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:28:56.682Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[debug] [2025-10-28T18:28:56.759Z] Checked if tokens are valid: true, expires at: 1761679358182
+[debug] [2025-10-28T18:28:56.760Z] Checked if tokens are valid: true, expires at: 1761679358182
+[debug] [2025-10-28T18:28:56.760Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-28T18:28:56.765Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-28T18:28:56.774Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com [none]
+[debug] [2025-10-28T18:28:56.775Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com x-goog-quota-user=projects/moctezuma-juegos
+[debug] [2025-10-28T18:28:56.788Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:28:56.788Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:28:56.788Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[debug] [2025-10-28T18:28:56.801Z] Checked if tokens are valid: true, expires at: 1761679358182
+[debug] [2025-10-28T18:28:56.801Z] Checked if tokens are valid: true, expires at: 1761679358182
+[debug] [2025-10-28T18:28:56.801Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com [none]
+[debug] [2025-10-28T18:28:56.801Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com x-goog-quota-user=projects/moctezuma-juegos
+[debug] [2025-10-28T18:28:57.173Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com 403
+[debug] [2025-10-28T18:28:57.179Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com [omitted]
+[debug] [2025-10-28T18:28:57.231Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com 403
+[debug] [2025-10-28T18:28:57.235Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com [omitted]
+[debug] [2025-10-28T18:28:57.355Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:28:57.355Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:28:57.355Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T18:28:57.381Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:28:57.381Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:28:57.381Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T18:28:57.391Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:28:57.391Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:28:57.391Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T18:28:57.394Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-28T18:28:57.394Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-28T18:28:57.396Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:28:57.396Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:28:57.397Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[debug] [2025-10-28T18:28:57.402Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:28:57.402Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:28:57.402Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T18:28:57.406Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-28T18:28:57.406Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-28T18:28:57.438Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:28:57.438Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:28:57.438Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T18:28:57.454Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:28:57.454Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:28:57.454Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T18:28:57.471Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:28:57.472Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:28:57.472Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T18:28:57.480Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:28:57.480Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:28:57.480Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T18:28:57.485Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-28T18:28:57.486Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-28T18:28:57.487Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:28:57.487Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:28:57.487Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[debug] [2025-10-28T18:28:57.489Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:28:57.489Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:28:57.489Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T18:28:57.492Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-28T18:28:57.492Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-28T18:28:57.535Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:28:57.537Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:28:57.537Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T18:28:57.552Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:28:57.552Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:28:57.552Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T18:28:57.558Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-28T18:28:57.558Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-28T18:28:57.559Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:28:57.559Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:28:57.559Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[debug] [2025-10-28T18:28:57.561Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T18:28:57.561Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T18:28:57.562Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T18:28:57.564Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-28T18:28:57.565Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-28T19:56:07.248Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T19:56:07.252Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T19:56:07.253Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T19:56:07.256Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T19:56:07.257Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T19:56:07.257Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T19:56:07.260Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-28T19:56:07.261Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-28T19:56:07.262Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T19:56:07.262Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T19:56:07.262Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[debug] [2025-10-28T19:56:07.288Z] Checked if tokens are valid: false, expires at: 1761679358182
+[debug] [2025-10-28T19:56:07.288Z] Checked if tokens are valid: false, expires at: 1761679358182
+[debug] [2025-10-28T19:56:07.289Z] > refreshing access token with scopes: []
+[debug] [2025-10-28T19:56:07.293Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-10-28T19:56:07.293Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-28T19:56:07.301Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T19:56:07.301Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T19:56:07.301Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T19:56:07.303Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T19:56:07.303Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T19:56:07.303Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T19:56:07.304Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-28T19:56:07.304Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-28T19:56:07.305Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T19:56:07.305Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T19:56:07.305Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[debug] [2025-10-28T19:56:07.308Z] Checked if tokens are valid: false, expires at: 1761679358182
+[debug] [2025-10-28T19:56:07.308Z] Checked if tokens are valid: false, expires at: 1761679358182
+[debug] [2025-10-28T19:56:07.308Z] > refreshing access token with scopes: []
+[debug] [2025-10-28T19:56:07.309Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-10-28T19:56:07.309Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-28T19:56:07.430Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-10-28T19:56:07.430Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-28T19:56:07.459Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com [none]
+[debug] [2025-10-28T19:56:07.459Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com x-goog-quota-user=projects/moctezuma-juegos
+[debug] [2025-10-28T19:56:07.500Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-10-28T19:56:07.501Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-28T19:56:07.519Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com [none]
+[debug] [2025-10-28T19:56:07.519Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com x-goog-quota-user=projects/moctezuma-juegos
+[debug] [2025-10-28T19:56:07.566Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com 403
+[debug] [2025-10-28T19:56:07.570Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com [omitted]
+[debug] [2025-10-28T19:56:07.575Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T19:56:07.575Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T19:56:07.575Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T19:56:07.583Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T19:56:07.583Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T19:56:07.584Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T19:56:07.589Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T19:56:07.589Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T19:56:07.590Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T19:56:07.590Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-28T19:56:07.593Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-28T19:56:07.593Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T19:56:07.593Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T19:56:07.593Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[debug] [2025-10-28T19:56:07.595Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T19:56:07.595Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T19:56:07.595Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T19:56:07.597Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-28T19:56:07.597Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-28T19:56:07.614Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com 403
+[debug] [2025-10-28T19:56:07.614Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com [omitted]
+[debug] [2025-10-28T19:56:07.632Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T19:56:07.632Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T19:56:07.632Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T19:56:07.633Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T19:56:07.633Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T19:56:07.633Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T19:56:07.650Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T19:56:07.650Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T19:56:07.650Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T19:56:07.655Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T19:56:07.655Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T19:56:07.655Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T19:56:07.656Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-28T19:56:07.656Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-28T19:56:07.657Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T19:56:07.657Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T19:56:07.657Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[debug] [2025-10-28T19:56:07.658Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T19:56:07.658Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T19:56:07.658Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T19:56:07.661Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-28T19:56:07.661Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-28T19:56:07.693Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T19:56:07.693Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T19:56:07.694Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T19:56:07.697Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T19:56:07.698Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T19:56:07.700Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T19:56:07.703Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-28T19:56:07.703Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-28T19:56:07.704Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T19:56:07.706Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T19:56:07.706Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[debug] [2025-10-28T19:56:07.710Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T19:56:07.710Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T19:56:07.710Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T19:56:07.713Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-28T19:56:07.714Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-28T20:27:06.299Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T20:27:06.321Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T20:27:06.329Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T20:27:06.342Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T20:27:06.343Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T20:27:06.345Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T20:27:06.359Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T20:27:06.363Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T20:27:06.370Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T20:27:06.380Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T20:27:06.380Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T20:27:06.381Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T20:27:06.401Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-28T20:27:06.407Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-28T20:27:06.409Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T20:27:06.410Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T20:27:06.410Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[debug] [2025-10-28T20:27:06.487Z] Checked if tokens are valid: true, expires at: 1761684966503
+[debug] [2025-10-28T20:27:06.487Z] Checked if tokens are valid: true, expires at: 1761684966503
+[debug] [2025-10-28T20:27:06.488Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-28T20:27:06.488Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-28T20:27:06.490Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com [none]
+[debug] [2025-10-28T20:27:06.490Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com x-goog-quota-user=projects/moctezuma-juegos
+[debug] [2025-10-28T20:27:06.496Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T20:27:06.496Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T20:27:06.496Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[debug] [2025-10-28T20:27:06.503Z] Checked if tokens are valid: true, expires at: 1761684966503
+[debug] [2025-10-28T20:27:06.506Z] Checked if tokens are valid: true, expires at: 1761684966503
+[debug] [2025-10-28T20:27:06.507Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com [none]
+[debug] [2025-10-28T20:27:06.507Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com x-goog-quota-user=projects/moctezuma-juegos
+[debug] [2025-10-28T20:27:07.047Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com 403
+[debug] [2025-10-28T20:27:07.052Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com [omitted]
+[debug] [2025-10-28T20:27:07.081Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com 403
+[debug] [2025-10-28T20:27:07.081Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com [omitted]
+[debug] [2025-10-28T20:27:07.180Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T20:27:07.180Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T20:27:07.180Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T20:27:07.206Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T20:27:07.206Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T20:27:07.206Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T20:27:07.211Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T20:27:07.211Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T20:27:07.211Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T20:27:07.215Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-28T20:27:07.215Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-28T20:27:07.216Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T20:27:07.218Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T20:27:07.218Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[debug] [2025-10-28T20:27:07.227Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T20:27:07.227Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T20:27:07.227Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T20:27:07.231Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-28T20:27:07.231Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-28T20:27:07.272Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T20:27:07.273Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T20:27:07.274Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T20:27:07.279Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T20:27:07.279Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T20:27:07.279Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T20:27:07.285Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T20:27:07.285Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T20:27:07.285Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T20:27:07.286Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T20:27:07.287Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T20:27:07.287Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T20:27:07.288Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-28T20:27:07.288Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-28T20:27:07.288Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T20:27:07.288Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T20:27:07.288Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[debug] [2025-10-28T20:27:07.289Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T20:27:07.289Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T20:27:07.289Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T20:27:07.290Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-28T20:27:07.290Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-28T20:27:07.332Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T20:27:07.332Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T20:27:07.333Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T20:27:07.340Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T20:27:07.340Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T20:27:07.340Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T20:27:07.343Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-28T20:27:07.343Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-28T20:27:07.344Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T20:27:07.344Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T20:27:07.344Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[debug] [2025-10-28T20:27:07.351Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-28T20:27:07.351Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-28T20:27:07.351Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-28T20:27:07.352Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-28T20:27:07.352Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-29T00:51:43.079Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-29T00:51:43.119Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-29T00:51:43.130Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-29T00:51:43.164Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-29T00:51:43.165Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-29T00:51:43.176Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-29T00:51:43.204Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-29T00:51:43.211Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-29T00:51:43.211Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-29T00:51:43.229Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-29T00:51:43.229Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-29T00:51:43.230Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-29T00:51:43.242Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-29T00:51:43.254Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-29T00:51:43.261Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-29T00:51:43.261Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-29T00:51:43.263Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[debug] [2025-10-29T00:51:43.333Z] Checked if tokens are valid: false, expires at: 1761684966503
+[debug] [2025-10-29T00:51:43.334Z] Checked if tokens are valid: false, expires at: 1761684966503
+[debug] [2025-10-29T00:51:43.334Z] > refreshing access token with scopes: []
+[debug] [2025-10-29T00:51:43.349Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-10-29T00:51:43.349Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-29T00:51:43.357Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-29T00:51:43.357Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-29T00:51:43.358Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-29T00:51:43.358Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-29T00:51:43.358Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[debug] [2025-10-29T00:51:43.365Z] Checked if tokens are valid: false, expires at: 1761684966503
+[debug] [2025-10-29T00:51:43.369Z] Checked if tokens are valid: false, expires at: 1761684966503
+[debug] [2025-10-29T00:51:43.369Z] > refreshing access token with scopes: []
+[debug] [2025-10-29T00:51:43.371Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-10-29T00:51:43.371Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-29T00:51:43.656Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-10-29T00:51:43.656Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-29T00:51:43.683Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com [none]
+[debug] [2025-10-29T00:51:43.683Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com x-goog-quota-user=projects/moctezuma-juegos
+[debug] [2025-10-29T00:51:43.695Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-10-29T00:51:43.696Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-29T00:51:43.709Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com [none]
+[debug] [2025-10-29T00:51:43.709Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com x-goog-quota-user=projects/moctezuma-juegos
+[debug] [2025-10-29T00:51:43.815Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com 403
+[debug] [2025-10-29T00:51:43.820Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com [omitted]
+[debug] [2025-10-29T00:51:43.827Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-29T00:51:43.832Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-29T00:51:43.832Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-29T00:51:43.851Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-29T00:51:43.851Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-29T00:51:43.852Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-29T00:51:43.853Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-29T00:51:43.853Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-29T00:51:43.854Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-29T00:51:43.854Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-29T00:51:43.855Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-29T00:51:43.855Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-29T00:51:43.855Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-29T00:51:43.855Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[debug] [2025-10-29T00:51:43.857Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-29T00:51:43.857Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-29T00:51:43.857Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-29T00:51:43.858Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-29T00:51:43.858Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-29T00:51:43.874Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com 403
+[debug] [2025-10-29T00:51:43.874Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/moctezuma-juegos/services/firebaseio.com [omitted]
+[debug] [2025-10-29T00:51:43.884Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-29T00:51:43.884Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-29T00:51:43.884Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-29T00:51:43.885Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-29T00:51:43.885Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-29T00:51:43.885Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-29T00:51:43.897Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-29T00:51:43.897Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-29T00:51:43.897Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-29T00:51:43.899Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-29T00:51:43.899Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-29T00:51:43.899Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-29T00:51:43.900Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-29T00:51:43.900Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-29T00:51:43.901Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-29T00:51:43.901Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-29T00:51:43.901Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[debug] [2025-10-29T00:51:43.904Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-29T00:51:43.904Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-29T00:51:43.904Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-29T00:51:43.905Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-29T00:51:43.905Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-29T00:51:43.934Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-29T00:51:43.935Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-29T00:51:43.935Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-29T00:51:43.936Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-29T00:51:43.936Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-29T00:51:43.937Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-29T00:51:43.937Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-29T00:51:43.938Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)
+[debug] [2025-10-29T00:51:43.938Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-29T00:51:43.938Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-29T00:51:43.938Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[debug] [2025-10-29T00:51:43.939Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be object
+[debug] [2025-10-29T00:51:43.939Z] Object "/apphosting/0" in "firebase.json" has unknown property: {"additionalProperty":"env"}
+[debug] [2025-10-29T00:51:43.939Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2025-10-29T00:51:43.940Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-10-29T00:51:43.940Z] > authorizing via signed-in user (proyect.moctezuma@gmail.com)

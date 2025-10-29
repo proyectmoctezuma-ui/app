@@ -105,35 +105,31 @@ export function initVolumeUI() {
     else { vs.set(lastNonZero || 0.5); }
   };
 
+  let handleTopClick = null;
+  let handleTopKeydown = null;
   if ($btnTop && !$btnTop.dataset.bound) {
     $btnTop.dataset.bound = '1';
-    let lpTimer = null; let lpFired = false; const LP_MS = 450;
-    const clearLP = () => { if (lpTimer) { clearTimeout(lpTimer); lpTimer = null; } };
-    const onPD = () => { lpFired = false; clearLP(); lpTimer = setTimeout(() => { lpFired = true; openPanel(); }, LP_MS); };
-    const onPU = () => {
-      if (!lpFired) {
-        if ($panel.classList.contains('is-open')) { onTriggerToggleMute(); }
-        else { openPanel(); }
+    handleTopClick = () => {
+      if ($panel.classList.contains('is-open')) {
+        closePanel();
+      } else {
+        openPanel();
       }
-      clearLP();
     };
-    $btnTop.addEventListener('pointerdown', onPD);
-    $btnTop.addEventListener('pointerup', onPU);
-    $btnTop.addEventListener('pointercancel', clearLP);
-    $btnTop.addEventListener('pointerleave', clearLP);
-    $btnTop.addEventListener('keydown', (e) => {
+    handleTopKeydown = (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        if ($panel.classList.contains('is-open')) onTriggerToggleMute(); else openPanel();
+        handleTopClick();
       }
-    });
-    $btnTop.addEventListener('dblclick', (e) => { e.preventDefault(); openPanel(); });
-    $btnTop.addEventListener('contextmenu', (e) => { e.preventDefault(); openPanel(); });
+    };
+    $btnTop.addEventListener('click', handleTopClick);
+    $btnTop.addEventListener('keydown', handleTopKeydown);
   }
 
+  let handleRightClick = null;
   if ($btnRight && !$btnRight.dataset.bound) {
     $btnRight.dataset.bound = '1';
-    const onRightClick = (e) => {
+    handleRightClick = (e) => {
       e.preventDefault();
       if ($panel.classList.contains('is-open')) {
         onTriggerToggleMute();
@@ -141,7 +137,7 @@ export function initVolumeUI() {
         openPanel();
       }
     };
-    $btnRight.addEventListener('click', onRightClick);
+    $btnRight.addEventListener('click', handleRightClick);
   }
 
   $slider?.addEventListener('input', (e) => {
@@ -170,8 +166,15 @@ export function initVolumeUI() {
 
   return () => {
     try { $overlay.removeEventListener('click', closePanel); } catch {}
-    try { $btnTop?.removeEventListener('click', openPanel); } catch {}
-    try { $btnRight?.removeEventListener('click', openPanel); } catch {}
+    try {
+      if (handleTopClick) $btnTop?.removeEventListener('click', handleTopClick);
+      if (handleTopKeydown) $btnTop?.removeEventListener('keydown', handleTopKeydown);
+      if ($btnTop && handleTopClick) delete $btnTop.dataset.bound;
+    } catch {}
+    try {
+      if (handleRightClick) $btnRight?.removeEventListener('click', handleRightClick);
+      if ($btnRight && handleRightClick) delete $btnRight.dataset.bound;
+    } catch {}
     try { $slider?.removeEventListener('input', () => {}); } catch {}
     try { $muteBtn?.removeEventListener('click', () => {}); } catch {}
     try { unsub?.(); } catch {}
