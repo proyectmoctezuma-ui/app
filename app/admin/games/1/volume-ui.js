@@ -118,42 +118,13 @@ export function initVolumeUI() {
     else { vs.set(lastNonZero || 0.5); }
   };
 
-  // Botón superior (HUD):
-  // - click de teclado (Enter/Espacio) => toggle
-  // - pulsación larga (>=450ms) => abre panel
-  // - doble click / menú contextual => abre panel
-  if ($btnTop && !$btnTop.dataset.bound) {
-    $btnTop.dataset.bound = '1';
-    let lpTimer = null; let lpFired = false; const LP_MS = 450;
-    const clearLP = () => { if (lpTimer) { clearTimeout(lpTimer); lpTimer = null; } };
-    const onPD = () => { lpFired = false; clearLP(); lpTimer = setTimeout(() => { lpFired = true; openPanel(); }, LP_MS); };
-    const onPU = () => {
-      if (!lpFired) {
-        if ($panel.classList.contains('is-open')) { onTriggerToggleMute(); }
-        else { openPanel(); }
-      }
-      clearLP();
-    };
-    $btnTop.addEventListener('pointerdown', onPD);
-    $btnTop.addEventListener('pointerup', onPU);
-    $btnTop.addEventListener('pointercancel', clearLP);
-    $btnTop.addEventListener('pointerleave', clearLP);
-    $btnTop.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        if ($panel.classList.contains('is-open')) onTriggerToggleMute(); else openPanel();
-      }
-    });
-    $btnTop.addEventListener('dblclick', (e) => { e.preventDefault(); openPanel(); });
-    $btnTop.addEventListener('contextmenu', (e) => { e.preventDefault(); openPanel(); });
-  }
-
   // Botón del panel derecho (desktop):
   // - Si el panel está cerrado: abre el panel
   // - Si el panel está abierto: toggle mute/unmute y actualiza icono
+  let handleRightClick = null;
   if ($btnRight && !$btnRight.dataset.bound) {
     $btnRight.dataset.bound = '1';
-    const onRightClick = (e) => {
+    handleRightClick = (e) => {
       e.preventDefault();
       if ($panel.classList.contains('is-open')) {
         onTriggerToggleMute();
@@ -161,28 +132,53 @@ export function initVolumeUI() {
         openPanel();
       }
     };
-    $btnRight.addEventListener('click', onRightClick);
+    $btnRight.addEventListener('click', handleRightClick);
+  }
+
+  // Botón superior (HUD):
+  // - click/Enter/Espacio alternan panel abierto/cerrado
+  let handleTopClick = null;
+  let handleTopKeydown = null;
+  if ($btnTop && !$btnTop.dataset.bound) {
+    $btnTop.dataset.bound = '1';
+    handleTopClick = () => {
+      if ($panel.classList.contains('is-open')) {
+        closePanel();
+      } else {
+        openPanel();
+      }
+    };
+    handleTopKeydown = (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleTopClick();
+      }
+    };
+    $btnTop.addEventListener('click', handleTopClick);
+    $btnTop.addEventListener('keydown', handleTopKeydown);
   }
 
   // Slider -> volumen
-  $slider?.addEventListener('input', (e) => {
+  const onSliderInput = (e) => {
     const v = Number(e.target.value);
     vs.set(v);
     if (v > 0) lastNonZero = v;
-  });
+  };
+  if ($slider) $slider.addEventListener('input', onSliderInput);
 
   // Mute toggle
+  const onMuteClick = () => {
+    const cur = vs.get();
+    if (cur > 0) {
+      lastNonZero = cur;
+      vs.set(0);
+    } else {
+      vs.set(lastNonZero || 0.5);
+    }
+  };
   if ($muteBtn && !$muteBtn.dataset.bound) {
     $muteBtn.dataset.bound = '1';
-    $muteBtn.addEventListener('click', () => {
-      const cur = vs.get();
-      if (cur > 0) {
-        lastNonZero = cur;
-        vs.set(0);
-      } else {
-        vs.set(lastNonZero || 0.5);
-      }
-    });
+    $muteBtn.addEventListener('click', onMuteClick);
   }
   // Botón de volumen máximo retirado
 
@@ -196,10 +192,22 @@ export function initVolumeUI() {
   // Cleanup
   return () => {
     try { $overlay.removeEventListener('click', closePanel); } catch {}
-    try { $btnTop?.removeEventListener('click', openPanel); } catch {}
-    try { $btnRight?.removeEventListener('click', openPanel); } catch {}
-    try { $slider?.removeEventListener('input', () => {}); } catch {}
-    try { $muteBtn?.removeEventListener('click', () => {}); } catch {}
+    try {
+      if (handleTopClick) $btnTop?.removeEventListener('click', handleTopClick);
+      if (handleTopKeydown) $btnTop?.removeEventListener('keydown', handleTopKeydown);
+      if ($btnTop && handleTopClick) delete $btnTop.dataset.bound;
+    } catch {}
+    try {
+      if (handleRightClick) $btnRight?.removeEventListener('click', handleRightClick);
+      if ($btnRight && handleRightClick) delete $btnRight.dataset.bound;
+    } catch {}
+    try { if ($slider && onSliderInput) $slider.removeEventListener('input', onSliderInput); } catch {}
+    try {
+      if ($muteBtn && onMuteClick) {
+        $muteBtn.removeEventListener('click', onMuteClick);
+        delete $muteBtn.dataset.bound;
+      }
+    } catch {}
     try { unsub?.(); } catch {}
     // Dejamos el DOM porque vive dentro del árbol del juego y Next lo desmonta al salir
   };

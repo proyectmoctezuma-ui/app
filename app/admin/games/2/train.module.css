@@ -85,20 +85,27 @@
 
 @media (max-width: 979px){ .scope :global(.hud){ font-size: .8em; } }
 
-/* Loader (desde loading.css) */
-.scope :global(#stageLoaderOverlay){ position:absolute; inset:0; display:none; align-items:center; justify-content:center; z-index:50; }
-.scope :global(#loader){ width:130px; height:65px; position:relative; overflow:hidden; }
-.scope :global(.rails){ position:absolute; inset:0; }
-.scope :global(.rail-left),
-.scope :global(.rail-right){ width:5px; height:100px; border-right:3px solid #01D27E; border-left:3px solid #01D27E; position:absolute; top:-25px; background-color:#006C54; }
-.scope :global(.rail-left){ transform: perspective(2px) rotateX(2deg) skewX(-25deg); left:30px; }
-.scope :global(.rail-right){ transform: perspective(2px) rotateX(2deg) skewX(25deg); right:30px; }
-.scope :global(.block){ position:absolute; background-color:#128054; width:130px; height:5px; z-index:-1; animation: blocks 4s linear infinite; top:-15px; left:0; }
-.scope :global(.block.b2){ animation-delay:-0.8s; }
-.scope :global(.block.b3){ animation-delay:-1.6s; }
-.scope :global(.block.b4){ animation-delay:-2.4s; }
-.scope :global(.block.b5){ animation-delay:-3.2s; }
-.scope :global(.block span){ position:absolute; bottom:6px; background-color:#01D27E; width:130px; height:10px; }
-.scope :global(.block span:before){ content:""; position:absolute; width:0; height:0; border-style:solid; border-width:10px 6px 0 0; border-color:#006C54 transparent transparent transparent; }
-.scope :global(.block span:after){ content:""; position:absolute; right:0; width:0; height:0; border-style:solid; border-width:0 6px 10px 0; border-color: transparent #006C54 transparent transparent; }
-@keyframes blocks { 0% { transform: scale(0) translateY(0); } 100% { transform: scale(1.1) translateY(85px); } }
+/* Loader */
+.scope :global(#stageLoaderOverlay){
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity .25s ease;
+  z-index:5;
+}
+.scope :global(#stageLoaderOverlay.is-visible){
+  opacity:1;
+}
+.scope :global(.loading-spinner){
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  border:4px solid rgba(255,255,255,0.25);
+  border-top-color: var(--accent);
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }

@@ -100,6 +100,7 @@ export function initTrenGame() {
     return { x, y, angle };
   }
   const waitMs = (ms) => new Promise(r => setTimeout(r, ms));
+  const nextFrame = () => new Promise((resolve) => requestAnimationFrame(() => resolve()));
 
   async function loadImage(src) {
     return new Promise((resolve) => {
@@ -146,6 +147,10 @@ export function initTrenGame() {
   const finalTitleNode = document.getElementById('finalTitle');
   const finalBodyNode  = document.getElementById('finalBody');
   const btnEndAction   = document.getElementById('btn-end-action');
+  const questionCard   = document.querySelector('.question-card');
+  const questionElements = [elQuestion, btnA, btnB].filter(Boolean);
+  const QUESTION_FADE_MS = 240;
+  const QUESTION_RESIZE_MS = 280;
 
   const navLockState = {
     locked: false,
@@ -313,17 +318,30 @@ export function initTrenGame() {
 
   const Loader = {
     el: null,
-    ensure(scopeEl){ if (this.el) return; const host = scopeEl || document.querySelector('.stage'); const overlay = document.createElement('div'); overlay.id = 'stageLoaderOverlay'; const bgVar = getComputedStyle(host).getPropertyValue('--panel') || '#166659'; Object.assign(overlay.style, { position:'absolute', inset:'0', display:'none', alignItems:'center', justifyContent:'center', background: bgVar || '#166659', zIndex:50 }); overlay.innerHTML = `
-      <div id="loader" aria-label="Cargando">
-        <div class="rails"><div class="rail-left"></div><div class="rail-right"></div></div>
-        <div class="block"><span></span></div>
-        <div class="block b2"><span></span></div>
-        <div class="block b3"><span></span></div>
-        <div class="block b4"><span></span></div>
-        <div class="block b5"><span></span></div>
-      </div>`; host.style.position = host.style.position || 'relative'; host.appendChild(overlay); this.el = overlay; },
-    show(scopeEl){ this.ensure(scopeEl); this.el.style.display = 'flex'; },
-    hide(){ if (!this.el) return; this.el.style.display = 'none'; }
+    ensure(scopeEl){
+      if (this.el) return;
+      const stageHost = scopeEl?.querySelector?.('.canvas-wrap') || document.querySelector('.canvas-wrap');
+      if (!stageHost) return;
+      const overlay = document.createElement('div');
+      overlay.id = 'stageLoaderOverlay';
+      overlay.className = 'loading-overlay';
+      overlay.innerHTML = `<div class="loading-spinner" role="status" aria-live="polite" aria-label="Cargando"></div>`;
+      const hostStyle = window.getComputedStyle(stageHost);
+      if (hostStyle.position === 'static') {
+        stageHost.style.position = 'relative';
+      }
+      stageHost.appendChild(overlay);
+      this.el = overlay;
+    },
+    show(scopeEl){
+      this.ensure(scopeEl);
+      if (!this.el) return;
+      this.el.classList.add('is-visible');
+    },
+    hide(){
+      if (!this.el) return;
+      this.el.classList.remove('is-visible');
+    }
   };
 
   function masterVol(){ return (window.VolumeSystem?.get?.() ?? 0.5); }
@@ -340,11 +358,19 @@ export function initTrenGame() {
   let scenariosCache = []; let finalScenario = null; let currentScenario = null;
   let questionsTotal = 0; let currentQIndex = -1; let currentQView = null;
   let selected = 'A'; let userChoseThisRound = false;
-  let score = CONFIG.MAX_SCORE_PERFECT; let errors = 0; let wagons = 0; let lost = false; let lastScore = CONFIG.MAX_SCORE_PERFECT;
-  let scoreSubmitted = false; let scoreSubmitError = null;
+  let score = CONFIG.MAX_SCORE_PERFECT;
+  let errors = 0;
+  let wagons = 0;
+  let lost = false;
+  let lastScore = CONFIG.MAX_SCORE_PERFECT;
+  let finalScoreLocked = false;
+  let scoreSubmitted = false;
+  let scoreSubmitError = null;
+  let scoreSubmitPromise = null;
   let questionOutcomes = [];
   let routeQuestion = []; let cumRoute = []; let sHead = 0; let headAngle = 0; let targetAngle = 0; let lastTs = null; let waitUntil = 0; let animT = 0;
   let bgCurr = { r: 77, g: 121, b: 83 };
+  let hasPresentedQuestion = false;
 
   function setSelected(v){
     const next = (v === 'A') ? 'A' : 'B';
@@ -360,14 +386,61 @@ export function initTrenGame() {
   function clearButtonSelection(){ btnA.classList.remove('is-selected'); btnB.classList.remove('is-selected'); }
   function setQuestionVisible(show){ const card = document.querySelector('.question-card'); if (card) card.style.display = show ? '' : 'none'; }
   function animateFade(show) { if (show) fadeEl.classList.add('show'); else fadeEl.classList.remove('show'); if (!show) fadeEl.style.pointerEvents = 'none'; }
+  function setQuestionElementsOpacity(value){ questionElements.forEach((el) => { el.style.opacity = value; }); }
+  function setQuestionElementsTransition(durationMs){ const rule = `opacity ${durationMs}ms ease`; questionElements.forEach((el) => { el.style.transition = rule; }); }
+  function clearQuestionElementsTransition(){ questionElements.forEach((el) => { el.style.transition = ''; }); }
+  function lockQuestionLayout(){
+    if (!questionCard || questionCard.dataset.locked === '1') return;
+    const rect = questionCard.getBoundingClientRect();
+    questionCard.style.height = `${rect.height}px`;
+    questionCard.style.transition = `height ${QUESTION_RESIZE_MS}ms ease`;
+    questionCard.dataset.locked = '1';
+  }
+  function unlockQuestionLayout(){
+    if (!questionCard) return;
+    questionCard.style.height = '';
+    questionCard.style.transition = '';
+    delete questionCard.dataset.locked;
+  }
+  async function fadeQuestionOut(){
+    if (!questionCard || !hasPresentedQuestion) return;
+    lockQuestionLayout();
+    setQuestionElementsTransition(QUESTION_FADE_MS);
+    await nextFrame();
+    setQuestionElementsOpacity('0');
+    await waitMs(QUESTION_FADE_MS + 40);
+    clearQuestionElementsTransition();
+  }
+  async function adjustQuestionLayoutToContent(){
+    if (!questionCard) return;
+    lockQuestionLayout();
+    const target = Math.max(questionCard.scrollHeight, 0);
+    const current = parseFloat(questionCard.style.height || '') || questionCard.getBoundingClientRect().height;
+    if (Math.abs(target - current) < 0.5) return;
+    await nextFrame();
+    questionCard.style.height = `${target}px`;
+    await waitMs(QUESTION_RESIZE_MS + 40);
+  }
+  async function fadeQuestionIn(){
+    if (!questionCard) return;
+    setQuestionElementsTransition(QUESTION_FADE_MS);
+    await nextFrame();
+    setQuestionElementsOpacity('1');
+    await waitMs(QUESTION_FADE_MS + 40);
+    clearQuestionElementsTransition();
+    unlockQuestionLayout();
+    hasPresentedQuestion = true;
+  }
   function resetScoreState() {
     score = CONFIG.MAX_SCORE_PERFECT;
     errors = 0;
     wagons = 0;
     lost = false;
     lastScore = score;
+    finalScoreLocked = false;
     scoreSubmitted = false;
     scoreSubmitError = null;
+    scoreSubmitPromise = null;
     currentQIndex = -1;
     currentScenario = null;
     routeQuestion = [];
@@ -383,6 +456,9 @@ export function initTrenGame() {
     try { errorsLabel.textContent = String(errors); } catch {}
     try { qCounter.textContent = '0'; } catch {}
     try { progressFill.style.width = '0%'; } catch {}
+    hasPresentedQuestion = false;
+    unlockQuestionLayout();
+    setQuestionElementsOpacity('0');
   }
 
   function computeFinalStats() {
@@ -438,39 +514,57 @@ export function initTrenGame() {
     return 'No se pudo guardar el puntaje. Intenta nuevamente.';
   }
 
-  async function submitScore() {
-    if (scoreSubmitted) return true;
-    const payload = buildScorePayload();
-    try { console.log('[TrainGame] Sending score payload:', payload); } catch {}
-    const body = JSON.stringify(payload);
-    try {
-      const res = await fetch('/api/scores', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body,
-        credentials: 'include',
-      });
-      const raw = await res.text();
-      let data = null;
-      if (raw) {
-        try { data = JSON.parse(raw); } catch {}
-      }
-      if (!res.ok) {
-        throw new Error(`http_${res.status}`);
-      }
-      if (data && typeof data === 'object' && 'ok' in data && !data.ok) {
-        const reason = typeof data.reason === 'string' ? data.reason : 'unknown';
-        throw new Error(`api_${reason}`);
-      }
-      scoreSubmitted = true;
-      scoreSubmitError = null;
-      return true;
-    } catch (err) {
-      console.warn('[TrainGame] Score submission failed', err);
-      scoreSubmitError = err;
-      scoreSubmitted = false;
+  async function submitScore(source = 'auto') {
+    if (!finalScoreLocked) {
+      try { console.warn('[TrainGame] submitScore ignored: final score not locked yet', { source, state, lastScore }); } catch {}
       return false;
     }
+    if (scoreSubmitted) return true;
+    if (scoreSubmitPromise) return scoreSubmitPromise;
+    const payload = buildScorePayload();
+    try { console.log('[TrainGame] Submitting score:', { source, payload }); } catch {}
+    const body = JSON.stringify(payload);
+    const runSubmission = (async () => {
+      try {
+        const res = await fetch('/api/scores', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body,
+          credentials: 'include',
+        });
+        const raw = await res.text();
+        let data = null;
+        if (raw) {
+          try { data = JSON.parse(raw); } catch {}
+        }
+        if (!res.ok) {
+          throw new Error(`http_${res.status}`);
+        }
+        if (data && typeof data === 'object' && 'ok' in data && !data.ok) {
+          const reason = typeof data.reason === 'string' ? data.reason : 'unknown';
+          throw new Error(`api_${reason}`);
+        }
+        scoreSubmitted = true;
+        scoreSubmitError = null;
+        try { console.log('[TrainGame] submitScore success', { source, score: payload.score }); } catch {}
+        return true;
+      } catch (err) {
+        console.warn('[TrainGame] Score submission failed', err);
+        scoreSubmitError = err;
+        scoreSubmitted = false;
+        return false;
+      } finally {
+        if (!scoreSubmitted) {
+          scoreSubmitPromise = null;
+        }
+      }
+    })();
+    scoreSubmitPromise = runSubmission;
+    const result = await runSubmission;
+    if (result) {
+      scoreSubmitPromise = null;
+    }
+    return result;
   }
 
   function resizeCanvas(grid) {
@@ -643,23 +737,53 @@ export function initTrenGame() {
   }
 
   async function nextQuestion(showLoader=false) {
-    currentQIndex++; if (currentQIndex >= questionsTotal) { startFinalScene(); return; } if (lost) { startFinalScene(); return; }
-    setSelected(Math.random() < CONFIG.RANDOM_DEFAULT_BIAS ? 'A' : 'B'); userChoseThisRound = false; clearButtonSelection(); setQuestionVisible(true);
-    const baseQ = activeQuestions[currentQIndex]; currentQView = { id: baseQ.id || `q${currentQIndex + 1}`, text: baseQ.text, optionA: baseQ.optionA, optionB: baseQ.optionB, correct: baseQ.correct === 'A' ? 'A' : 'B' };
-    if (Math.random() < CONFIG.SHUFFLE_AB_PROB) { const tmp = currentQView.optionA; currentQView.optionA = currentQView.optionB; currentQView.optionB = tmp; currentQView.correct = (currentQView.correct === 'A') ? 'B' : 'A'; }
-    qCounter.textContent = String(currentQIndex + 1); progressFill.style.width = `${((currentQIndex) / (questionsTotal)) * 100}%`;
-    elQuestion.textContent = currentQView.text; btnA.textContent = currentQView.optionA; btnB.textContent = currentQView.optionB;
+    currentQIndex++;
+    if (currentQIndex >= questionsTotal) { await startFinalScene(); return; }
+    if (lost) { await startFinalScene(); return; }
+    setSelected(Math.random() < CONFIG.RANDOM_DEFAULT_BIAS ? 'A' : 'B');
+    userChoseThisRound = false;
+    clearButtonSelection();
+    setQuestionVisible(true);
+    const baseQ = activeQuestions[currentQIndex];
+    currentQView = {
+      id: baseQ.id || `q${currentQIndex + 1}`,
+      text: baseQ.text,
+      optionA: baseQ.optionA,
+      optionB: baseQ.optionB,
+      correct: baseQ.correct === 'A' ? 'A' : 'B'
+    };
+    if (Math.random() < CONFIG.SHUFFLE_AB_PROB) {
+      const tmp = currentQView.optionA;
+      currentQView.optionA = currentQView.optionB;
+      currentQView.optionB = tmp;
+      currentQView.correct = (currentQView.correct === 'A') ? 'B' : 'A';
+    }
+    qCounter.textContent = String(currentQIndex + 1);
+    progressFill.style.width = `${((currentQIndex) / (questionsTotal)) * 100}%`;
+    setQuestionElementsOpacity('0');
+    if (elQuestion) elQuestion.textContent = currentQView.text;
+    if (btnA) btnA.textContent = currentQView.optionA;
+    if (btnB) btnB.textContent = currentQView.optionB;
+    const resizePromise = adjustQuestionLayoutToContent();
+    if (showLoader) Loader.show(stageEl);
     currentScenario = await loadScenarioRandom();
     markTilesDirty();
     ensureSelectionTiles(currentScenario);
-    if (showLoader) Loader.show(stageEl);
     await preloadTilesForScenario(currentScenario);
+    await resizePromise;
     resizeCanvas(currentScenario.grid);
-    if (decoBg && decoTop) { const decoSeed = `${currentScenario.id || currentScenario.__src}|q${currentQIndex}|${decoBg.width}x${decoBg.height}`; await Deco.rebuild(decoSeed); }
+    if (decoBg && decoTop) {
+      const decoSeed = `${currentScenario.id || currentScenario.__src}|q${currentQIndex}|${decoBg.width}x${decoBg.height}`;
+      await Deco.rebuild(decoSeed);
+    }
     if (showLoader) Loader.hide();
     routeQuestion = buildRoutePoints(currentScenario.sequence.question, DIM.tileSize);
     setCurrentRoute(routeQuestion, 'none');
-    headAngle = 0; targetAngle = 0; lastTs = null; state = 'WAIT_QUESTION'; waitUntil = performance.now() + CONFIG.PREMOVE_DELAY_MS;
+    headAngle = 0;
+    targetAngle = 0;
+    lastTs = null;
+    state = 'WAIT_QUESTION';
+    waitUntil = performance.now() + CONFIG.PREMOVE_DELAY_MS;
   }
 
   function buildAnswerRouteFromSelection(preserveMode = 'none') {
@@ -706,7 +830,22 @@ export function initTrenGame() {
     state = 'RUN_ANSWER';
   }
 
-  async function finishAnswerPhaseOnce() { animateFade(true); await waitMs(CONFIG.FADE_DURATION_MS); if (lost) { await startFinalScene(); return; } if (currentQIndex + 1 >= questionsTotal) { await startFinalScene(); } else { await nextQuestion(true); animateFade(false); } }
+  async function finishAnswerPhaseOnce() {
+    const textFadePromise = fadeQuestionOut();
+    animateFade(true);
+    await Promise.all([waitMs(CONFIG.FADE_DURATION_MS), textFadePromise]);
+    if (lost) {
+      await startFinalScene();
+      return;
+    }
+    if (currentQIndex + 1 >= questionsTotal) {
+      await startFinalScene();
+      return;
+    }
+    await nextQuestion(true);
+    animateFade(false);
+    await fadeQuestionIn();
+  }
 
   async function startFinalScene() {
     if (state === 'RUN_FINAL' || state === 'FINAL_STOPPED') return;
@@ -719,6 +858,7 @@ export function initTrenGame() {
     const computedScore = clamp(CONFIG.MAX_SCORE_PERFECT - mistakes * CONFIG.PENALTY_PER_ERROR, 0, CONFIG.MAX_SCORE_PERFECT);
     score = computedScore;
     lastScore = score;
+    finalScoreLocked = true;
 
     const perfectRun = !lostGame && mistakes === 0;
     let finalTitle = CONFIG.MESSAGES.winTitle;
@@ -738,6 +878,9 @@ export function initTrenGame() {
     finalTitleNode.textContent = finalTitle;
     finalBodyNode.innerHTML = `${finalBody} <br> ${statsLine}`;
     console.log('[TrainGame] Final stats:', { score: lastScore, correctAnswers, mistakes, totalQuestions, lost: lostGame });
+    setQuestionElementsOpacity('0');
+    unlockQuestionLayout();
+    hasPresentedQuestion = false;
     setQuestionVisible(false);
     await preloadTilesForScenario(finalScenario);
     markTilesDirty();
@@ -751,7 +894,7 @@ export function initTrenGame() {
     Loader.show(stageEl);
     if (decoBg && decoTop) { const decoSeed = `final|${decoBg.width}x${decoBg.height}`; await Deco.rebuild(decoSeed); }
     Loader.hide(); state = 'RUN_FINAL'; animateFade(false);
-    submitScore().then((ok) => {
+    submitScore('auto').then((ok) => {
       if (!ok) {
         try { showToast(describeScoreError(scoreSubmitError)); } catch {}
       }
@@ -853,7 +996,7 @@ export function initTrenGame() {
 
       let redirected = false;
       try {
-        const saved = await submitScore();
+        const saved = await submitScore('button');
         if (!saved) {
           showToast(describeScoreError(scoreSubmitError));
         } else {
@@ -918,10 +1061,9 @@ export function initTrenGame() {
     try { lockNav(); } catch {}
     resetScoreState();
     setQuestionVisible(true);
-    Loader.show(stageEl);
     await nextQuestion(true);
-    Loader.hide();
     animateFade(false);
+    await fadeQuestionIn();
   }
 
   btnA.addEventListener('click', () => { if (state === 'RUN_QUESTION' || state === 'WAIT_QUESTION'){ userChoseThisRound = true; setSelected('A'); try { const fx = ensureSFX().sw; fx.currentTime = 0; fx.play(); } catch(_){} } });
