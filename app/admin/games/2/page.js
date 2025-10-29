@@ -56,7 +56,7 @@ export default function Game2Page() {
           <canvas id="decoBg"></canvas>
           <canvas id="board"></canvas>
           <canvas id="decoTop"></canvas>
-          <div id="fadeOverlay" className="fade show"></div>
+          <div id="fadeOverlay" className="fade show" data-initial="1"></div>
         </div>
 
         <aside className="ui-panel" role="region" aria-label="Preguntas y respuestas">

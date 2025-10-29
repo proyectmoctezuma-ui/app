@@ -426,7 +426,15 @@ export function initTrenGame() {
   }
   function clearButtonSelection(){ btnA.classList.remove('is-selected'); btnB.classList.remove('is-selected'); }
   function setQuestionVisible(show){ const card = document.querySelector('.question-card'); if (card) card.style.display = show ? '' : 'none'; }
-  function animateFade(show) { if (show) fadeEl.classList.add('show'); else fadeEl.classList.remove('show'); if (!show) fadeEl.style.pointerEvents = 'none'; }
+  function animateFade(show) {
+    if (show) {
+      fadeEl.classList.add('show');
+    } else {
+      fadeEl.classList.remove('show');
+      fadeEl.removeAttribute('data-initial');
+    }
+    if (!show) fadeEl.style.pointerEvents = 'none';
+  }
   function setQuestionElementsOpacity(value){ questionElements.forEach((el) => { el.style.opacity = value; }); }
   function setQuestionElementsTransition(durationMs){ const rule = `opacity ${durationMs}ms ease`; questionElements.forEach((el) => { el.style.transition = rule; }); }
   function clearQuestionElementsTransition(){ questionElements.forEach((el) => { el.style.transition = ''; }); }
