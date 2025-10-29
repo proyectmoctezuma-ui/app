@@ -20,7 +20,7 @@ const allGames = [
   },
   {
     id: 2,
-    title: 'Cada decision es una via.',
+    title: 'Cada decisión es una via.',
     description: 'Guia el tren por el camino correcto, demostrando que la Honestidad e Integridad son los rieles que nos conducen e impulsan a un futuro solido.',
     unlocked: true,
     image: '/game-covers/2.jpg',
