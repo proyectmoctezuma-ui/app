@@ -1,5 +1,5 @@
-﻿export function initGame() {
-  if (typeof window === 'undefined') return () => {};
+export function initGame() {
+  if (typeof window === 'undefined') return () => { };
 
   // Identidad del juego para el sistema de puntajes
   const GAME_ID = 1;
@@ -11,6 +11,7 @@
   const MAX_PROBE_ROWS = 26;
   const MAX_PROBE_COLS = 60;
 
+  const MAX_SCORE = 25
   const TIME_LIMIT = 240;
   const SNAP_TOL_FACTOR = 0.35;
   const RADIUS_PX = 14;
@@ -19,9 +20,6 @@
   const MOBILE_BLOCK_TOP_BAND = false;
   const OBSTRUCT_MARGIN = 10;
   const TILT_DEG = 10;
-  // Si true, en desktop intentamos ubicar piezas en las franjas izquierda/derecha
-  // alrededor del tablero (dentro de board-wrap) en lugar de dispersarlas uniformemente.
-  // Por defecto false para conservar el comportamiento actual.
   const DESKTOP_SIDE_SCATTER = true;
 
   const clamp = (n, a, b) => Math.min(Math.max(n, a), b);
@@ -57,7 +55,7 @@
   const $btnEndAct = document.getElementById('btn-end-action');
   const $btnRestart = document.getElementById('btn-reset');
 
-  if (!$boardWrap || !$boardFrame || !$board) return () => {};
+  if (!$boardWrap || !$boardFrame || !$board) return () => { };
 
   $boardFrame.style.width = '100%';
   $boardFrame.style.height = '100%';
@@ -86,7 +84,6 @@
     timeLeft: TIME_LIMIT,
     timerId: null,
 
-    // Puntaje final calculado al terminar
     lastScore: 0,
 
     _rafDragging: false,
@@ -99,13 +96,12 @@
 
     _cleanup: null,
 
-    // Bloqueo de navegaciÃ³n durante la partida
     _navLocked: false,
     _navClickHandler: null,
     _navLockedEls: []
   };
 
-  // --- Audio mÃ­nimo ---
+  // --- Audio mínimo ---
   const CLICK_SFX_PATH = `${AUDIO_DIR}/click.mp3`;
   function makeClickPool() {
     state.clickPool = Array.from({ length: 6 }, () => {
@@ -117,7 +113,7 @@
   function playClick() {
     const a = state.clickPool.find(x => x.paused) || state.clickPool[0];
     if (!a) return;
-    try { a.currentTime = 0; a.volume = (window.VolumeSystem?.get?.() ?? 0.5); a.play().catch(() => {}); } catch {}
+    try { a.currentTime = 0; a.volume = (window.VolumeSystem?.get?.() ?? 0.5); a.play().catch(() => { }); } catch { }
   }
   function setupBGM() {
     state.bgm = new Audio(`${AUDIO_DIR}/background_music.mp3`);
@@ -126,7 +122,7 @@
     state.bgm.volume = (window.VolumeSystem?.get?.() ?? 0.5);
     window.VolumeSystem?.onChange?.((v) => { if (state.bgm) state.bgm.volume = v; });
   }
-  function setMusic(on) { if (!state.bgm) return; on ? state.bgm.play().catch(() => {}) : state.bgm.pause(); }
+  function setMusic(on) { if (!state.bgm) return; on ? state.bgm.play().catch(() => { }) : state.bgm.pause(); }
 
   // --- Assets ---
   function imgExists(src) { return new Promise(res => { const i = new Image(); i.onload = () => res(true); i.onerror = () => res(false); i.src = src; }); }
@@ -150,46 +146,151 @@
   }
   function loadImageDims(src) { return new Promise((res, rej) => { const i = new Image(); i.onload = () => res({ width: i.naturalWidth, height: i.naturalHeight }); i.onerror = () => rej(new Error('loadImageDims')); i.src = src; }); }
 
-  // --- MediciÃ³n mÃ³vil (evitar scroll por HUD) ---
-  function measureAndSetHeights() {
-        const viewportVar = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--viewport-height')) || 0;
-    const baseVH = window.visualViewport?.height || window.innerHeight || 0;
-    const vh = Math.max(200, Math.min(...[baseVH, viewportVar || baseVH].filter(Boolean)));
-    const hudH = (!isDesktop() && $hud) ? $hud.offsetHeight : 0; // solo mÃ³vil
-    const bottomSlack = 14;
-    const stageEl = document.querySelector('.stage');
-    const csStage = stageEl ? getComputedStyle(stageEl) : null;
-    const padTop = csStage ? parseFloat(csStage.paddingTop) || 0 : 0;
-    const padBottom = csStage ? parseFloat(csStage.paddingBottom) || 0 : 0;
-    const wrapH = Math.max(220, vh - hudH - bottomSlack - padTop - padBottom);
-    document.documentElement.style.setProperty('--wrapH', wrapH + 'px');
-    document.documentElement.style.setProperty('--appH', vh + 'px');
-    document.documentElement.style.setProperty('--hud-height', ($hud?.offsetHeight || 0) + 'px');
-    $boardWrap.style.height = wrapH + 'px';
+  // ====================================================================
+  // SOLUCIÓN DEFINITIVA: CORRECCIÓN DE ALTURAS EN DESKTOP
+  // ====================================================================
+
+  function getDesktopNavbarHeight() {
+    if (!isDesktop()) return 0;
+
+    const navSelectors = [
+      'nav',
+      'header',
+      '.navbar',
+      '.nav',
+      '[role="navigation"]',
+      'nav:not(.hud):not([class*="game"])',
+      'header:not(.hud):not([class*="game"])'
+    ];
+
+    let maxNavbarHeight = 0;
+    let hasFixedNavbar = false;
+
+    navSelectors.forEach(selector => {
+      try {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(el => {
+          // Excluir elementos que son parte del juego
+          if (el.closest('#app') || el.classList.contains('hud') ||
+            el.getAttribute('class')?.includes('game')) {
+            return;
+          }
+
+          const rect = el.getBoundingClientRect();
+          const style = getComputedStyle(el);
+
+          const isVisible =
+            el.offsetParent !== null &&
+            style.visibility !== 'hidden' &&
+            style.display !== 'none' &&
+            rect.height > 5;
+
+          // En desktop, considerar tanto elementos fixed como static
+          const isAtTop = rect.top >= 0 && rect.top < 200;
+          const isFixed = style.position === 'fixed';
+
+          if (isVisible && isAtTop) {
+            if (isFixed) {
+              hasFixedNavbar = true;
+              maxNavbarHeight = Math.max(maxNavbarHeight, rect.height);
+            } else {
+              // Para elementos no-fixed, solo considerar si están en el flujo normal
+              const affectsLayout = style.position === 'static' || style.position === 'relative';
+              if (affectsLayout) {
+                maxNavbarHeight = Math.max(maxNavbarHeight, rect.height);
+              }
+            }
+          }
+        });
+      } catch (e) {
+        console.warn('Error detecting navbar with selector:', selector, e);
+      }
+    });
+
+    return maxNavbarHeight;
   }
 
-  // --- Layout/fit (tu centrado intacto) ---
+  function measureAndSetHeights() {
+    const root = document.documentElement;
+
+    // SOLUCIÓN: Forzar las variables CSS problemáticas
+    if (isDesktop()) {
+      root.style.setProperty('--navbar-mobile-height', '60px', 'important');
+      root.style.setProperty('--admin-content-offset', '0px', 'important');
+    }
+
+    // ... el resto de tu código existente ...
+
+    // SOLUCIÓN ADICIONAL: Corregir directamente el AdminLayout
+    if (isDesktop()) {
+      setTimeout(() => {
+        const adminLayouts = document.querySelectorAll('[class*="AdminLayout"]');
+        adminLayouts.forEach(el => {
+          el.style.minHeight = '0';
+          el.style.height = '100%';
+          el.style.overflow = 'hidden';
+        });
+
+        // También corregir body y html
+        document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
+      }, 100);
+    }
+  }
+
   function fitBoard() {
     state.baseBoardW = state.baseCellW * state.cols;
     state.baseBoardH = state.baseCellH * state.rows;
 
     const frameRect = $boardFrame.getBoundingClientRect();
-    const availW = Math.max(50, frameRect.width);
-    const availH = Math.max(50, frameRect.height);
+
+    // ====================================================================
+    // CORRECCIÓN CRÍTICA: Leer variables CSS desde el elemento correcto
+    // ====================================================================
+    const appStyle = getComputedStyle($app);
+    const desktopScaleFactor = parseFloat(
+      appStyle.getPropertyValue('--desktop-scale-factor') || '0.87'
+    );
+    const mobileScaleFactor = parseFloat(
+      appStyle.getPropertyValue('--mobile-scale-factor') || '0.995'
+    );
+
+    // Calcular padding del frame CORRECTAMENTE
+    const frameStyle = getComputedStyle($boardFrame);
+    const paddingLeft = parseFloat(frameStyle.paddingLeft) || 0;
+    const paddingRight = parseFloat(frameStyle.paddingRight) || 0;
+    const paddingTop = parseFloat(frameStyle.paddingTop) || 0;
+    const paddingBottom = parseFloat(frameStyle.paddingBottom) || 0;
+
+    // Espacio disponible REAL considerando padding
+    const availW = Math.max(50, frameRect.width - paddingLeft - paddingRight);
+    const availH = Math.max(50, frameRect.height - paddingTop - paddingBottom);
 
     const sx = availW / state.baseBoardW;
     const sy = availH / state.baseBoardH;
-    const scale = Math.max(0.0001, Math.min(sx, sy)) * 0.995;
+
+    let scale = Math.max(0.0001, Math.min(sx, sy));
+
+    // APLICAR FACTORES DE ESCALA CORRECTAMENTE
+    if (isDesktop()) {
+      scale *= desktopScaleFactor;
+    } else {
+      scale *= mobileScaleFactor;
+    }
+
     state.scale = scale;
 
     const scaledW = state.baseBoardW * scale;
     const scaledH = state.baseBoardH * scale;
 
-    const offsetX = Math.max(0, (availW - scaledW) / 2);
-    const vBias   = isDesktop() ? 0.5 : 0.25;
-    const offsetY = Math.max(0, (availH - scaledH)) * vBias;
+    // Calcular offset considerando padding
+    const offsetX = Math.max(0, (availW - scaledW) / 2) + paddingLeft;
+    
+    // CORRECCIÓN: Usar bias más conservador para evitar cortes
+    const vBias = isDesktop() ? 0.4 : 0.2; // Reducido de 0.5/0.25 para evitar corte inferior
+    const offsetY = Math.max(0, (availH - scaledH)) * vBias + paddingTop;
 
-    $board.style.width  = `${state.baseBoardW}px`;
+    $board.style.width = `${state.baseBoardW}px`;
     $board.style.height = `${state.baseBoardH}px`;
     $board.style.transformOrigin = 'top left';
     $board.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
@@ -283,7 +384,8 @@
         ].sort((a, b) => a.mag - b.mag);
         const best = candidates[0];
         if (best.axis === 'x') dx += best.val; else dy += best.val;
-        prect = { ...prect,
+        prect = {
+          ...prect,
           left: prect.left + (best.axis === 'x' ? best.val : 0),
           right: prect.right + (best.axis === 'x' ? best.val : 0),
           top: prect.top + (best.axis === 'y' ? best.val : 0),
@@ -291,9 +393,9 @@
         };
       }
 
-      if (prect.left < wrapRect.left)   dx += (wrapRect.left - prect.left + OBSTRUCT_MARGIN);
+      if (prect.left < wrapRect.left) dx += (wrapRect.left - prect.left + OBSTRUCT_MARGIN);
       if (prect.right > wrapRect.right) dx -= (prect.right - wrapRect.right + OBSTRUCT_MARGIN);
-      if (prect.top < wrapRect.top)     dy += (wrapRect.top - prect.top + OBSTRUCT_MARGIN);
+      if (prect.top < wrapRect.top) dy += (wrapRect.top - prect.top + OBSTRUCT_MARGIN);
       if (prect.bottom > wrapRect.bottom) dy -= (prect.bottom - wrapRect.bottom + OBSTRUCT_MARGIN);
 
       if (dx !== 0 || dy !== 0) {
@@ -368,9 +470,8 @@
       const totalWidth = (hasLeftStripe ? spaces.left : 0) + (hasRightStripe ? spaces.right : 0);
       for (const p of pieces) {
         let useLeft = hasLeftStripe && !hasRightStripe ? true
-                    : !hasLeftStripe && hasRightStripe ? false
-                    : Math.random() < (spaces.left / Math.max(1, totalWidth));
-
+          : !hasLeftStripe && hasRightStripe ? false
+            : Math.random() < (spaces.left / Math.max(1, totalWidth));
         if (useLeft) {
           const x0 = leftMinX;
           const x1 = leftMaxX;
@@ -384,7 +485,6 @@
           const maxX = Math.max(x0, x1);
           p.x = randRange(minX, Math.max(minX, maxX));
         }
-
         p.y = randRange(clampMinY, Math.max(clampMinY, clampMaxY));
         p.rotation = parseDeg(randTilt());
         applyTransformTo(p.el, p.x, p.y, p.rotation);
@@ -413,22 +513,17 @@
     const id = e.currentTarget?.dataset?.id;
     const piece = state.pieces.get(id);
     if (!piece || piece.locked || !state.started) return;
-
     state.draggingId = id;
     dragCtx = { id, startX: e.clientX, startY: e.clientY, baseX: piece.x, baseY: piece.y, pointerId: e.pointerId };
-
     $board.classList.add('show-grid', 'grid-strong', 'focus-drag');
-
     piece.el.setPointerCapture(e.pointerId);
     piece.el.classList.add('dragging');
     piece.el.style.transition = 'transform 0s, border-radius var(--snap-duration) ease, filter 200ms ease';
     applyTransformTo(piece.el, piece.x, piece.y, piece.rotation);
-
     state._rafPieceId = id;
     state._rafLastClientX = e.clientX;
     state._rafLastClientY = e.clientY;
     if (!state._rafDragging) { state._rafDragging = true; requestAnimationFrame(_dragRAF); }
-
     piece.el.addEventListener('pointermove', onPointerMove);
     piece.el.addEventListener('pointerup', onPointerUp);
     piece.el.addEventListener('pointercancel', onPointerCancel);
@@ -455,49 +550,39 @@
     if (!dragCtx) return;
     const piece = state.pieces.get(dragCtx.id);
     if (!piece) return;
-
     piece.el.classList.remove('dragging');
     piece.el.releasePointerCapture?.(dragCtx.pointerId);
     piece.el.removeEventListener('pointermove', onPointerMove);
     piece.el.removeEventListener('pointerup', onPointerUp);
     piece.el.removeEventListener('pointercancel', onPointerCancel);
-
     piece.el.style.transition =
       'transform var(--snap-duration) ease, border-radius var(--snap-duration) ease, filter 200ms ease, opacity 160ms ease';
     $board.classList.remove('grid-strong', 'focus-drag');
-
     if (state._rafPieceId === dragCtx.id) { state._rafDragging = false; state._rafPieceId = null; }
-
     const targetX = piece.col * state.baseCellW;
     const targetY = piece.row * state.baseCellH;
     const tol = Math.min(state.baseCellW, state.baseCellH) * SNAP_TOL_FACTOR;
     const dist = Math.hypot(piece.x - targetX, piece.y - targetY);
-
     if (dist <= tol) {
       piece.locked = true;
       piece.x = targetX; piece.y = targetY; piece.rotation = 0;
       piece.el.classList.add('locked');
       applyTransformTo(piece.el, piece.x, piece.y, 0);
       piece.el.classList.add('snap-pulse');
-
       setOverlay(piece.el, 0);
       state.lockedCount++;
       updateCompletionUI(); updatePiecesCountUI();
-
       applyCornerRadius(piece); forEachNeighbor(piece, (np) => applyCornerRadius(np));
-
       setTimeout(() => piece.el.classList.remove('snap-pulse'), 380);
       playClick();
-
       if (state.lockedCount >= state.images.length) {
-        try { stopTimer(); } catch {}
+        try { stopTimer(); } catch { }
         endGame(true);
       }
     } else {
       ensureWithinBounds(piece);
       applyTransformTo(piece.el, piece.x, piece.y, piece.rotation);
     }
-
     state.draggingId = null;
     dragCtx = null;
   }
@@ -519,10 +604,10 @@
     const right = state.pieces.get(idByRowCol(piece.row, piece.col + 1, state.rows, state.cols));
     const down = state.pieces.get(idByRowCol(piece.row + 1, piece.col, state.rows, state.cols));
     const left = state.pieces.get(idByRowCol(piece.row, piece.col - 1, state.rows, state.cols));
-    if (up && up.locked)   { corners.tl = 0; corners.tr = 0; }
-    if (right && right.locked){ corners.tr = 0; corners.br = 0; }
-    if (down && down.locked){ corners.bl = 0; corners.br = 0; }
-    if (left && left.locked){ corners.tl = 0; corners.bl = 0; }
+    if (up && up.locked) { corners.tl = 0; corners.tr = 0; }
+    if (right && right.locked) { corners.tr = 0; corners.br = 0; }
+    if (down && down.locked) { corners.bl = 0; corners.br = 0; }
+    if (left && left.locked) { corners.tl = 0; corners.bl = 0; }
     piece.el.style.borderTopLeftRadius = corners.tl + 'px';
     piece.el.style.borderTopRightRadius = corners.tr + 'px';
     piece.el.style.borderBottomRightRadius = corners.br + 'px';
@@ -558,25 +643,25 @@
     const total = state.images.length || 0;
     if (total <= 0) return 0;
     const ratio = Math.min(1, Math.max(0, lockedCountSnapshot / total));
-    return Math.round(40 * ratio);
+    return Math.round(MAX_SCORE * ratio);
   }
   function startTimer(totalSeconds) {
-    // No arranques si ya terminÃ³
+    // No arranques si ya terminó
     if (state._ended) { state.started = false; return; }
     state.timeLeft = totalSeconds;
     updateTimerLabel(state.timeLeft);
     state.started = true;
     if (state.timerId) clearInterval(state.timerId);
     state.timerId = setInterval(() => {
-      // Corta el intervalo si el juego ya terminÃ³ por cualquier razÃ³n
-      if (state._ended) { try { clearInterval(state.timerId); } catch {} state.timerId = null; return; }
+      // Corta el intervalo si el juego ya terminó por cualquier razón
+      if (state._ended) { try { clearInterval(state.timerId); } catch { } state.timerId = null; return; }
       state.timeLeft--;
       updateTimerLabel(state.timeLeft);
       if (state.timeLeft <= 0) { stopTimer(); endGame(false); }
     }, 1000);
   }
   function stopTimer() {
-    if (state.timerId) { try { clearInterval(state.timerId); } catch {} state.timerId = null; }
+    if (state.timerId) { try { clearInterval(state.timerId); } catch { } state.timerId = null; }
   }
   async function autoCompleteRemaining(opts = {}) {
     const preserveCounts = !!opts.preserveCounts;
@@ -594,7 +679,7 @@
   }
   function showEndBanner(won, score) {
     const cfg = won ? { title: '¡Completado!', body: '¡Felicidades! Has logrado construir Nuestro Propósito', button: 'Continuar' }
-                    : { title: '¡Tiempo!', body: 'Te invitamos a que sigas contribuyendo al logro de Nuestro Propósito', button: 'Continuar' };
+      : { title: '¡Tiempo!', body: 'Te invitamos a que sigas contribuyendo al logro de Nuestro Propósito', button: 'Continuar' };
     const $title = document.getElementById('end-title');
     const $endExtra = document.getElementById('end-extra');
     if ($title) $title.textContent = cfg.title;
@@ -604,8 +689,8 @@
     if ($banner) { $banner.hidden = false; void $banner.offsetWidth; $banner.classList.add('visible'); }
   }
   function hideEndBanner() { if (!$banner) return; $banner.classList.remove('visible'); setTimeout(() => { $banner.hidden = true; }, 320); }
-  
-  // --- Bloqueo de navegaciÃ³n (navbar/links) mientras el juego estÃ¡ en curso ---
+
+  // --- Bloqueo de navegación (navbar/links) mientras el juego está en curso ---
   function lockNav() {
     if (state._navLocked) return;
     state._navLocked = true;
@@ -616,7 +701,6 @@
         'a[href="/"]', 'a[href="/admin"]', 'a[href^="/admin/"]',
         'a[href="/admin/games"]', 'a[href="/admin/scores"]', 'a[href="/admin/dashboard"]'
       ].join(',');
-
       const anchors = Array.from(document.querySelectorAll(selectors));
       state._navLockedEls = anchors.map(a => {
         const prev = {
@@ -625,12 +709,11 @@
           tab: a.getAttribute('tabindex'),
           aria: a.getAttribute('aria-disabled')
         };
-        try { a.style.pointerEvents = 'none'; } catch {}
-        try { a.setAttribute('tabindex', '-1'); } catch {}
-        try { a.setAttribute('aria-disabled', 'true'); } catch {}
+        try { a.style.pointerEvents = 'none'; } catch { }
+        try { a.setAttribute('tabindex', '-1'); } catch { }
+        try { a.setAttribute('aria-disabled', 'true'); } catch { }
         return prev;
       });
-
       const onClick = (e) => {
         const target = e.target;
         const a = target && typeof target.closest === 'function' ? target.closest('a') : null;
@@ -643,20 +726,20 @@
       };
       state._navClickHandler = onClick;
       document.addEventListener('click', onClick, true);
-    } catch {}
+    } catch { }
   }
 
   function unlockNav() {
     if (!state._navLocked) return;
     state._navLocked = false;
-    try { if (state._navClickHandler) { document.removeEventListener('click', state._navClickHandler, true); } } catch {}
+    try { if (state._navClickHandler) { document.removeEventListener('click', state._navClickHandler, true); } } catch { }
     try {
       (state._navLockedEls || []).forEach(prev => {
-        try { prev.el.style.pointerEvents = prev.pe; } catch {}
-        if (prev.tab == null) { try { prev.el.removeAttribute('tabindex'); } catch {} } else { try { prev.el.setAttribute('tabindex', prev.tab); } catch {} }
-        if (prev.aria == null) { try { prev.el.removeAttribute('aria-disabled'); } catch {} } else { try { prev.el.setAttribute('aria-disabled', prev.aria); } catch {} }
+        try { prev.el.style.pointerEvents = prev.pe; } catch { }
+        if (prev.tab == null) { try { prev.el.removeAttribute('tabindex'); } catch { } } else { try { prev.el.setAttribute('tabindex', prev.tab); } catch { } }
+        if (prev.aria == null) { try { prev.el.removeAttribute('aria-disabled'); } catch { } } else { try { prev.el.setAttribute('aria-disabled', prev.aria); } catch { } }
       });
-    } catch {}
+    } catch { }
     state._navLockedEls = [];
     state._navClickHandler = null;
   }
@@ -665,19 +748,16 @@
     state._ended = true;
     stopTimer();
     state.started = false;
-    try { unlockNav(); } catch {}
+    try { unlockNav(); } catch { }
     const lockedAtEnd = state.lockedCount;
     const score = calcScore(lockedAtEnd);
-    try { state.lastScore = score; } catch {}
+    try { state.lastScore = score; } catch { }
     if (!won) await autoCompleteRemaining({ preserveCounts: true });
-
-    // Agrupar finales entre posibles instancias (StrictMode/dev) y emitir 1 sola vez con el mejor score
     try {
       const win = window;
       win.__GAME_END_QUEUE = win.__GAME_END_QUEUE || [];
       win.__GAME_END_EMITTED = !!win.__GAME_END_EMITTED;
       win.__GAME_END_SCHEDULED = !!win.__GAME_END_SCHEDULED;
-
       win.__GAME_END_QUEUE.push({ score, won, run: () => showEndBanner(won, score) });
       if (!win.__GAME_END_SCHEDULED) {
         win.__GAME_END_SCHEDULED = true;
@@ -691,20 +771,19 @@
               win.dispatchEvent(new CustomEvent('game:end', { detail: { won: best.won, score: best.score } }));
               win.onGameFinish?.({ won: best.won, score: best.score });
               if (!win.onGameFinish) console.log('[onGameFinish]', { won: best.won, score: best.score });
-            } catch {}
-            try { best.run?.(); } catch {}
+            } catch { }
+            try { best.run?.(); } catch { }
           }
           win.__GAME_END_QUEUE = [];
           win.__GAME_END_SCHEDULED = false;
         }, 0);
       }
     } catch {
-      // fallback directo
       try {
         window.dispatchEvent(new CustomEvent('game:end', { detail: { won, score } }));
         window.onGameFinish?.({ won, score });
         if (!window.onGameFinish) console.log('[onGameFinish]', { won, score });
-      } catch {}
+      } catch { }
       showEndBanner(won, score);
     }
   }
@@ -728,19 +807,19 @@
   }
   function closeStartOverlay() { const overlay = document.getElementById('start-overlay'); if (!overlay) return; overlay.classList.remove('open'); overlay.style.display = 'none'; }
   function startGameFromPrompt() {
-    try { setMusic(true); } catch {}
-    try { lockNav(); } catch {}
+    try { setMusic(true); } catch { }
+    try { lockNav(); } catch { }
     state._ended = false;
     try {
       window.__GAME_END_EMITTED = false;
       window.__GAME_END_QUEUE = [];
       window.__GAME_END_SCHEDULED = false;
-    } catch {}
+    } catch { }
     state.started = true;
     startTimer(TIME_LIMIT);
   }
 
-  // --- Referencia (mostrar en mÃ³vil; el botÃ³n se crea siempre) ---
+  // --- Referencia (mostrar en móvil; el botón se crea siempre) ---
   function ensureHudReferenceButton() {
     if (!$hudRight) return;
     if (document.getElementById('btn-reference')) return;
@@ -781,41 +860,29 @@
     document.documentElement.style.setProperty('--overlay-alpha', OVERLAY_ALPHA.toString());
     document.documentElement.style.setProperty('--piece-radius', `${RADIUS_PX}px`);
     makeClickPool(); setupBGM();
-
     measureAndSetHeights();
-
-    try { const auto = await autodetectGridAndExt(); state.rows = auto.rows || state.rows; state.cols = auto.cols || state.cols; state.ext = auto.ext || state.ext; } catch {}
-    try { const dim = await loadImageDims(`${ASSET_DIR}/A1${state.ext}`); if (dim?.width && dim?.height) { state.baseCellW = dim.width; state.baseCellH = dim.height; } } catch {}
-
+    try { const auto = await autodetectGridAndExt(); state.rows = auto.rows || state.rows; state.cols = auto.cols || state.cols; state.ext = auto.ext || state.ext; } catch { }
+    try { const dim = await loadImageDims(`${ASSET_DIR}/A1${state.ext}`); if (dim?.width && dim?.height) { state.baseCellW = dim.width; state.baseCellH = dim.height; } } catch { }
     $board.style.setProperty('--rows', String(state.rows));
     $board.style.setProperty('--cols', String(state.cols));
     $board.style.setProperty('--cellW', `${state.baseCellW}px`);
     $board.style.setProperty('--cellH', `${state.baseCellH}px`);
-
     fitBoard();
     buildGuideGrid();
-
     state.images = generateAssetList(state.rows, state.cols, state.ext);
     spawnPieces();
     randomScatter();
     resolveObstructions(false);
-
     updateTimerLabel(TIME_LIMIT);
     updatePiecesCountUI();
     updateCompletionUI();
-
     const overlay = ensureStartOverlay();
     overlay.classList.add('open');
     overlay.querySelector('#btn-start-game')?.addEventListener('click', () => { closeStartOverlay(); startGameFromPrompt(); });
-
-    ensureHudReferenceButton(); // se oculta por CSS en desktop
-
-    // Si por cualquier motivo se emite el evento global de fin, corta el timer
-    const onGameEndStop = () => { try { stopTimer(); } catch {} state._ended = true; };
+    ensureHudReferenceButton();
+    const onGameEndStop = () => { try { stopTimer(); } catch { } state._ended = true; };
     window.addEventListener('game:end', onGameEndStop);
-
     $btnRestart?.addEventListener('click', reset);
-    // Evita mÃºltiples bindings en modo Strict/dev
     if ($btnEndAct && !$btnEndAct.dataset.bound) {
       $btnEndAct.dataset.bound = '1';
       $btnEndAct.addEventListener('click', async () => {
@@ -827,50 +894,44 @@
           $btnEndAct.textContent = 'Guardando...';
           $btnEndAct.setAttribute('aria-busy', 'true');
           $btnEndAct.style.opacity = '0.7';
-        } catch {}
-
+        } catch { }
         try {
-        const txt = ($finalScore?.textContent || '').trim();
-        let computed = Number.parseInt(txt, 10);
-        if (!Number.isFinite(computed)) {
-          computed = Number(state.lastScore || 0) || 0;
+          const txt = ($finalScore?.textContent || '').trim();
+          let computed = Number.parseInt(txt, 10);
+          if (!Number.isFinite(computed)) {
+            computed = Number(state.lastScore || 0) || 0;
+          }
+          const payload = { gameId: GAME_ID, gameTitle: GAME_TITLE, score: computed };
+          await fetch('/api/scores', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+            credentials: 'include',
+          });
+        } catch { }
+        try {
+          window.location.href = '/admin/scores';
+        } catch {
+          try {
+            $btnEndAct.disabled = false;
+            $btnEndAct.textContent = prevText || 'Continuar';
+            $btnEndAct.removeAttribute('aria-busy');
+            $btnEndAct.style.opacity = '';
+          } catch { }
         }
-        const payload = { gameId: GAME_ID, gameTitle: GAME_TITLE, score: computed };
-        await fetch('/api/scores', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-          credentials: 'include',
-        });
-      } catch {}
-
-      try {
-        // Al guardar, redirige al panel de scores (el layout impide rejugar)
-        window.location.href = '/admin/scores';
-      } catch {
-        // Si fallara la navegaciÃ³n, restaura el botÃ³n para reintentar
-        try {
-          $btnEndAct.disabled = false;
-          $btnEndAct.textContent = prevText || 'Continuar';
-          $btnEndAct.removeAttribute('aria-busy');
-          $btnEndAct.style.opacity = '';
-        } catch {}
-      }
       });
     }
-
     const onResize = () => { measureAndSetHeights(); fitBoard(); resolveObstructions(true); };
     window.addEventListener('resize', onResize);
     window.visualViewport?.addEventListener('resize', onResize);
     window.addEventListener('orientationchange', onResize);
-
     state._cleanup = () => {
       window.removeEventListener('resize', onResize);
       window.visualViewport?.removeEventListener('resize', onResize);
       window.removeEventListener('orientationchange', onResize);
-      try { window.removeEventListener('game:end', onGameEndStop); } catch {}
+      try { window.removeEventListener('game:end', onGameEndStop); } catch { }
       stopTimer(); hideEndBanner(); destroyPieces();
-      try { unlockNav(); } catch {}
+      try { unlockNav(); } catch { }
       const o = document.getElementById('start-overlay'); if (o) o.remove();
     };
   })().catch(console.error);
@@ -883,15 +944,10 @@
       window.__GAME_END_EMITTED = false;
       window.__GAME_END_QUEUE = [];
       window.__GAME_END_SCHEDULED = false;
-    } catch {}
+    } catch { }
     state.timeLeft = TIME_LIMIT; updateTimerLabel(state.timeLeft); updatePiecesCountUI(); updateCompletionUI();
     startTimer(TIME_LIMIT);
   }
 
-  return () => { try { state._cleanup?.(); } catch {} };
+  return () => { try { state._cleanup?.(); } catch { } };
 }
-
-
-
-
-

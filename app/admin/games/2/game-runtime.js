@@ -1095,7 +1095,7 @@ export function initTrenGame() {
       <h2 id="introTitle" style="margin-top:0">El tren de las decisiones</h2>
       <p id="introBody" style="opacity:.9">Lee la pregunta y elige A (izquierda) o B (derecha). Puedes cambiar de opinión hasta llegar a la bifurcación. Se permiten 2 errores; al tercero termina el juego. ¡Suerte!</p>
       <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:14px;">
-        <button id="introStart" class="answer-btn">Inicicar Juego</button>
+        <button id="introStart" class="answer-btn">Iniciar Juego</button>
       </div>
     </div>`; const host = document.getElementById('app') || document.body; host.appendChild(tpl); }
   function showIntroOverlay(show){ const el = document.getElementById('gameIntro'); if (!el) return; el.classList.toggle('hidden', !show); const btn = document.getElementById('introStart'); if (btn) { btn.onclick = async () => { el.classList.add('hidden'); try { ensureBGM().play(); ensureSFX().train.play(); } catch(_){} await beginGameFromIntro(); }; } }

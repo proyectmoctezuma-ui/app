@@ -27,27 +27,47 @@
 
   --fade-duration: 250ms;
 
+  /* FACTORES DE ESCALA CORREGIDOS - ahora se aplicarán correctamente */
+  --desktop-scale-factor: 0.85;  /* -15% para desktop */
+  --mobile-scale-factor: 0.95;  /* -5% para móvil */
+
   color: var(--ink);
 }
 
 /* Box sizing dentro del juego */
 .scope * { box-sizing: border-box; }
 
-/* Alturas y fallback viewport */
-.scope,
-.scope :global(.stage) {
+/* ====================================================================
+   SOLUCIÓN: ALTURAS CORREGIDAS PARA EVITAR DOBLE CONTABILIZACIÓN
+   ==================================================================== */
+.scope {
+  min-height: var(--appH, 100dvh);
   height: var(--appH, 100dvh);
-  min-height: 100svh;
   padding-bottom: env(safe-area-inset-bottom);
+  /* Asegurar que no haya overflow en desktop */
+  overflow: hidden;
 }
+
+.scope :global(.stage) {
+  min-height: var(--stageH, var(--appH, 100dvh));
+  height: var(--stageH, var(--appH, 100dvh));
+  padding-bottom: env(safe-area-inset-bottom);
+  /* Eliminar cualquier overflow que cause scroll */
+  overflow: hidden;
+}
+
 @supports not (height: 100dvh) {
-  .scope,
-  .scope :global(.stage) {
+  .scope {
     height: var(--appH, 100vh);
+    min-height: var(--appH, 100vh);
+  }
+  .scope :global(.stage) {
+    height: var(--stageH, var(--appH, 100vh));
+    min-height: var(--stageH, var(--appH, 100vh));
   }
 }
 
-/* ===== HUD (mÃ³vil) ===== */
+/* ===== HUD (móvil) ===== */
 .scope :global(.hud) {
   display: flex;
   flex-wrap: wrap;
@@ -151,7 +171,7 @@
   .scope :global(#btn-reference) { display: none !important; }
 }
 
-/* ===== Stage con textura y viÃ±eta ===== */
+/* ===== Stage con textura y viñeta ===== */
 .scope :global(.stage) {
   --stage-pad-y: clamp(10px, 4vw, 28px);
   --stage-pad-x: clamp(10px, 4vw, 28px);
@@ -165,7 +185,26 @@
   position: relative;
 }
 
-/* ViÃ±eta + degradado por encima del logo */
+/* ====================================================================
+   CORRECCIÓN: LAYOUT MEJORADO PARA DESKTOP - PADDING CONSISTENTE
+   ==================================================================== */
+@media (min-width: 1024px) {
+  .scope :global(.stage) {
+    --stage-pad-y: 15px;
+    --stage-pad-x: 15px;
+    padding: var(--stage-pad-y) var(--stage-pad-x) !important;
+    /* Grid de 2 columnas para desktop */
+    grid-template-columns: 1fr min(30vw, 420px);
+    grid-template-rows: 1fr;
+    gap: 20px;
+    align-items: start;
+    /* Asegurar que ocupe todo el espacio disponible */
+    min-height: 100% !important;
+    height: 100% !important;
+  }
+}
+
+/* Viñeta + degradado por encima del logo */
 .scope :global(.stage::before) {
   content: "";
   position: absolute;
@@ -189,33 +228,54 @@
   background-image: url('/games/1/assets/logo.svg');
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: min(80vw, 1100px) auto; /* ancho prioridad, alto automÃ¡tico */
-  opacity: 0.2;                 /* 20% */
-  mix-blend-mode: multiply;     /* efecto â€œgrabadoâ€ */
+  background-size: min(80vw, 1100px) auto;
+  opacity: 0.2;
+  mix-blend-mode: multiply;
   filter: grayscale(1) contrast(.95) brightness(.9);
   z-index: -1;
 }
 
-/* DisposiciÃ³n */
-.scope :global(.layout) { position: relative; z-index: 2; }
+/* Disposición */
+.scope :global(.layout) { 
+  position: relative; 
+  z-index: 2;
+  height: 100%;
+  min-height: 100%;
+}
 
-/* MÃ³vil */
+/* ====================================================================
+   CORRECCIÓN: BOARD-AREA - ELIMINAR CORTES Y MEJORAR ESPACIO
+   ==================================================================== */
 .scope :global(.board-area) {
   display: grid;
   justify-items: center;
   align-items: start;
   min-height: 0;
-  height:100%;
+  height: 100%;
+  /* Asegurar que no haya overflow que cause cortes */
+  overflow: hidden;
 }
 
-/* Desktop */
 @media (min-width: 1024px) {
-  .scope :global(.board-area) { place-items: center; }
+  .scope :global(.board-area) { 
+    place-items: center; 
+    height: 100%;
+    min-height: 100%;
+    /* Padding consistente con el stage */
+    padding: 0;
+  }
 }
 
 /* Desktop: asegurar ancho del tablero en su columna */
 @media (min-width:1024px) {
-  .scope :global(#board-wrap) { width: 100%; max-width: none; }
+  .scope :global(#board-wrap) { 
+    width: 100%; 
+    max-width: none;
+    height: 100% !important;
+    min-height: 100% !important;
+    /* Padding consistente */
+    padding: 0;
+  }
 }
 
 /* ===== Panel lateral (desktop) ===== */
@@ -266,19 +326,28 @@
   border-radius: 10px;
 }
 
-/* 2 columnas */
+/* ====================================================================
+   CORRECCIÓN: PANEL LATERAL - PADDING CONSISTENTE
+   ==================================================================== */
 @media (min-width: 1024px) {
   .scope :global(.stage) {
     grid-template-columns: minmax(0, 1fr) min(30vw, 420px);
     align-items: start;
+    gap: 20px;
   }
 
   .scope :global(.hud) { display: none !important; z-index: 5; }
-  .scope :global(.side-panel) { display: block; }
+  .scope :global(.side-panel) { 
+    display: block;
+    /* Padding consistente para el panel */
+    padding: 0;
+  }
 
   .scope :global(.side-panel .side-card) {
     max-height: calc(100dvh - 140px);
     overflow: auto;
+    /* Margen consistente con el board-area */
+    margin: 0;
   }
 }
 
@@ -298,12 +367,12 @@
   transition: transform 300ms ease;
 }
 
-/* MÃ¡rgenes compactos (3px) en tÃ­tulos y textos del banner */
+/* Márgenes compactos (3px) en títulos y textos del banner */
 .scope :global(.end-banner .modal-card :is(h1,h2,h3,h4,h5,h6,p,.score-text)) {
   margin: 3px 0;
 }
 
-/* MÃ³vil: cae desde arriba */
+/* Móvil: cae desde arriba */
 @media (max-width: 1023px) {
   .scope :global(.end-banner) {
     top: 0; bottom: auto;
@@ -432,6 +501,48 @@
   display: flex; justify-content: flex-end; gap: 8px; margin-top: 8px;
 }
 
-/* BotÃ³n mÃºsica (mÃ­nimo ancho) */
+/* Botón música (mínimo ancho) */
 .scope :global(#btn-music),
 .scope :global(#btn-music-right) { min-width: 44px; }
+
+/* ====================================================================
+   SOLUCIÓN DEFINITIVA: Corregir variables CSS del AdminLayout
+   ==================================================================== */
+
+/* Sobrescribir las variables CSS problemáticas SOLO para nuestro juego */
+.scope {
+  --navbar-mobile-height: 60px !important; /* Alto aproximado de navbar en desktop */
+  --admin-content-offset: 0px !important;
+}
+
+@media (min-width: 1024px) {
+  .scope {
+    /* En desktop, forzar las variables a valores que eliminen el gap */
+    --navbar-mobile-height: 60px !important;
+    --admin-content-offset: 0px !important;
+  }
+  
+  /* Aplicar corrección directa al contenedor AdminLayout */
+  .scope :global(.AdminLayout_content__HuAG7) {
+    min-height: 0 !important;
+    height: 100% !important;
+    flex: 1 1 auto !important;
+  }
+}
+
+/* Corrección adicional para asegurar que no haya scroll */
+.scope :global(html),
+.scope :global(body),
+.scope :global(#__next) {
+  overflow: hidden !important;
+  height: 100% !important;
+}
+
+@media (min-width: 1024px) {
+  .scope :global(html),
+  .scope :global(body),
+  .scope :global(#__next) {
+    overflow: hidden !important;
+    height: 100% !important;
+  }
+}

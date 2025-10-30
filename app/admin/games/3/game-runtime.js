@@ -10,7 +10,7 @@ export function initEscalerasGame() {
   // ------------------ Configuración ------------------
   const CONFIG = {
     timeLimitSec: 120,
-    pointsOnWin: 40,
+    pointsOnWin: 25,
     mustLandExact: false,           // si true y te pasas, no te mueves
     exceedBehavior: "stay",         // "stay" | "bounce" (usado sólo si mustLandExact=true)
     dice: {

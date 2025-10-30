@@ -6,40 +6,68 @@
 .scope { --_anchor: 1; }
 
 /* ===== Wrapper del puzzle ===== */
-/* respiración inferior para que el banner final no tape todo */
 
 .scope { --wrapBottomGap: clamp(12px, 4vh, 28px); }          /* desktop */
 @media (max-width: 1023px) {
   .scope { --wrapBottomGap: clamp(12px, 6vh, 36px); }        /* móvil */
 }
 
+/* ====================================================================
+   CORRECCIÓN: WRAPPER CON ALTURA COMPLETA SIN CORTES
+   ==================================================================== */
+
 /* Wrapper del puzzle: llena el área disponible de board-area */
 .scope :global(#board-wrap) {
   width: 100%;
   height: calc(100% - var(--wrapBottomGap));
   display: grid;
-  /* celda única: el frame vive aquí */
   grid-template-rows: 1fr;
   grid-template-columns: 1fr;
-  place-items: start center; /* centrado horizontal suave */
+  place-items: start center;
   overflow: visible;
   padding-inline: max(10px, env(safe-area-inset-left, 0px));
   padding-bottom: max(var(--wrapBottomGap), env(safe-area-inset-bottom, 0px));
+  box-sizing: border-box;
 }
 
+/* ====================================================================
+   EN DESKTOP: ELIMINAR CORTES - ALTURA COMPLETA SIN PADDING CONFLICTIVO
+   ==================================================================== */
+@media (min-width: 1024px) {
+  .scope :global(#board-wrap) {
+    height: 100% !important;
+    padding: 0 !important;
+    place-items: center center;
+    box-sizing: border-box;
+    /* Asegurar que no haya overflow que cause cortes */
+    overflow: hidden;
+  }
+}
 
-/* Frame del board: tamaño ESCALADO; sin recorte */
 /* Frame del board: ocupa todo el wrap y no recorta */
 .scope :global(#board-frame) {
   position: relative;
   display: grid;
-  align-content: start;  /* top */
-  justify-content: start;/* left */
+  align-content: start;
+  justify-content: start;
   width: 100%;
   height: 100%;
   overflow: visible;
 }
 
+/* ====================================================================
+   EN DESKTOP: CENTRADO PERFECTO Y ESPACIO COMPLETO
+   ==================================================================== */
+@media (min-width: 1024px) {
+  .scope :global(#board-frame) {
+    align-content: center;
+    justify-content: center;
+    height: 100%;
+    /* Asegurar que el frame use todo el espacio disponible */
+    width: 100%;
+    max-width: 100%;
+  }
+}
 
 /* ===== Board tamaño base; escalado por transform ===== */
 .scope :global(.board) {
@@ -114,7 +142,7 @@
   pointer-events: none;
 }
 
-/* Overlay per-piece (para “ocultar sueltas” y sombreado suave) */
+/* Overlay per-piece (para "ocultar sueltas" y sombreado suave) */
 .scope :global(.piece::after) {
   content: "";
   position: absolute;
@@ -152,7 +180,7 @@
   animation: game1SnapPulse 360ms ease-out 1;
 }
 
-/* ===== Debug grid (tecla ‘D’ en el runtime) ===== */
+/* ===== Debug grid (tecla 'D' en el runtime) ===== */
 .scope :global(body.debug .board) {
   background-image:
     linear-gradient(rgba(122,168,255,0.12) 1px, transparent 1px),
