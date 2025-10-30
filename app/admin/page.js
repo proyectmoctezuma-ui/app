@@ -46,7 +46,7 @@ export default async function AdminPage() {
   return (
     <div className={styles.screen}>
       <div className={styles.card}>
-        <h1 className={styles.title}>Bienvenidx de nuevo, {user.name}!</h1>
+        <h1 className={styles.title}>Bienvenido/a de nuevo, {user.name}!</h1>
         <p className={styles.subtitle}>Nos alegra tenerte de vuelta en la sala de juegos.</p>
       </div>
     </div>

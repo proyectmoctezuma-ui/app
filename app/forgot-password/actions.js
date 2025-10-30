@@ -27,10 +27,10 @@ export async function verifyCode(employeeCode, name) {
   const fullName = String(name || '').trim();
 
   if (!code) {
-    return { success: false, error: 'El código de empleado no puede estar vacío.' };
+    return { success: false, error: 'El número de empleado no puede estar vacío.' };
   }
   if (!/^\d{8}$/.test(code)) {
-    return { success: false, error: 'El código de empleado debe tener exactamente 8 dígitos.' };
+    return { success: false, error: 'El número de empleado debe tener exactamente 8 dígitos.' };
   }
   if (!fullName) {
     return { success: false, error: 'El nombre completo es obligatorio.' };

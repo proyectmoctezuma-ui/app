@@ -13,7 +13,7 @@ export default function WelcomePage() {
                 height={250}  // Alto del logo
                 className={styles.logo}
               />
-      <h1 className={styles.title}>Bienvenido </h1>
+      <h1 className={styles.title}>Bienvenido/a</h1>
       <p className={styles.subtitle}>
         Plataforma de juegos interactivos y educativos.
       </p>

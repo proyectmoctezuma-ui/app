@@ -125,7 +125,11 @@ function GameCard({ game, played }) {
           />
         </div>
         <h3 style={styles.cardTitle}>{game.title}</h3>
-        <p style={styles.cardDescription}>{game.description}</p>
+        <p
+           style={styles.cardDescription}
+            dangerouslySetInnerHTML={{ __html: game.description }}
+          />
+
       </div>
       {game.unlocked ? (
         played ? (
@@ -172,8 +176,8 @@ export default async function GamesPage() {
 
   return (
     <div style={styles.container}>
-      <h1 style={styles.title}>Sala de Juegos</h1>
-      <p style={styles.subtitle}>Cada semana, un nuevo desafío te espera. ¿Estás listx?</p>
+      <h1 style={styles.title}>Reto Moctezumer</h1>
+      <p style={styles.subtitle}>Cada semana, un nuevo desafío te espera. ¿Estás listo/a?</p>
       <div style={styles.grid}>
         {/* <--- CORRECCIÓN: Mapear sobre la lista de juegos del servidor */}
         {allGames.map((game) => {

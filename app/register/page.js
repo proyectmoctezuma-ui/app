@@ -156,10 +156,14 @@ export default function RegisterPage() {
           Registrarse con Google
         </button>
         <div className={styles.divider}>o</div>
+       
 
         <form onSubmit={handleEmailSignUp} className={styles.form}>
           <input type="email" placeholder="Correo Electrónico" value={email} onChange={(e) => setEmail(e.target.value)} className={styles.input} required autoComplete="username"/>
           <input type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} className={styles.input} required autoComplete="new-password" />
+        <p className={styles.subtitle}>
+          Ingresa una contraseña fácil de recordar y guárdala para no perder acceso a tu puntuación.
+        </p>
           <button type="submit" className={styles.submitButton} disabled={submitting}>
             {submitting ? 'Creando cuenta...' : 'Crear Cuenta'}
           </button>

@@ -5,7 +5,7 @@ import ViewportMetricsProvider from './components/ViewportMetricsProvider';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Juegos Moctezuma',
+  title: 'Reto Moctezumer',
   description: 'Plataforma de juegos interactivos.',
 };
 

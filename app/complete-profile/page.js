@@ -32,7 +32,7 @@ export default function CompleteProfilePage() {
       <div className={styles.card}>
         <h1 className={styles.title}>Completa tu Perfil</h1>
         <p className={styles.subtitle}>
-          Por favor, ingresa tu código de empleado y nombre para continuar.
+          Por favor, ingresa tu número de empleado y nombre para continuar.
         </p>
 
         <form action={formAction} className={styles.form}>
@@ -40,11 +40,11 @@ export default function CompleteProfilePage() {
           <input
             type="text"
             name="employeeCode"
-            placeholder="Código de Empleado"
+            placeholder="Número de Empleado"
             className={styles.input}
             inputMode="numeric"
             pattern="[0-9]{8}"
-            title="El código de empleado debe tener exactamente 8 dígitos."
+            title="El Número de empleado debe tener exactamente 8 dígitos."
             maxLength={8}
             onInput={(e) => {
               // Fuerza solo dígitos y máx. 8 caracteres

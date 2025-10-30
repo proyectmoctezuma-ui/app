@@ -1,4 +1,4 @@
-// app/api/scores/route.js
+﻿// app/api/scores/route.js
 export const runtime = 'nodejs';
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
